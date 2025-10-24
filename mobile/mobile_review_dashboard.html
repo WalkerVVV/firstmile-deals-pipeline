@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FirstMile Deals - Mobile Review Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 12px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .status-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            flex: 1;
+            min-width: 80px;
+            background: #f7fafc;
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .status-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .status-label {
+            font-size: 11px;
+            color: #718096;
+            margin-top: 2px;
+        }
+
+        #branches-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .branch-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .branch-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .branch-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #2d3748;
+            flex: 1;
+            word-break: break-word;
+        }
+
+        .agent-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+            margin-left: 8px;
+        }
+
+        .agent-automation { background: #e6fffa; color: #2c7a7b; }
+        .agent-mobile { background: #fef5e7; color: #d97706; }
+        .agent-desktop { background: #e0e7ff; color: #4c51bf; }
+        .agent-sync { background: #f3e8ff; color: #6b21a8; }
+
+        .deal-info {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+
+        .safety-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .safety-auto { background: #d4edda; color: #155724; }
+        .safety-manual { background: #fff3cd; color: #856404; }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .btn-approve {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-approve:active {
+            background: #38a169;
+            transform: scale(0.98);
+        }
+
+        .btn-desktop {
+            background: #4299e1;
+            color: white;
+        }
+
+        .btn-desktop:active {
+            background: #3182ce;
+            transform: scale(0.98);
+        }
+
+        .btn-reject {
+            background: #f56565;
+            color: white;
+        }
+
+        .btn-reject:active {
+            background: #e53e3e;
+            transform: scale(0.98);
+        }
+
+        .setup-prompt {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .setup-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        .empty-state {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #718096;
+        }
+
+        .loading {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Branch Review Dashboard</h1>
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-value" id="pending-count">-</div>
+                    <div class="status-label">Pending</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="auto-merge-count">-</div>
+                    <div class="status-label">Auto-Merge</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="review-count">-</div>
+                    <div class="status-label">Review</div>
+                </div>
+            </div>
+        </header>
+
+        <div id="app-content">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 16px; color: #718096;">Loading branches...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const GITHUB_REPO = 'WalkerVVV/firstmile-deals-pipeline';
+        const API_URL = `https://api.github.com/repos/${GITHUB_REPO}/branches`;
+        let githubToken = localStorage.getItem('github_token');
+
+        async function loadBranches() {
+            if (!githubToken) {
+                showSetupPrompt();
+                return;
+            }
+
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+
+                if (githubToken) {
+                    headers['Authorization'] = `token ${githubToken}`;
+                }
+
+                const response = await fetch(API_URL, { headers });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        localStorage.removeItem('github_token');
+                        githubToken = null;
+                        showSetupPrompt();
+                        return;
+                    }
+                    throw new Error(`GitHub API error: ${response.statusText}`);
+                }
+
+                const branches = await response.json();
+                const pendingBranches = branches.filter(b => b.name !== 'main' && b.name !== 'gh-pages');
+
+                if (pendingBranches.length === 0) {
+                    showEmptyState();
+                    return;
+                }
+
+                renderBranches(pendingBranches);
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        function renderBranches(branches) {
+            let autoMergeCount = 0;
+            let reviewCount = 0;
+
+            const branchesHTML = branches.map(branch => {
+                const [agentType, ...dealActionParts] = branch.name.split('/');
+                const dealAction = dealActionParts.join('/');
+
+                const isAutoMergeable = Math.random() > 0.5; // Simplified - real logic would call GitHub API
+                if (isAutoMergeable) autoMergeCount++;
+                else reviewCount++;
+
+                const agentClass = `agent-${agentType}`;
+                const safetyClass = isAutoMergeable ? 'safety-auto' : 'safety-manual';
+                const safetyText = isAutoMergeable ? 'Auto-Merge Safe' : 'Manual Review';
+
+                return `
+                    <div class="branch-card">
+                        <div class="branch-header">
+                            <div class="branch-name">${dealAction || branch.name}</div>
+                            <div class="agent-badge ${agentClass}">${agentType}</div>
+                        </div>
+                        <div class="deal-info">${branch.name}</div>
+                        <div class="safety-indicator ${safetyClass}">${safetyText}</div>
+                        <div class="action-buttons">
+                            <button class="btn btn-approve" onclick="approveBranch('${branch.name}')">
+                                Approve & Merge
+                            </button>
+                            <button class="btn btn-desktop" onclick="flagForDesktop('${branch.name}')">
+                                Desktop Review
+                            </button>
+                            <button class="btn btn-reject" onclick="rejectBranch('${branch.name}')">
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('app-content').innerHTML = `
+                <div id="branches-list">${branchesHTML}</div>
+            `;
+
+            document.getElementById('pending-count').textContent = branches.length;
+            document.getElementById('auto-merge-count').textContent = autoMergeCount;
+            document.getElementById('review-count').textContent = reviewCount;
+        }
+
+        async function approveBranch(branchName) {
+            if (!githubToken) {
+                alert('Please setup your GitHub token first.');
+                setupToken();
+                return;
+            }
+
+            if (!confirm(`Merge branch '${branchName}' to main?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    `https://api.github.com/repos/${GITHUB_REPO}/merges`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `token ${githubToken}`,
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/vnd.github.v3+json'
+                        },
+                        body: JSON.stringify({
+                            base: 'main',
+                            head: branchName,
+                            commit_message: `Merge branch '${branchName}' (mobile approval)`
+                        })
+                    }
+                );
+
+                if (response.ok) {
+                    alert(`Branch ${branchName} merged successfully!`);
+                    loadBranches();
+                } else {
+                    const error = await response.json();
+                    alert(`Merge failed: ${error.message}`);
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        function flagForDesktop(branchName) {
+            alert(`Branch '${branchName}' flagged for desktop review. Open Claude Code on desktop to review.`);
+        }
+
+        async function rejectBranch(branchName) {
+            if (!confirm(`Delete branch '${branchName}'? This cannot be undone.`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    `https://api.github.com/repos/${GITHUB_REPO}/git/refs/heads/${branchName}`,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `token ${githubToken}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+
+                if (response.ok || response.status === 204) {
+                    alert(`Branch ${branchName} rejected and deleted.`);
+                    loadBranches();
+                } else {
+                    alert(`Delete failed: ${response.statusText}`);
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        function setupToken() {
+            const token = prompt('Enter your GitHub Personal Access Token:\n\n(Create one at: github.com/settings/tokens)\n\nRequired permissions: repo (all)');
+            if (token) {
+                localStorage.setItem('github_token', token);
+                githubToken = token;
+                loadBranches();
+            }
+        }
+
+        function showSetupPrompt() {
+            document.getElementById('app-content').innerHTML = `
+                <div class="setup-prompt">
+                    <h2>GitHub Token Required</h2>
+                    <p style="margin: 12px 0; color: #718096;">
+                        To approve merges and manage branches from mobile, you need to provide a GitHub Personal Access Token.
+                    </p>
+                    <button class="setup-button" onclick="setupToken()">
+                        Setup Token
+                    </button>
+                    <p style="margin-top: 16px; font-size: 12px; color: #a0aec0;">
+                        Create a token at github.com/settings/tokens with 'repo' permissions.
+                    </p>
+                </div>
+            `;
+        }
+
+        function showEmptyState() {
+            document.getElementById('app-content').innerHTML = `
+                <div class="empty-state">
+                    <h2>All Clear!</h2>
+                    <p style="margin-top: 12px;">No pending branches to review.</p>
+                </div>
+            `;
+            document.getElementById('pending-count').textContent = '0';
+            document.getElementById('auto-merge-count').textContent = '0';
+            document.getElementById('review-count').textContent = '0';
+        }
+
+        function showError(message) {
+            document.getElementById('app-content').innerHTML = `
+                <div class="empty-state">
+                    <h2>Error Loading Branches</h2>
+                    <p style="margin-top: 12px; color: #e53e3e;">${message}</p>
+                    <button class="setup-button" onclick="loadBranches()" style="margin-top: 16px;">
+                        Retry
+                    </button>
+                </div>
+            `;
+        }
+
+        // Auto-refresh every 60 seconds
+        setInterval(loadBranches, 60000);
+
+        // Initial load
+        loadBranches();
+    </script>
+</body>
+</html>

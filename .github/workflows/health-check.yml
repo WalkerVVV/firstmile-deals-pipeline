@@ -1,0 +1,168 @@
+name: Repository Health Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run health check daily at 9 AM UTC (3 AM CT)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    name: Nebuchadnezzar v3.0 Health Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify repository structure
+        run: |
+          echo "🔍 Verifying Nebuchadnezzar v3.0 repository structure..."
+
+          # Check for critical directories
+          CRITICAL_DIRS=(
+            ".claude"
+            "HubSpot"
+            "BULK_RATE_PROCESSING"
+            "XPARCEL_NATIONAL_SELECT"
+          )
+
+          for dir in "${CRITICAL_DIRS[@]}"; do
+            if [ -d "$dir" ]; then
+              echo "✅ Directory exists: $dir"
+            else
+              echo "❌ CRITICAL: Missing directory: $dir"
+              exit 1
+            fi
+          done
+
+      - name: Verify critical files
+        run: |
+          echo "📋 Verifying critical configuration files..."
+
+          CRITICAL_FILES=(
+            ".gitignore"
+            ".env.example"
+            "CLAUDE.md"
+            "PRE_MATRIX_SYSTEM_STATE.json"
+            ".claude/README.md"
+            ".claude/DOCUMENTATION_INDEX.md"
+            ".claude/NEBUCHADNEZZAR_REFERENCE.md"
+          )
+
+          for file in "${CRITICAL_FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "✅ File exists: $file"
+            else
+              echo "❌ CRITICAL: Missing file: $file"
+              exit 1
+            fi
+          done
+
+      - name: Verify .env is protected
+        run: |
+          echo "🔒 Verifying .env file is NOT in repository..."
+
+          if [ -f ".env" ]; then
+            echo "❌ CRITICAL: .env file found in repository! This is a security risk."
+            exit 1
+          else
+            echo "✅ .env file is properly excluded from repository"
+          fi
+
+      - name: Count deal folders
+        run: |
+          echo "📊 Counting deal folders across pipeline stages..."
+
+          DEAL_COUNT=$(find . -maxdepth 1 -type d -name "[0-9][0-9]-*" | wc -l)
+          echo "Total deal folders: $DEAL_COUNT"
+
+          if [ $DEAL_COUNT -lt 10 ]; then
+            echo "⚠️ WARNING: Low deal count ($DEAL_COUNT), expected 40++"
+          else
+            echo "✅ Deal folder count looks healthy: $DEAL_COUNT"
+          fi
+
+      - name: Verify Python requirements
+        run: |
+          echo "🐍 Checking Python requirements file..."
+
+          if [ -f "requirements.txt" ]; then
+            echo "✅ requirements.txt found"
+            echo "📦 Dependencies:"
+            cat requirements.txt
+          else
+            echo "⚠️ WARNING: requirements.txt not found"
+          fi
+
+      - name: Check for sensitive files
+        run: |
+          echo "🛡️ Scanning for accidentally committed sensitive files..."
+
+          SENSITIVE_PATTERNS=(
+            "*.env"
+            "*_credentials.*"
+            "*_keys.*"
+            "*_secrets.*"
+            "*api_key*"
+            "*password*"
+            "*token*"
+            ".env.local"
+          )
+
+          FOUND_SENSITIVE=0
+          for pattern in "${SENSITIVE_PATTERNS[@]}"; do
+            if find . -path "./.git" -prune -o -name "$pattern" -type f -print | grep -q .; then
+              echo "⚠️ POTENTIAL SECURITY ISSUE: Found files matching $pattern"
+              find . -path "./.git" -prune -o -name "$pattern" -type f -print
+              FOUND_SENSITIVE=1
+            fi
+          done
+
+          if [ $FOUND_SENSITIVE -eq 0 ]; then
+            echo "✅ No sensitive files detected in repository"
+          else
+            echo "❌ CRITICAL: Potential sensitive files found!"
+            exit 1
+          fi
+
+      - name: Verify Matrix v3.0 configuration
+        run: |
+          echo "🎯 Verifying Matrix v3.0 specific configuration..."
+
+          # Check .env.example has Matrix v3.0 variables
+          if grep -q "MATRIX v3.0 Configuration" .env.example; then
+            echo "✅ .env.example contains Matrix v3.0 configuration"
+          else
+            echo "❌ CRITICAL: .env.example missing Matrix v3.0 configuration"
+            exit 1
+          fi
+
+          # Check for Phase 0 backup exclusions in .gitignore
+          if grep -q "phase0_backup" .gitignore; then
+            echo "✅ .gitignore excludes Phase 0 backup scripts"
+          else
+            echo "⚠️ WARNING: .gitignore may not exclude Phase 0 backup scripts"
+          fi
+
+      - name: Repository health summary
+        if: always()
+        run: |
+          echo ""
+          echo "======================================"
+          echo "📊 NEBUCHADNEZZAR v3.0 HEALTH SUMMARY"
+          echo "======================================"
+          echo ""
+          echo "Repository: firstmile-deals-pipeline"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Triggered by: ${{ github.event_name }}"
+          echo ""
+          echo "✅ Health check complete"
+          echo ""
+          echo "🤖 Matrix v3.0 is operational"
+          echo "======================================"

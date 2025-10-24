@@ -1,0 +1,135 @@
+To: reid@systembeauty.com
+From: Brett.Walker@firstmile.com
+Subject: BoxiiShip System Beauty TX - Transit Report Update + Thursday Meeting
+
+---
+
+Hi Reid,
+
+I wanted to follow up on the issues and data you raised regarding BoxiiShip System Beauty TX. I've received detailed updates from Stephen Lineberry (our Senior Partnership Manager), and the news is positive across the board.
+
+Here's what's been resolved and what the data shows:
+
+---
+
+## ✅ ISSUE RESOLUTIONS
+
+### 1. Manual Encoding/Sorting Issue - FULLY RESOLVED
+- The sorting machine malfunction from earlier this summer has been completely fixed
+- Parcels are now sorted, encoded, and cleared from the docks within 24 hours
+- Ongoing monitoring is in place to catch any anomalies
+
+### 2. Tracking Visibility & Mis-Sorts - CLARIFIED
+- For the tracking file you shared: The labels were not cancelled, but they were never physically received or scanned into our system
+- We're running routine "No First Scan" reports to catch parcels not moving within SLE
+- Direct communication with client ops teams ensures no freight is being held back at nodes
+- These steps have helped reduce complaints
+
+---
+
+## 📊 TRANSIT REPORT FINDINGS (July - September 2025)
+
+Stephen provided the full transit report for BoxiiShip Beauty Logistics LLC. Here are the highlights:
+
+**Performance Summary:**
+- **Average days in transit: 2.96 days**
+- **99.9% delivered by Day 8**
+- **97% delivered by Day 5**
+
+**Service Usage:**
+- Ground service is the slowest (as expected)
+- DHL Expedited (under 1 lb) is your most frequently used service
+- SLEs look strong overall, except for USPS GA over 1 lb in July/August
+
+**Label-to-Scan Timing:**
+- Average: 1.03 days (slightly higher than our network average)
+- **Max had the longest delay to first scan in August (12.23 days)**
+  - **Why:** TSA Known Shipper status was unknown after the move to the new Dallas Fort Worth location, which caused a brief period of delay and holding for Max packages
+  - This has since been resolved with TSA
+
+**Bottom line:** Strong performance overall with 99.9% on-time delivery and fast transit times averaging under 3 days.
+
+---
+
+## 📎 FULL TRANSIT REPORT ATTACHED
+
+I'm attaching the complete July-September 2025 transit report from Stephen for your review:
+- **Boxiiship_Transit Performance_July-Sept 2025.xlsx**
+
+---
+
+## 🚨 PENDING ACTION ITEMS (From Oct 2 Email)
+
+I want to make sure we complete the action items you flagged on October 2nd. Here's where we're at:
+
+**Your Action Items:**
+1. ✅ **Manual encoding issue** - RESOLVED (parcels clearing within 24 hours)
+2. ✅ **Tracking visibility** - CLARIFIED (labels never received/scanned, not cancelled)
+3. ✅ **Transit report & SLE** - DELIVERED (see above and attached)
+4. ⏳ **ACI DFW Peak Season coordination** - In progress, will update Thursday
+5. ⏳ **September data breakdown by customer** - In progress, will have Thursday
+6. ⏳ **Weight data formatting fix timeline** (Melissa) - Following up, update Thursday
+7. ⏳ **Daily reconciliation reports** - Working on setup, update Thursday
+8. ❓ **BOL confirmation** (Robert Kruse, Oct 3) - Please confirm if you received the BOLs for Gold Generation Wealth Trucking (10/06-10/10 pickups)
+
+---
+
+## 📅 LET'S MEET THURSDAY FOR TOUCHPOINT
+
+I'd like to schedule our regular Thursday touchpoint meeting to:
+1. Walk through the transit report in detail
+2. Provide updates on the pending action items (ACI, Sept data, weight fix, reconciliation)
+3. Answer any questions about the July-Sept performance
+4. Discuss any new concerns or operational needs
+
+**Proposed times for Thursday, October 9th** (30 minutes):
+- 10:00 AM CST
+- 2:00 PM CST
+- 3:00 PM CST
+
+Or let me know what time works best for you and I'll make it happen.
+
+---
+
+## 🎯 NEXT STEPS FOR MISSING TRACKING NUMBERS
+
+For tracking numbers with no record of receipt (from your file):
+- **Best course of action:** Refund/reship those packages
+- **Submit claims** for review on our claims portal
+- I can help walk you through the claims process on Thursday's call if needed
+
+---
+
+## 📞 ANYTHING URGENT BEFORE THURSDAY?
+
+If anything is time-sensitive or you need immediate assistance before our Thursday meeting, please don't hesitate to call or email. Otherwise, I'll have complete updates on all pending action items ready for you on Thursday.
+
+Looking forward to our touchpoint!
+
+Best,
+
+Brett Walker
+eCommerce Shipping Specialist
+FirstMile
+
+📞 C: 402-718-4727
+📧 Brett.Walker@firstmile.com
+🔗 LinkedIn: https://www.linkedin.com/in/brett-walker
+🌐 FirstMile.com
+
+---
+
+P.S. – The transit data shows BoxiiShip System Beauty TX is performing exceptionally well with 99.9% on-time delivery and 2.96 average transit days. I'm excited to show you the full breakdown on Thursday.
+
+---
+
+ATTACHMENT REQUIRED:
+Boxiiship_Transit Performance_July-Sept 2025.xlsx (from Stephen Lineberry email, Oct 6)
+
+INTERNAL NOTES:
+- Stephen Lineberry emails: Oct 3 (issue resolutions) + Oct 6 (transit report)
+- 48-hour action item deadline from Oct 2 has passed - addressing on Thursday call
+- Need to provide updates on: ACI coordination, Sept data, weight fix timeline (Melissa), daily reconciliation
+- BOL confirmation needed from Reid (Robert Kruse, Oct 3)
+- Transit report shows strong performance: 2.96 avg days, 99.9% by Day 8, 97% by Day 5
+- Max August delays explained: TSA Known Shipper status after DFW move (now resolved)

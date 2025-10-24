@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caputron Shipping Report</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/lucide-static@0.263.0/font/lucide.css">
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // Since we can't directly import the TypeScript files in a simple HTML,
+        // here's a quick preview version of your component
+        
+        const { useState } = React;
+        
+        const CaputronReportPreview = () => {
+            const [activeTab, setActiveTab] = useState('overview');
+            
+            return (
+                <div className="min-h-screen bg-gray-50">
+                    <div className="bg-slate-900">
+                        <div className="max-w-7xl mx-auto px-4 py-6">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-4">
+                                    <div className="text-3xl font-bold text-green-500">
+                                        FirstMile
+                                    </div>
+                                    <div className="text-gray-400">|</div>
+                                    <h1 className="text-2xl font-semibold text-white">
+                                        Caputron Shipping Analysis
+                                    </h1>
+                                </div>
+                                <div className="text-sm text-gray-200">
+                                    <p>Prepared for: <span className="font-semibold">Robin Azzam, CEO</span></p>
+                                    <p>Analysis Date: June 30, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-slate-100 border-b">
+                        <div className="max-w-7xl mx-auto px-4 py-3">
+                            <div className="flex space-x-2 overflow-x-auto">
+                                {['Overview', 'Carriers', 'Weight Analysis', 'Dimensions', 'Geography'].map((tab) => (
+                                    <button
+                                        key={tab}
+                                        onClick={() => setActiveTab(tab.toLowerCase().replace(' ', '-'))}
+                                        className={`px-4 py-2 rounded-lg transition-all ${
+                                            activeTab === tab.toLowerCase().replace(' ', '-')
+                                                ? 'bg-green-500 text-white shadow-md'
+                                                : 'text-gray-600 hover:bg-gray-200'
+                                        }`}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="max-w-7xl mx-auto px-4 py-8">
+                        {activeTab === 'overview' && (
+                            <div className="space-y-8">
+                                <div className="bg-white rounded-lg p-6 shadow-sm">
+                                    <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                                        Executive Summary
+                                    </h2>
+                                    <p className="leading-relaxed text-gray-600">
+                                        Analysis of shipping patterns reveals a dual-carrier operation with 
+                                        strong emphasis on ground services. Based on current volume of 1,000 daily shipments, 
+                                        the profile is characterized by lightweight packages, standardized dimensions, 
+                                        and nationwide coverage with minimal international presence.
+                                    </p>
+                                </div>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                                        <p className="text-sm mb-1 text-gray-500">Daily Volume</p>
+                                        <p className="text-2xl font-bold text-green-500">1,000</p>
+                                        <p className="text-sm mt-1 text-gray-500">500-1,000 range</p>
+                                    </div>
+                                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                                        <p className="text-sm mb-1 text-gray-500">Monthly Volume</p>
+                                        <p className="text-2xl font-bold text-blue-500">30,000</p>
+                                        <p className="text-sm mt-1 text-gray-500">avg per month</p>
+                                    </div>
+                                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                                        <p className="text-sm mb-1 text-gray-500">Annual Projection</p>
+                                        <p className="text-2xl font-bold text-green-600">365,000</p>
+                                        <p className="text-sm mt-1 text-gray-500">shipments/year</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        
+                        {activeTab === 'carriers' && (
+                            <div className="bg-white rounded-lg p-6 shadow-sm">
+                                <h3 className="text-lg font-semibold mb-6">Carrier Utilization</h3>
+                                <div className="space-y-4">
+                                    <div>
+                                        <div className="flex justify-between mb-1">
+                                            <span>UPS - 636 shipments/day</span>
+                                            <span className="font-semibold">63.6%</span>
+                                        </div>
+                                        <div className="w-full bg-gray-200 rounded-full h-2.5">
+                                            <div className="bg-slate-900 h-2.5 rounded-full" style={{width: '63.6%'}}></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="flex justify-between mb-1">
+                                            <span>USPS - 364 shipments/day</span>
+                                            <span className="font-semibold">36.4%</span>
+                                        </div>
+                                        <div className="w-full bg-gray-200 rounded-full h-2.5">
+                                            <div className="bg-blue-500 h-2.5 rounded-full" style={{width: '36.4%'}}></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        
+                        {activeTab === 'weight-analysis' && (
+                            <div className="bg-white rounded-lg p-6 shadow-sm">
+                                <h3 className="text-lg font-semibold mb-6">Weight Distribution</h3>
+                                <p className="text-lg font-semibold text-green-600 mb-4">
+                                    Key Finding: 73% Under 1 Pound
+                                </p>
+                                <div className="space-y-3">
+                                    <div>11-15.99 oz: 45% (450 packages/day)</div>
+                                    <div>1-5 lbs: 22% (220 packages/day)</div>
+                                    <div>6-10 oz: 18% (180 packages/day)</div>
+                                    <div>1-5 oz: 10% (100 packages/day)</div>
+                                </div>
+                            </div>
+                        )}
+                        
+                        {activeTab === 'dimensions' && (
+                            <div className="bg-white rounded-lg p-6 shadow-sm">
+                                <h3 className="text-lg font-semibold mb-6">Top Package Dimensions</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div className="border-2 border-green-500 rounded-lg p-4 bg-green-50">
+                                        <p className="text-2xl font-bold text-green-500">#1</p>
+                                        <p className="text-lg font-semibold">5" × 8" × 8"</p>
+                                        <p className="text-sm text-gray-500">Most Common</p>
+                                    </div>
+                                    <div className="border rounded-lg p-4">
+                                        <p className="text-2xl font-bold text-gray-400">#2</p>
+                                        <p className="text-lg font-semibold">3" × 10" × 10"</p>
+                                    </div>
+                                    <div className="border rounded-lg p-4">
+                                        <p className="text-2xl font-bold text-gray-400">#3</p>
+                                        <p className="text-lg font-semibold">1" × 6" × 9"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        
+                        {activeTab === 'geography' && (
+                            <div className="bg-white rounded-lg p-6 shadow-sm">
+                                <h3 className="text-lg font-semibold mb-6">Top 10 Destination States</h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                    {['Florida (FL)', 'California (CA)', 'Texas (TX)', 'Pennsylvania (PA)', 'New York (NY)',
+                                      'Ohio (OH)', 'Illinois (IL)', 'North Carolina (NC)', 'Massachusetts (MA)', 'Michigan (MI)']
+                                      .map((state, index) => (
+                                        <div key={state} className="flex items-center space-x-2">
+                                            <span className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${
+                                                index < 3 ? 'bg-green-500' : 'bg-blue-500'
+                                            }`}>
+                                                {index + 1}
+                                            </span>
+                                            <span>{state}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+        
+        ReactDOM.render(<CaputronReportPreview />, document.getElementById('root'));
+    </script>
+</body>
+</html>

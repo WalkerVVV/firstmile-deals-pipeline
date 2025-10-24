@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(C:\\Users\\BrettWalker\\AppData\\Roaming\\Claude/**)",
+      "Bash(python:*)",
+      "Bash(dir:*)",
+      "Read(C:\\Users\\BrettWalker\\Desktop/**)",
+      "Read(/C:\\Users\\BrettWalker\\OneDrive - FirstMile SHIPNETWORK\\Pictures\\Screenshots/**)",
+      "Bash(iconv:*)",
+      "Bash(grep:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

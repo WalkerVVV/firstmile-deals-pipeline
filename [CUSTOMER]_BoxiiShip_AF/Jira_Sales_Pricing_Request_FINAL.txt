@@ -1,0 +1,74 @@
+BACKGROUND AND GOALS:
+
+Hi Sales! I need you to please create new Xparcel Domestic rates for BoxiiShip American Fork. They are meeting with Make Wellness tomorrow, October 10th, at 11am. Make Wellness is feeling the pinch of $45K-$50K above FirstMile costs per week after switching to UPS back in July.
+
+Here's the situation: We lost Make Wellness in July 2025 due to performance issues in April (ACI-WS routing - now resolved). They were shipping 5,000 packages/day (25,000/week) with us generating $7.1M annual revenue. Since switching to UPS, they've been overpaying $45K-$50K every week - that's $1.17M-$1.3M thrown away over 26+ weeks. Now they're feeling the cost pain and the window is open to win them back.
+
+The goal is to create aggressive Xparcel rates (Priority and Expedited, both National and Select) that beat their previous FirstMile rates and demonstrate massive savings versus their current UPS costs. Nate needs these rates in hand for tomorrow's 11am meeting.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT IS NEEDED:
+
+Aggressive Xparcel rate structure MORE COMPETITIVE than their previous rates:
+- Xparcel Priority National rates
+- Xparcel Priority Select rates
+- Xparcel Expedited National rates
+- Xparcel Expedited Select rates
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KEY DETAILS:
+
+Customer: Make Wellness (Health & Wellness eCommerce)
+3PL Partner: BoxiiShip American Fork, Utah
+Current Status: Lost to UPS in July 2025
+
+Volume & Service Mix:
+- Daily Volume: 5,000 packages
+- Weekly Volume: 25,000 packages (5 shipping days/week)
+- Annual Revenue: $7.1M
+- Service Mix: 68% Xparcel Priority, 32% Xparcel Expedited
+- Geographic Focus: Heavy CA, TX, AZ destinations
+
+Customer's Current UPS Pain:
+- Weekly Premium: $45K-$50K above FirstMile rates
+- Annual Premium: $2.34M-$2.6M
+- Total Overpaid Since July: $1.17M-$1.3M (26+ weeks)
+
+Why They Left:
+- April 24-28, 2025 performance collapse (ACI-WS routing issue)
+- Now resolved since May 2025 (5+ months stable performance)
+- Customer left before seeing improvements
+
+Performance Requirements for Win-Back:
+- Service performance must be spot-on (trust is fragile)
+- No ACI-WS routing for TX, AZ (lesson learned)
+- Daily SLA tracking required
+
+Rate Structure Needed:
+- Beat previous FirstMile rates significantly
+- Demonstrate $45K-$50K/week savings vs UPS
+- Support 5,000 packages/day sustained volume
+- Full zone/weight matrices for all four rate types
+
+Additional Context:
+- 700+ service credits may be offered from April performance issues
+- Previous rate file attached for reference
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+XPARCEL FILE ATTACHED:
+
+Previous customer rate file with zone/weight matrices and volume data attached to this ticket for reference.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+URGENT TIMELINE:
+
+Nate/BoxiiShip meeting with Make Wellness: October 10th, 2025 at 11am
+Need rates ASAP for customer presentation.
+
+Thank you for urgent attention to this $7.1M win-back opportunity.
+
+Brett Walker

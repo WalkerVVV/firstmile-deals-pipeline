@@ -1,0 +1,48 @@
+Subject: Josh's Frogs - FirstMile Xparcel Savings Analysis Complete
+
+Hey Josh,
+
+I've completed the full analysis on your 6-month shipping data (175K shipments) and the FirstMile Xparcel opportunity is solid.
+
+Here's what the numbers show:
+
+**Current State:**
+• 29,255 packages/month average
+• $200,832/month in shipping costs
+• 95% of your volume is serviceable by FirstMile (we can't handle overnight for live animals, which is only 5%)
+• Current carrier mix: 62% USPS, 24% FedEx, 10% UPS
+
+**FirstMile Xparcel Savings:**
+• 12% average savings: **$24,100/month** ($289K annually)
+• Your average cost per package drops from $7.22 to $6.35
+• 46% of your volume is under 1 lb - perfect for our lightweight pricing
+
+**Why this works for Josh's Frogs:**
+Your shipping profile is ideal for FirstMile's dynamic routing. We consolidate your current 3-carrier mix into our National + Select networks, giving you:
+
+• Single integration (one connection for all ground services)
+• Audit Queue (blocks mis-rated labels before they hit your invoice)
+• Single support thread (no more juggling carrier contacts for claims/returns)
+• Rate card guarantee (no surprise surcharges)
+
+**Next Steps:**
+I've prepared a professional 6-tab analysis showing the breakdown by weight, zone, and current carrier. Can we schedule 15 minutes this week to walk through it?
+
+I'll bring the detailed numbers and we can discuss implementation timeline (typically 2-3 weeks from kickoff to full cutover).
+
+Best,
+Brett Walker
+FirstMile
+
+---
+
+**Analysis Prepared:**
+Joshs_Frogs_FirstMile_Xparcel_Savings_Analysis_20251008_1453.xlsx
+• Executive Summary (savings breakdown)
+• Weight Analysis (1oz-10lb+ breakdown)
+• Zone Analysis (delivery zone savings)
+• Incumbent Rate Cards (your current carrier rates)
+• Carrier Breakdown (USPS/FedEx/UPS comparison)
+• FirstMile Advantages (why FirstMile for eCommerce)
+
+**Your Calendly:** [INSERT CALENDLY LINK]

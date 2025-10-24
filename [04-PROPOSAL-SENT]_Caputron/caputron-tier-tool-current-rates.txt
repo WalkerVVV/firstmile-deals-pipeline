@@ -1,0 +1,144 @@
+# CAPUTRON TIER TOOL MATRIX - MANHATTAN ORIGIN (10027)
+# Format: Priority | Expedited | Ground | Current Rate | Service Used
+
+# === UNDER 1 POUND (Peak Volume Zone) ===
+
+# Weight: 1 oz
+5	90	5	$4.08	USPS-GA
+
+# Weight: 2 oz  
+5	90	5	$4.25	USPS-GA
+
+# Weight: 3 oz
+5	90	5	$4.42	USPS-GA
+
+# Weight: 4 oz
+5	90	5	$4.08-$4.59	USPS-GA
+
+# Weight: 5 oz
+5	90	5	$4.76	USPS-GA
+
+# Weight: 6 oz
+5	165	10	$4.93	USPS-GA
+
+# Weight: 7 oz
+5	165	10	$5.10	USPS-GA
+
+# Weight: 8 oz
+5	165	10	$5.27	USPS-GA
+
+# Weight: 9 oz
+5	165	10	$5.44	USPS-GA
+
+# Weight: 10 oz
+5	165	10	$5.61	USPS-GA
+
+# Weight: 11 oz
+5	235	10	$5.31-$5.78	USPS-GA
+
+# Weight: 12 oz
+5	280	15	$5.49-$9.84	USPS-GA/PM
+
+# Weight: 13 oz
+10	370	20	$5.66-$6.12	USPS-GA
+
+# Weight: 14 oz
+10	465	25	$6.29-$7.36	Mix
+
+# Weight: 15 oz (PEAK VOLUME!)
+15	745	40	$5.66-$7.27	UPS/USPS Mix
+
+# Weight: 16 oz (1 lb)
+0	0	0	$6.63	USPS-GA
+
+# === 1-5 POUNDS ===
+
+# Weight: 18 oz
+5	280	15	$7.57	USPS-GA
+
+# Weight: 21 oz
+5	280	15	$10.26	UPS-Ground
+
+# Weight: 24 oz
+5	280	15	$9.78-$10.04	USPS-PM/UPS
+
+# Weight: 28 oz
+5	370	20	$7.36	USPS-GA
+
+# Weight: 30 oz
+5	370	20	$8.50	USPS-GA
+
+# Weight: 32 oz (2 lbs)
+5	280	15	$7.65	USPS-GA
+
+# Weight: 36 oz
+10	370	20	$7.36-$9.39	USPS-GA
+
+# Weight: 42 oz
+10	370	20	$7.10	UPS-Ground
+
+# Weight: 48 oz (3 lbs)
+10	370	20	$8.67	USPS-GA
+
+# Weight: 64 oz (4 lbs)
+5	235	10	$9.69	USPS-GA
+
+# Weight: 80 oz (5 lbs)
+0	95	5	$10.71	USPS-GA
+
+# === 5+ POUNDS (UPS ZONE) ===
+
+# Weight: 96 oz (6 lbs)
+0	45	5	$12.15	UPS-Ground
+
+# Weight: 112 oz (7 lbs)
+0	45	5	$13.59	UPS-Ground
+
+# Weight: 128 oz (8 lbs)
+0	25	0	$15.03	UPS-Ground
+
+# Weight: 144 oz (9 lbs)
+0	25	0	$16.47	UPS-Ground
+
+# Weight: 151 oz
+0	25	0	$35.04	UPS-Ground
+
+# Weight: 160 oz (10 lbs)
+0	15	0	$17.91	UPS-Ground
+
+# Weight: 320 oz (20 lbs)
+0	5	0	$32.31	UPS-Ground
+
+# Weight: 656 oz (41 lbs)
+0	5	0	$26.72	UPS-Ground
+
+# === KEY INSIGHTS ===
+# Origin: Manhattan, NY 10027
+# Total shipments analyzed: 5,546
+# 
+# CARRIER MIX:
+# - USPS GA: Primary for under 1 lb
+# - USPS PM: Used for expedited needs
+# - UPS Ground: Takes over at 5+ lbs
+#
+# VOLUME DISTRIBUTION:
+# - 73% of packages under 1 lb
+# - Peak at 15 oz (745 weekly packages!)
+# - Sweet spot: 1-15 oz range
+#
+# CURRENT RATES FROM NYC:
+# - USPS GA: $4.08-$9.39
+# - USPS PM: $9.78-$9.84 (expedited)
+# - UPS Ground: $5.89-$35.04
+#
+# XPARCEL OPPORTUNITY:
+# - Beat USPS GA by 25-30% on 1-15 oz
+# - Zone skip advantage from Manhattan
+# - Multi-carrier optimization for 5+ lbs
+# - Regional carriers for Northeast density
+
+# TARGET XPARCEL RATES:
+# 1-5 oz: $2.85-$3.35 (30% savings)
+# 6-10 oz: $3.45-$3.95 (29% savings)
+# 11-15 oz: $3.95-$5.10 (25% savings)
+# 16+ oz: Dynamic carrier selection

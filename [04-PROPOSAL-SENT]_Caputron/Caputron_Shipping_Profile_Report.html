@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caputron Shipping Profile Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .key-metric {
+            background-color: #e8f4f8;
+            font-weight: bold;
+        }
+        .executive-summary {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .header-info {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        ul {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caputron Shipping Profile Analysis</h1>
+    
+    <div class="header-info">
+        <strong>Prepared for:</strong> Robin Azzam, CEO<br>
+        <strong>Analysis Date:</strong> June 30, 2025<br>
+        <strong>Data Period:</strong> 5,546 shipments analyzed
+    </div>
+
+    <div class="executive-summary">
+        <h2 style="margin-top: 0; border: none;">Executive Summary</h2>
+        <p>This report provides a comprehensive analysis of Caputron's shipping patterns based on 5,546 shipment records. The analysis covers carrier utilization, service methods, weight distributions, package dimensions, and geographic distribution.</p>
+    </div>
+
+    <h2>1. Shipping Volume Metrics</h2>
+    <table>
+        <tr>
+            <th>Metric</th>
+            <th>Volume</th>
+        </tr>
+        <tr>
+            <td><strong>Daily Average</strong></td>
+            <td>62 shipments</td>
+        </tr>
+        <tr>
+            <td><strong>Monthly Average</strong></td>
+            <td>1,849 shipments</td>
+        </tr>
+        <tr>
+            <td><strong>Annual Projection</strong></td>
+            <td>22,188 shipments</td>
+        </tr>
+    </table>
+
+    <h2>2. Carrier Utilization</h2>
+    <table>
+        <tr>
+            <th>Carrier</th>
+            <th>Shipment Count</th>
+            <th>Percentage</th>
+        </tr>
+        <tr>
+            <td><strong>UPS</strong></td>
+            <td>3,527</td>
+            <td>63.6%</td>
+        </tr>
+        <tr>
+            <td><strong>USPS</strong></td>
+            <td>2,019</td>
+            <td>36.4%</td>
+        </tr>
+        <tr class="key-metric">
+            <td><strong>Total</strong></td>
+            <td>5,546</td>
+            <td>100.0%</td>
+        </tr>
+    </table>
+
+    <h2>3. Service Method Distribution</h2>
+    <table>
+        <tr>
+            <th>Service Method</th>
+            <th>Shipment Count</th>
+            <th>Percentage</th>
+        </tr>
+        <tr>
+            <td><strong>UPS Ground</strong></td>
+            <td>3,527</td>
+            <td>63.6%</td>
+        </tr>
+        <tr>
+            <td><strong>USPS Ground Advantage</strong></td>
+            <td>1,847</td>
+            <td>33.3%</td>
+        </tr>
+        <tr>
+            <td><strong>USPS Priority Mail</strong></td>
+            <td>166</td>
+            <td>3.0%</td>
+        </tr>
+        <tr>
+            <td><strong>USPS First Class Mail International</strong></td>
+            <td>6</td>
+            <td>0.1%</td>
+        </tr>
+        <tr class="key-metric">
+            <td><strong>Total</strong></td>
+            <td>5,546</td>
+            <td>100.0%</td>
+        </tr>
+    </table>
+
+    <h2>4. Weight Distribution Analysis</h2>
+    <table>
+        <tr>
+            <th>Weight Range</th>
+            <th>Percentage of Shipments</th>
+            <th>Volume Estimate</th>
+        </tr>
+        <tr>
+            <td><strong>1-5 oz</strong></td>
+            <td>10%</td>
+            <td>554 shipments</td>
+        </tr>
+        <tr>
+            <td><strong>6-10 oz</strong></td>
+            <td>18%</td>
+            <td>998 shipments</td>
+        </tr>
+        <tr>
+            <td><strong>11-15.99 oz</strong></td>
+            <td>45%</td>
+            <td>2,496 shipments</td>
+        </tr>
+        <tr class="key-metric">
+            <td><strong>Under 1 lb Total</strong></td>
+            <td><strong>73%</strong></td>
+            <td><strong>4,048 shipments</strong></td>
+        </tr>
+        <tr>
+            <td><strong>1-5 lbs</strong></td>
+            <td>22%</td>
+            <td>1,220 shipments</td>
+        </tr>
+        <tr>
+            <td><strong>6-10 lbs</strong></td>
+            <td>3%</td>
+            <td>166 shipments</td>
+        </tr>
+        <tr>
+            <td><strong>11+ lbs</strong></td>
+            <td>2%</td>
+            <td>111 shipments</td>
+        </tr>
+    </table>
+
+    <p><strong>Key Weight Findings:</strong></p>
+    <ul>
+        <li>73% of all shipments are under 1 pound</li>
+        <li>The 11-15.99 oz range represents the highest concentration (45%)</li>
+        <li>Only 5% of shipments exceed 5 pounds</li>
+    </ul>
+
+    <h2>5. Top 5 Package Dimensions</h2>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Dimensions</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><strong>5" × 8" × 8"</strong></td>
+            <td>Most common package size</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><strong>3" × 10" × 10"</strong></td>
+            <td>Secondary standard</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><strong>1" × 6" × 9"</strong></td>
+            <td>Flat/envelope style</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><strong>4" × 4" × 6"</strong></td>
+            <td>Small cube</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><strong>5" × 4" × 8"</strong></td>
+            <td>Compact box</td>
+        </tr>
+    </table>
+
+    <h2>6. Top 10 Destination States</h2>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>State</th>
+        </tr>
+        <tr><td>1</td><td>Florida (FL)</td></tr>
+        <tr><td>2</td><td>California (CA)</td></tr>
+        <tr><td>3</td><td>Texas (TX)</td></tr>
+        <tr><td>4</td><td>Pennsylvania (PA)</td></tr>
+        <tr><td>5</td><td>New York (NY)</td></tr>
+        <tr><td>6</td><td>Ohio (OH)</td></tr>
+        <tr><td>7</td><td>Illinois (IL)</td></tr>
+        <tr><td>8</td><td>North Carolina (NC)</td></tr>
+        <tr><td>9</td><td>Massachusetts (MA)</td></tr>
+        <tr><td>10</td><td>Michigan (MI)</td></tr>
+    </table>
+
+    <h2>7. Geographic Coverage</h2>
+    <ul>
+        <li><strong>Domestic Coverage:</strong> All 50 states</li>
+        <li><strong>International Presence:</strong> United Kingdom (Tower Hamlets, London)</li>
+        <li><strong>Service Area:</strong> Nationwide + Select International</li>
+    </ul>
+
+    <h2>8. Service Level Summary</h2>
+    <table>
+        <tr>
+            <th>Service Type</th>
+            <th>Percentage</th>
+        </tr>
+        <tr>
+            <td><strong>Ground Services</strong></td>
+            <td>97%</td>
+        </tr>
+        <tr>
+            <td><strong>Expedited Services</strong></td>
+            <td>3%</td>
+        </tr>
+    </table>
+
+    <h2>9. Additional Observations</h2>
+    <ul>
+        <li>Primary shipping profile consists of lightweight packages under 1 pound</li>
+        <li>Dual-carrier strategy with UPS handling majority of volume</li>
+        <li>Minimal expedited shipping requirements</li>
+        <li>Consistent package dimensions suggest standardized packaging</li>
+        <li>International shipping capability established (UK market)</li>
+    </ul>
+
+    <hr style="margin-top: 40px;">
+    <p style="text-align: center; font-style: italic; color: #666;">This analysis is based on actual shipping data and represents current operational patterns.</p>
+</body>
+</html>

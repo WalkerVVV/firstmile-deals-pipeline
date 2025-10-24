@@ -1,0 +1,136 @@
+# CAPUTRON TIER TOOL MATRIX - COMPLETE WITH CURRENT RATES
+# Format: Priority | Expedited | Ground | Current Rate
+
+# Weight: 1 oz
+5	90	5	$4.08
+
+# Weight: 2 oz  
+5	90	5	$4.25
+
+# Weight: 3 oz
+5	90	5	$4.42
+
+# Weight: 4 oz
+5	90	5	$4.59
+
+# Weight: 5 oz
+5	90	5	$4.76
+
+# Weight: 6 oz
+5	165	10	$4.93
+
+# Weight: 7 oz
+5	165	10	$5.10
+
+# Weight: 8 oz
+5	165	10	$5.27
+
+# Weight: 9 oz
+5	165	10	$5.44
+
+# Weight: 10 oz
+5	165	10	$5.61
+
+# Weight: 11 oz
+5	235	10	$5.78
+
+# Weight: 12 oz
+5	280	15	$5.95
+
+# Weight: 13 oz
+10	370	20	$6.12
+
+# Weight: 14 oz
+10	465	25	$6.29
+
+# Weight: 15 oz (Peak Volume!)
+15	745	40	$6.46
+
+# Weight: 16 oz (1 lb)
+0	0	0	$6.63
+
+# Weight: 32 oz (2 lbs)
+5	280	15	$7.65
+
+# Weight: 48 oz (3 lbs)
+10	370	20	$8.67
+
+# Weight: 64 oz (4 lbs)
+5	235	10	$9.69
+
+# Weight: 80 oz (5 lbs)
+0	95	5	$10.71
+
+# Weight: 96 oz (6 lbs)
+0	45	5	$12.15
+
+# Weight: 112 oz (7 lbs)
+0	45	5	$13.59
+
+# Weight: 128 oz (8 lbs)
+0	25	0	$15.03
+
+# Weight: 144 oz (9 lbs)
+0	25	0	$16.47
+
+# Weight: 160 oz (10 lbs)
+0	15	0	$17.91
+
+# Weight: 176 oz (11 lbs)
+0	10	0	$19.35
+
+# Weight: 192 oz (12 lbs)
+0	5	0	$20.79
+
+# Weight: 208 oz (13 lbs)
+0	5	0	$22.23
+
+# Weight: 224 oz (14 lbs)
+0	5	0	$23.67
+
+# Weight: 240 oz (15 lbs)
+0	5	0	$25.11
+
+# Weight: 256 oz (16 lbs)
+0	5	0	$26.55
+
+# Weight: 272 oz (17 lbs)
+0	5	0	$27.99
+
+# Weight: 288 oz (18 lbs)
+0	5	0	$29.43
+
+# Weight: 304 oz (19 lbs)
+0	5	0	$30.87
+
+# Weight: 320 oz (20 lbs)
+0	5	0	$32.31
+
+# Weight: 336 oz (21 lbs)
+0	5	0	$33.75
+
+# Weight: 416 oz (26 lbs)
+0	10	0	$35.04
+
+# Weight: 432 oz (27 lbs)
+0	10	0	$35.04
+
+# Weight: 448 oz (28 lbs)
+0	10	0	$35.04
+
+# Weight: 464 oz (29 lbs)
+0	10	0	$35.04
+
+# Weight: 480 oz (30 lbs)
+0	10	0	$35.04
+
+# SUMMARY:
+# - Current rates blend USPS GA ($4.08-$9.39) and UPS Ground ($5.89-$35.04)
+# - Peak volume at 15 oz (745 weekly packages)
+# - 73% of shipments under 1 lb
+# - These are the rates to beat with Xparcel optimization
+
+# XPARCEL TARGET:
+# - Beat these by 25-30% minimum
+# - Focus on sub-1lb optimization where 730 daily packages live
+# - Zone skipping for 5+ lb packages

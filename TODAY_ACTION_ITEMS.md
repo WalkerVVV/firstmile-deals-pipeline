@@ -1,0 +1,158 @@
+# 🎯 TODAY'S ACTION ITEMS - 2025-10-02
+
+## Executive Summary
+- **Pipeline Value:** $187.9M across 14 active deals
+- **All 14 deals = HIGH PRIORITY** (Score 80+) - ACTION REQUIRED TODAY
+- **4 deals at finish line** in [06-IMPLEMENTATION] - CLOSE TO WIN!
+
+---
+
+## 🔥 CRITICAL - [06-IMPLEMENTATION] (4 deals) - $180.5M
+**Goal:** Complete onboarding → CLOSED-WON
+**These are ready to close - take immediate action!**
+
+### 1. JetPack Shipping ($180M) - 156 days in stage
+**HIGHEST VALUE DEAL - URGENT ACTION NEEDED**
+- [ ] Call immediately to understand 156-day delay
+- [ ] Verify setup docs status
+- [ ] Identify blockers preventing go-live
+- [ ] Escalate to senior leadership if needed
+- [ ] **Target: Close within 7 days**
+
+### 2. Bright Ventures - Evo Dyne ($29K) - 153 days
+- [ ] Email: Request integration testing status update
+- [ ] Call: Schedule go-live date
+- [ ] Complete first shipment batch
+- [ ] **Target: Close this week**
+
+### 3. Tactical Logistic Solutions ($450K) - 71 days ✅ HAS TASK
+- [ ] Follow up on existing task
+- [ ] Push for first shipment
+- [ ] **Target: Close within 14 days**
+
+### 4. Bright Ventures - DHL International ($10K) - 156 days
+- [ ] Email: Request status update
+- [ ] Determine if deal is stalled or lost
+- [ ] **Target: Close or move to win-back**
+
+---
+
+## 💰 HIGH VALUE - [04-PROPOSAL-SENT] (7 deals) - $6.6M
+**Goal:** Get verbal commitment → Send setup docs
+
+### Top 3 Priority (156 days each):
+
+#### 1. OTW Shipping CT ($1.7M)
+- [ ] **TODAY:** Email decision maker with proposal recap
+- [ ] Schedule 30-min call to address objections
+- [ ] Prepare competitive analysis if needed
+- [ ] **Target: Verbal commit by Friday**
+
+#### 2. OTW Shipping UT ($1.6M)
+- [ ] **TODAY:** Email decision maker
+- [ ] Bundle with CT location for better pricing
+- [ ] Schedule joint call if possible
+- [ ] **Target: Verbal commit by Friday**
+
+#### 3. The Gears Clock Inc ($400K)
+- [ ] **TODAY:** Send follow-up email
+- [ ] Offer limited-time pricing incentive
+- [ ] **Target: Verbal commit next week**
+
+### Active Follow-ups (Recent deals):
+
+#### 4. Upstate Prep ($950K) - 43 days
+- [ ] Call to discuss proposal questions
+- [ ] Address any objections
+- [ ] **Target: Verbal commit within 2 weeks**
+
+#### 5. Caputron ($477K) - 69 days
+- [ ] Email check-in on proposal review
+- [ ] Schedule call if needed
+- [ ] **Target: Commit within 3 weeks**
+
+#### 6. IronLink - New Deal ($250K) - 42 days
+- [ ] Follow up on proposal
+- [ ] **Target: Commit within 2 weeks**
+
+#### 7. IronLink Logistics NJ - Skupreme ($250K) - 85 days
+- [ ] Email status check
+- [ ] **Target: Commit or update status**
+
+---
+
+## 🚧 BOTTLENECK - [03-RATE-CREATION] (3 deals) - $1.7M
+**Goal:** Complete proposal → Move to PROPOSAL-SENT
+**These are blocking revenue - prioritize proposal creation**
+
+### 1. Sparkle In Pink ($856K) - 156 days
+**MOST OVERDUE - URGENT**
+- [ ] **TODAY:** Pull PLD data and run rate analysis
+- [ ] Create pricing matrix by EOD
+- [ ] Schedule proposal delivery for tomorrow
+- [ ] **Target: Proposal sent by Friday**
+
+### 2. Team Shipper ($500K) - 29 days
+- [ ] **TODAY:** Review shipping profile
+- [ ] Run FirstMile rate calculations
+- [ ] Build proposal deck
+- [ ] **Target: Proposal sent this week**
+
+### 3. Pendulus, Etc. International ($380K) - 156 days
+**OVERDUE**
+- [ ] Pull customer data
+- [ ] Complete rate analysis
+- [ ] Create international pricing
+- [ ] **Target: Proposal sent by Friday**
+
+---
+
+## 📊 Workflow Velocity Targets
+
+| Stage | Current | Target This Week | Actions |
+|-------|---------|------------------|---------|
+| [03-RATE-CREATION] | 3 deals | → 0 deals | Send all 3 proposals by Friday |
+| [04-PROPOSAL-SENT] | 7 deals | → 3 deals | Get 4 verbal commits, move to setup |
+| [06-IMPLEMENTATION] | 4 deals | → 1 deal | Close 3 deals as WON |
+
+**Goal:** Close 3 deals + Send 3 proposals + Get 4 commits = **10 deals progressed this week**
+
+---
+
+## 🎯 Top 5 Actions for Maximum Impact
+
+1. **JetPack Shipping ($180M)** - Call NOW to unblock this massive deal
+2. **Sparkle In Pink ($856K)** - Create proposal TODAY (156 days overdue)
+3. **OTW Shipping CT/UT ($3.3M)** - Email both TODAY for verbal commits
+4. **Team Shipper ($500K)** - Complete proposal this week
+5. **Tactical Logistic Solutions ($450K)** - Push for go-live this week
+
+---
+
+## 📧 Email Templates Created
+
+All 14 deals now have workflow EMAIL tasks in HubSpot with:
+- ✅ Stage-specific next actions
+- ✅ Goal statements
+- ✅ Success criteria
+- ✅ Due dates based on SLA
+
+**Check HubSpot Tasks to execute today's actions!**
+
+---
+
+## 💡 Key Insights
+
+**Stale Deal Alert:** 10 deals have been in stage 85+ days
+- These need immediate attention to prevent deal loss
+- Consider offering time-limited incentives
+- Escalate to management for high-value stalled deals
+
+**Pipeline Health:**
+- ✅ Strong pipeline value ($187.9M)
+- ⚠️ Velocity issue - deals moving too slowly
+- 🎯 Focus on moving deals through stages faster
+
+---
+
+*Generated by daily_9am_workflow.py - Run daily for updated action items*

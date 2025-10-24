@@ -1,0 +1,104 @@
+# Environment Configuration
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Data Files (selective exclusion - MATRIX v3.0)
+# Allow most data files for version control
+# Exclude only sensitive/temporary data files
+*_raw_data.csv
+*_customer_export.csv
+*_confidential.xlsx
+*_temp.xlsx
+~$*.xlsx
+~$*.xls
+
+# Logs
+*.log
+logs/
+_DAILY_LOG.md
+_PIPELINE_TRACKER.csv
+FOLLOW_UP_REMINDERS.txt
+
+# Temporary Files
+*.tmp
+*.bak
+*.backup
+*_backup.*
+*_old.*
+*_v[0-9].*
+*_fixed.*
+
+# OS Files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Reports (generated files)
+*_report_*.xlsx
+*_dashboard_*.xlsx
+FirstMile_Xparcel_Performance_*.xlsx
+
+# Archives
+_archive/
+backup/
+
+# Sensitive Data
+*_credentials.*
+*_keys.*
+*_secrets.*
+*api_key*
+*password*
+*token*
+
+# Matrix v3.0 Specific Exclusions
+*_BACKUP_*/
+phase0_backup_system.py
+phase0_backup_auto.py
+.agent_lock
+*.lock
+
+# Git Automation (generated files)
+git_automation/__pycache__/

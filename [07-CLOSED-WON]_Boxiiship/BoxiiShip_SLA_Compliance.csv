@@ -1,0 +1,4 @@
+Service Level,SLA Window (Days),Total Delivered,Within SLA,Outside SLA,SLA Compliance %,Performance Status
+Xparcel Priority,3,3907,3370,537,86.26%,Below Standard
+Xparcel Expedited,5,48944,48238,706,98.56%,Exceeds Standard
+Xparcel Ground,8,10702,10110,592,94.47%,Meets Standard

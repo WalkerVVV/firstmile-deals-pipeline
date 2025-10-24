@@ -1,0 +1,56 @@
+Hi Sales,
+
+Please create Xparcel Domestic rates for Logystico LLC - Direct Outreach. See attached tier tool.
+
+**Logystico LLC** - Newark, NJ 07104 (Direct Outreach)
+* Ship Platform: Multiple (Shopify/Custom Integration)
+
+**Service Level Summary**:
+* Ground: 89.8% (7,301 shipments)
+* Expedited: 8.8% (716 shipments)  
+* Priority: 1.4% (113 shipments)
+
+**Volume Profile**:
+* Monthly Volume: 8,676 packages
+* Daily Average: 280 packages
+* Analysis Period: 08/05/2024 - 09/05/2024
+
+**Weight Distribution**:
+* Under 1 lb: 44.4% (3,852 packages) - PRIMARY OPPORTUNITY
+* 1-5 lbs: 26.8% (2,324 packages)
+* 6-10 lbs: 10.0% (869 packages)
+* 11-20 lbs: 10.2% (882 packages)
+* Over 20 lbs: 8.6% (749 packages)
+
+**Geographic Distribution**:
+* Regional (Zones 1-4): 43.6%
+* Cross-Country (Zones 7-9): 23.5%
+* Top States: CA (583), TX (497), FL (490), NY (438), PA (314)
+
+**Current Carrier Mix**:
+* National Carrier: 90.3% (USPS Ground Advantage)
+* Regional Carriers: 9.7% (FedEx Ground, UPS SurePost)
+
+**Key Opportunities**:
+1. **Lightweight Optimization**: 44.4% of volume under 1 lb - perfect for Xparcel Ground injection
+2. **Zone Skipping**: 23.5% going cross-country can benefit from Select Network injection
+3. **Service Level Match**: Current 8.8% expedited aligns with Xparcel Expedited (2-5 day)
+4. **Cost Savings**: Est. 18-25% savings on lightweight packages through dynamic routing
+
+**Recommended Xparcel Strategy**:
+* Xparcel Ground (3-8d): Target 7,301 current ground packages
+* Xparcel Expedited (2-5d): Convert 716 expedited packages  
+* Xparcel Priority (1-3d): Upgrade option for 113 priority packages
+
+**Integration Requirements**:
+* API integration for multi-platform setup
+* Address validation for zone optimization
+* Returns portal access needed
+
+**Next Steps**:
+1. Run tier tool with attached volume matrix
+2. Include Saturday delivery pricing
+3. Add residential surcharge waiver for <1lb
+4. Confirm 30-day trial pricing
+
+Thanks!

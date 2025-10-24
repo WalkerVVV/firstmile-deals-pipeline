@@ -1,0 +1,110 @@
+URGENT: Aggressive Rates Needed for Make Wellness Win-Back - $7.1M Annual Revenue Recovery
+
+PRIORITY: CRITICAL
+TIMELINE: IMMEDIATE (Window closing - customer feeling cost pain NOW)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EXECUTIVE SUMMARY:
+Win-back opportunity for Make Wellness (via BoxiiShip AF) - Lost $7.1M annual revenue in July 2025. Customer currently paying $45K-$50K/week PREMIUM to UPS and is now open to conversation. Need aggressive Xparcel Domestic National & Select rates MORE COMPETITIVE than their previous rates to give Nate something in hand for immediate discussion.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT PRICING TEAM NEEDS TO DO:
+
+1. CREATE AGGRESSIVE XPARCEL RATES:
+   ✓ Xparcel Priority National rates (MORE competitive than previous)
+   ✓ Xparcel Priority Select rates (MORE competitive than previous)
+   ✓ Xparcel Expedited National rates (MORE competitive than previous)
+   ✓ Xparcel Expedited Select rates (MORE competitive than previous)
+
+2. RATE FILE LOCATION:
+   → All customer details and previous rate structure attached to this Jira ticket
+   → Previous rate file includes zone/weight matrices for reference
+
+3. SERVICE MIX REQUIREMENTS:
+   → 68% Xparcel Priority
+   → 32% Xparcel Expedited
+   → Daily volume: 5,000 packages
+   → Annual revenue target: $7.1M recovery
+
+4. PERFORMANCE COMMITMENT:
+   → Service performance MUST be spot-on (no room for error)
+   → April 2025 performance issues have been resolved
+   → Customer trust is fragile - rates + flawless execution required
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KEY METRICS:
+
+Revenue Impact:
+• Annual Revenue Lost: $7.1M (from $7.2M to $0.1M)
+• Daily Volume Lost: 4,960 packages (from 5,000 to 40)
+• Win-Back Revenue Opportunity: $7.1M annually
+
+Customer's Current Pain Point:
+• UPS Weekly Premium: $45K-$50K above FirstMile rates
+• UPS Annual Premium: $2.34M-$2.6M vs FirstMile
+• Total Premium Paid Since July: $1.17M-$1.3M (26+ weeks)
+
+Competitive Positioning:
+• Customer is ACTIVELY feeling cost pain
+• Window is OPEN for win-back conversation
+• Nate needs rates IN HAND to present immediately
+• Service credits may also be offered (700+ late packages from April)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ACCOUNT BACKGROUND:
+
+Customer: Make Wellness (Health & Wellness eCommerce)
+3PL Partner: BoxiiShip American Fork
+Loss Date: July 2025
+Loss Reason: April 24-28, 2025 performance collapse (ACI-WS routing issue - NOW RESOLVED)
+
+Service Requirements:
+• Primary: Xparcel Priority (1-3 day SLA) - 68% of volume
+• Secondary: Xparcel Expedited (2-5 day SLA) - 32% of volume
+• Geographic Focus: Heavy CA, TX, AZ volume
+• Quality Standard: Daily SLA tracking with automated alerts
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+URGENCY JUSTIFICATION:
+
+1. Customer is CURRENTLY paying $45K-$50K/week premium to UPS
+2. Customer has expressed cost pain - window is OPEN NOW
+3. Nate needs rates in hand for IMMEDIATE customer engagement
+4. Every week of delay = $45K-$50K more the customer pays UPS
+5. Competitor lock-in risk increases with time
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DELIVERABLE NEEDED:
+
+Aggressive Xparcel rate structure that:
+✓ Beats customer's previous FirstMile rates
+✓ Demonstrates significant savings vs current UPS costs ($45K-$50K/week)
+✓ Supports 5,000 packages/day volume (68% Priority, 32% Expedited)
+✓ Includes both National and Select network options
+✓ Maintains margin while winning business back
+
+FORMAT: Standard zone/weight matrix Excel file
+TIMELINE: ASAP - customer conversation window is NOW
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REFERENCE MATERIALS:
+→ Previous customer rate file (attached to this ticket)
+→ Volume/service mix data (attached to this ticket)
+→ Full win-back analysis available upon request
+
+CONTACT FOR QUESTIONS:
+Brett Walker (Deal Owner)
+Nate (Sales - needs rates for customer conversation)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUEST: Please prioritize this rate creation URGENTLY. Customer window is open NOW and every day of delay costs us this $7.1M annual revenue recovery opportunity.
+
+Thank you for urgent attention to this critical win-back opportunity.

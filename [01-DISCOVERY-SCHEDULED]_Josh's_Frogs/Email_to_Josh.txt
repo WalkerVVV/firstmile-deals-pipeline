@@ -1,0 +1,24 @@
+Subject: Josh's Frogs - FirstMile Xparcel Rate Analysis Complete
+
+Hey Josh,
+
+Quick update on your custom Xparcel rates - I've completed the full invoice audit analysis and the numbers look excellent.
+
+With your 10K+ monthly volume (85% ground services), we're seeing strong savings opportunities:
+
+• 55.9% average savings across all services
+• $68,873/month savings potential ($826K annually)
+• Cost per package drops from $12.55 to $5.54
+
+Your current carrier mix (56% UPS, 38% FedEx, 6% USPS/Amazon) consolidates beautifully into FirstMile's National + Select networks. The lightweight package profile (60% under 1 lb) is perfect for our pricing structure - we're seeing 57-61% savings on cross-country zones.
+
+Can we schedule a quick 15-min call this week to walk through the detailed breakdown? I've prepared a 9-tab analysis showing savings by carrier, service type, zone, and weight range.
+
+Best,
+Brett
+
+---
+
+Attached Analysis Ready:
+• Joshs_Frogs_Complete_Audit_v3.1.xlsx (9 tabs, full breakdown)
+• Joshs_Frogs_Detailed_Data.csv (9,818 shipment records)

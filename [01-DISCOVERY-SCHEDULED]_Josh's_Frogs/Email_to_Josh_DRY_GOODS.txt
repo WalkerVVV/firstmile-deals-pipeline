@@ -1,0 +1,32 @@
+Subject: Josh's Frogs - Dry Goods Shipping Analysis (139K+ Monthly Volume)
+
+Hey Josh,
+
+Quick update on your custom Xparcel rates - I've completed the analysis focusing specifically on your dry goods shipping (feed, supplies, accessories, etc.) and the numbers look very strong.
+
+With your 139K+ monthly dry goods volume, we're seeing significant savings opportunities:
+
+• **~$339K/month savings potential** (~$4.1M annually)
+• **35% average savings** across all dry goods services
+• **Cost per package drops from $6.88 to $4.44**
+
+Your current carrier mix breaks down as:
+• USPS Ground Advantage: 71.6% (99,675 pkgs)
+• UPS/FedEx Ground: 23.6% (32,827 pkgs)
+• USPS Priority/DHL: 4.8% (6,742 pkgs)
+
+The biggest savings opportunities are on your UPS/FedEx Ground volume (50-55% savings) while maintaining competitive rates on the USPS Ground Advantage shipments (20-25% improvement).
+
+*Note: This analysis excludes your express/overnight services for live animals - we should discuss those separately with temperature-controlled routing considerations.*
+
+Can we schedule a quick 15-min call this week to walk through the detailed breakdown?
+
+Best,
+Brett
+
+---
+
+Analysis ready:
+• DRY_GOODS_SUMMARY.md (service-by-service breakdown)
+• 139,244 dry goods shipments analyzed
+• Excludes 30,886 express shipments (live animals)

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(dir \"C:\\Users\\BrettWalker\\FirstMile_Deals\" /B /AD)",
+      "Bash(findstr:*)",
+      "SlashCommand(/sc:workflow NEBUCHADNEZZAR_V3_MATRIX_BLUEPRINT.md --plan)",
+      "SlashCommand(/sc:implement NEBUCHADNEZZAR_V3_IMPLEMENTATION_WORKFLOW.md --phase 0 --validate)",
+      "Bash(dir \"C:\\Users\\BrettWalker\\Downloads\" /B /S)",
+      "Bash(dir:*)",
+      "Bash(git init:*)",
+      "Bash(test:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

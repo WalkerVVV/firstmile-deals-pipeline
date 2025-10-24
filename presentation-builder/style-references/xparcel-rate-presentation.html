@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Customer Name] - FirstMile Xparcel Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f1821 0%, #182A5A 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            padding: 80px 60px 100px;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Header */
+        .logo-header {
+            position: absolute;
+            top: 32px;
+            left: 48px;
+            z-index: 100;
+        }
+
+        .logo-header img {
+            height: 48px;
+            width: auto;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: #8BD74E;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e8f0;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #8BD74E;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 215, 78, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .metric:nth-child(1) { animation-delay: 0.1s; }
+        .metric:nth-child(2) { animation-delay: 0.2s; }
+        .metric:nth-child(3) { animation-delay: 0.3s; }
+        .metric:nth-child(4) { animation-delay: 0.4s; }
+
+        .metric:hover {
+            transform: translateY(-8px);
+            border-color: #8BD74E;
+            background: rgba(139, 215, 78, 0.1);
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 800;
+            color: #8BD74E;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .metric-label {
+            font-size: 18px;
+            color: #e0e8f0;
+            font-weight: 500;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        li {
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+            color: #e0e8f0;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.5s ease forwards;
+        }
+
+        li:nth-child(1) { animation-delay: 0.1s; }
+        li:nth-child(2) { animation-delay: 0.2s; }
+        li:nth-child(3) { animation-delay: 0.3s; }
+        li:nth-child(4) { animation-delay: 0.4s; }
+        li:nth-child(5) { animation-delay: 0.5s; }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #8BD74E;
+            font-weight: 700;
+            font-size: 28px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #182A5A 0%, #2A4A8A 100%);
+            color: #ffffff;
+            padding: 20px;
+            text-align: left;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 20px;
+            color: #e0e8f0;
+        }
+
+        tr:hover {
+            background: rgba(139, 215, 78, 0.05);
+        }
+
+        .highlight {
+            color: #8BD74E;
+            font-weight: 700;
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            margin: 40px 0;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 2px solid rgba(139, 215, 78, 0.2);
+        }
+
+        .chart-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #8BD74E;
+        }
+
+        .chart-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .chart-bar-label {
+            min-width: 200px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chart-bar-track {
+            flex: 1;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #182A5A 0%, #2A4A8A 50%, #8BD74E 100%);
+            border-radius: 24px;
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 16px;
+        }
+
+        .chart-bar-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Image Slides */
+        .image-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .image-slide img {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(139, 215, 78, 0.3);
+        }
+
+        /* CTA Buttons */
+        .cta-container {
+            display: flex;
+            gap: 24px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 20px 48px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #182A5A 0%, #2A4A8A 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: pulse 2s infinite;
+            box-shadow: 0 8px 24px rgba(24, 42, 90, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(24, 42, 90, 0.6);
+            background: linear-gradient(135deg, #2A4A8A 0%, #182A5A 100%);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #8BD74E;
+            color: #8BD74E;
+        }
+
+        .cta-button.secondary:hover {
+            background: #8BD74E;
+            color: #182A5A;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(139, 215, 78, 0.5);
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-button:hover {
+            background: #8BD74E;
+            color: #182A5A;
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(139, 215, 78, 0.5);
+            color: #8BD74E;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Footer Logo */
+        .logo-footer {
+            position: absolute;
+            bottom: 32px;
+            right: 48px;
+        }
+
+        .logo-footer img {
+            height: 32px;
+            width: auto;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 60px 24px 80px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 24px;
+            }
+
+            p, li {
+                font-size: 18px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-value {
+                font-size: 36px;
+            }
+
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 18px;
+            }
+
+            .chart-bar-label {
+                min-width: 120px;
+                font-size: 14px;
+            }
+
+            .logo-header img {
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                <h1>[Customer Name]</h1>
+                <h2 style="font-size: 64px; margin-bottom: 40px;">FirstMile Xparcel Proposal</h2>
+                <p class="subtitle">Optimizing Your Shipping Profile with Data-Driven Insights</p>
+                <p style="font-size: 24px; margin-top: 40px;">Prepared for: <span class="highlight">[Contact Name]</span></p>
+                <p style="font-size: 20px; color: #8BD74E;">[X shipments analyzed] | [Monthly Volume] Packages/Month | [Daily Average]</p>
+            </div>
+            <div class="logo-footer">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile">
+            </div>
+        </div>
+
+        <!-- Slide 2: Your Shipping Profile -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Your Current Shipping Reality</h2>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <span class="metric-value">[Monthly Volume]</span>
+                    <span class="metric-label">Packages/Month</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">[Daily Average]</span>
+                    <span class="metric-label">Average Daily Volume</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$[X.XX]</span>
+                    <span class="metric-label">Average Cost/Label</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">[X%]</span>
+                    <span class="metric-label">Packages Under 1 lb</span>
+                </div>
+            </div>
+            <h3 style="margin-top: 40px;">Weight Distribution Breakdown</h3>
+            <ul>
+                <li><span class="highlight">[X%]</span> of shipments are 0-4 ounces</li>
+                <li><span class="highlight">[X%]</span> are 4-8 ounces</li>
+                <li><span class="highlight">[X%]</span> are 8 ounces to 1 pound</li>
+                <li>Only <span class="highlight">[X%]</span> are over 1 pound</li>
+            </ul>
+            <p style="margin-top: 30px; font-size: 24px; color: #8BD74E;">This lightweight eCommerce profile is exactly where FirstMile's National Network excels.</p>
+        </div>
+
+        <!-- Slide 3: Network Expansion -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>The Expansion of FirstMile's Xparcel Networks</h2>
+            <p style="font-size: 24px; margin-bottom: 40px;">From 12 injection points to <span class="highlight">47 metro markets nationwide</span></p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 50px;">
+                <div style="background: rgba(255, 100, 100, 0.1); border: 3px solid rgba(255, 100, 100, 0.5); padding: 40px; border-radius: 16px;">
+                    <h3 style="color: #ff6b6b; margin-bottom: 30px; font-size: 28px;">OLD Network</h3>
+                    <ul style="margin: 0;">
+                        <li>12 injection points</li>
+                        <li>Limited metro coverage</li>
+                        <li>Longer zone distances</li>
+                        <li>Higher transportation costs</li>
+                        <li>Fewer routing options</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(139, 215, 78, 0.15); border: 3px solid #8BD74E; padding: 40px; border-radius: 16px;">
+                    <h3 style="color: #8BD74E; margin-bottom: 30px; font-size: 28px;">NEW Network (2025)</h3>
+                    <ul style="margin: 0;">
+                        <li><span class="highlight">47 metro injection points</span></li>
+                        <li>Covers ~70% of U.S. population</li>
+                        <li>Zone-skipping advantages</li>
+                        <li>Reduced average spend per package</li>
+                        <li>Intelligent routing to closest hub</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <h3 style="margin-bottom: 30px;">Key Metro Markets Added</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                    <ul style="margin: 0;">
+                        <li>Los Angeles</li>
+                        <li>San Francisco</li>
+                        <li>Phoenix</li>
+                    </ul>
+                    <ul style="margin: 0;">
+                        <li>Dallas</li>
+                        <li>Houston</li>
+                        <li>Chicago</li>
+                    </ul>
+                    <ul style="margin: 0;">
+                        <li>New York</li>
+                        <li>Atlanta</li>
+                        <li>Miami</li>
+                    </ul>
+                    <ul style="margin: 0;">
+                        <li>Seattle</li>
+                        <li>Denver</li>
+                        <li>Boston</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Xparcel Ground Rates -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Xparcel Ground Rates - Your Primary Service</h2>
+            <p class="subtitle">3-8 Day Delivery</p>
+
+            <h3 style="margin-top: 40px; margin-bottom: 30px;">Under 1 Pound Rates (Your Sweet Spot)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Weight</th>
+                        <th>Zone 4</th>
+                        <th>Zone 5</th>
+                        <th>Zone 6</th>
+                        <th>Zone 7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">1-4 oz</span></td>
+                        <td>$4.02</td>
+                        <td>$4.07</td>
+                        <td>$4.16</td>
+                        <td>$4.23</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">5-8 oz</span></td>
+                        <td>$4.31</td>
+                        <td>$4.35</td>
+                        <td>$4.40</td>
+                        <td>$4.40</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">9-12 oz</span></td>
+                        <td>$4.60</td>
+                        <td>$4.72</td>
+                        <td>$4.91</td>
+                        <td>$5.04</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">13-15.99 oz</span></td>
+                        <td>$5.19</td>
+                        <td>$5.41</td>
+                        <td>$5.70</td>
+                        <td>$5.92</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">1 lb (16 oz)</span></td>
+                        <td>$5.84</td>
+                        <td>$6.11</td>
+                        <td>$6.30</td>
+                        <td>$6.65</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: rgba(139, 215, 78, 0.1); border-left: 4px solid #8BD74E; padding: 32px; margin-top: 50px; border-radius: 8px;">
+                <p style="font-size: 22px; margin-bottom: 20px;"><strong>For [Customer]'s Profile:</strong></p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                    <div>
+                        <p style="font-size: 20px; color: #ffffff;"><strong>Current Average:</strong> $[X.XX]/package</p>
+                        <p style="font-size: 18px;">[X%] of volume in zones 4-7</p>
+                    </div>
+                    <div>
+                        <p style="font-size: 20px; color: #8BD74E;"><strong>Xparcel Ground:</strong> $[X.XX]-$[X.XX]/package</p>
+                        <p style="font-size: 18px;">Weighted average across your zones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Xparcel Expedited Rates -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Xparcel Expedited - Faster Ground Option</h2>
+            <p class="subtitle">2-5 Day Delivery</p>
+
+            <h3 style="margin-top: 40px; margin-bottom: 30px;">Select Network Rates (High-Density Markets)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Weight</th>
+                        <th>Zone 4</th>
+                        <th>Zone 5</th>
+                        <th>Zone 6</th>
+                        <th>Zone 7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">1 lb</span></td>
+                        <td>$3.29</td>
+                        <td>$3.34</td>
+                        <td>$3.35</td>
+                        <td>$3.38</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">2 lbs</span></td>
+                        <td>$3.35</td>
+                        <td>$3.38</td>
+                        <td>$3.40</td>
+                        <td>$3.45</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">3 lbs</span></td>
+                        <td>$3.41</td>
+                        <td>$3.45</td>
+                        <td>$3.56</td>
+                        <td>$3.35</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">5 lbs</span></td>
+                        <td>$3.48</td>
+                        <td>$3.52</td>
+                        <td>$3.56</td>
+                        <td>$3.65</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 50px; margin-bottom: 30px;">National Network Rates (100% ZIP Coverage)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Weight</th>
+                        <th>Zone 4</th>
+                        <th>Zone 5</th>
+                        <th>Zone 6</th>
+                        <th>Zone 7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">1 lb</span></td>
+                        <td>$4.02</td>
+                        <td>$4.07</td>
+                        <td>$4.17</td>
+                        <td>$4.23</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">2 lbs</span></td>
+                        <td>$4.05</td>
+                        <td>$4.08</td>
+                        <td>$4.17</td>
+                        <td>$4.23</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">3 lbs</span></td>
+                        <td>$4.03</td>
+                        <td>$4.08</td>
+                        <td>$4.17</td>
+                        <td>$4.24</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">5 lbs</span></td>
+                        <td>$4.31</td>
+                        <td>$4.35</td>
+                        <td>$4.40</td>
+                        <td>$4.48</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: rgba(24, 42, 90, 0.3); border: 2px solid #8BD74E; padding: 24px; margin-top: 40px; border-radius: 12px; text-align: center;">
+                <p style="font-size: 22px;"><span class="highlight">30-40% below</span> traditional carrier Express services for equivalent transit times</p>
+            </div>
+        </div>
+
+        <!-- Additional slides follow the same pattern with placeholders like [Customer Name], [X%], etc. -->
+        <!-- Copy remaining slides from the full Stackd presentation, replacing specific data with placeholders -->
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-button" onclick="previousSlide()">← Previous</button>
+            <div class="slide-counter">
+                <span id="current-slide">1</span> / <span id="total-slides">14</span>
+            </div>
+            <button class="nav-button" onclick="nextSlide()">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+
+            // Trigger chart animations when entering slide
+            const chartBars = slides[currentSlide].querySelectorAll('.chart-bar-fill');
+            chartBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Touch navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) previousSlide();
+        }
+
+        // Initialize first slide chart animations
+        window.addEventListener('load', () => {
+            const firstSlideCharts = slides[0].querySelectorAll('.chart-bar-fill');
+            firstSlideCharts.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

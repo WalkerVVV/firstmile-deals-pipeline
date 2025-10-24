@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XParcel Full Analysis - FirstMile Shipping Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #1C2F39;
+            overflow: hidden;
+            height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .stage {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 80px;
+        }
+
+        .slide.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(48px, 7vw, 84px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        h2 {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 500;
+            color: #666;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 48px;
+            max-width: 900px;
+        }
+
+        .subtitle {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .body-text {
+            font-size: clamp(18px, 2vw, 22px);
+            line-height: 1.6;
+            color: #4a4a4a;
+            max-width: 1000px;
+            text-align: center;
+            margin: 0 auto 32px;
+        }
+
+        /* Brand Colors */
+        .firstmile-blue {
+            color: #182A5A;
+        }
+
+        .gradient-blue {
+            background: linear-gradient(135deg, #182A5A 0%, #2A4A8A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .red-text {
+            color: #dc2626;
+        }
+
+        .green-text {
+            color: #16a34a;
+        }
+
+        /* Metric Display */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 48px auto;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 700;
+            color: #182A5A;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .metric-label {
+            font-size: 18px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Comparison Cards */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 48px auto;
+        }
+
+        .comparison-card {
+            background: #f8f9fa;
+            border-radius: 24px;
+            padding: 40px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-card.negative {
+            border-color: #dc2626;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(220, 38, 38, 0.02) 100%);
+        }
+
+        .comparison-card.positive {
+            border-color: #16a34a;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.05) 0%, rgba(22, 163, 74, 0.02) 100%);
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .card-metric {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-list li {
+            padding: 12px 0;
+            font-size: 18px;
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Feature Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 48px auto;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: #182A5A;
+            box-shadow: 0 12px 24px rgba(24, 42, 90, 0.15);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #182A5A 0%, #2A4A8A 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 48px auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .data-table th {
+            background: #182A5A;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .data-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 17px;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* Badge System */
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 4px;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .badge-primary {
+            background: #dbeafe;
+            color: #182A5A;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 20px 48px;
+            background: linear-gradient(135deg, #182A5A 0%, #2A4A8A 100%);
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(24, 42, 90, 0.3);
+            margin: 32px 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(24, 42, 90, 0.4);
+            background: linear-gradient(135deg, #8BD74E 0%, #85C445 100%);
+        }
+
+        /* Navigation */
+        .nav-hint {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #999;
+            background: rgba(255,255,255,0.9);
+            padding: 12px 24px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #182A5A 0%, #8BD74E 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+
+            .comparison-container,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+        <div class="slides-container" id="slides">
+
+            <!-- Slide 1: Title -->
+            <div class="slide visible">
+                <h1>Your Shipping Costs Are Higher<br>Than They Need to Be</h1>
+                <h2>A Complete XParcel Analysis</h2>
+                <div class="body-text" style="margin-top: 48px;">
+                    <strong class="firstmile-blue">12,500 packages per month</strong><br>
+                    <strong class="red-text">$8.47 average cost per package</strong><br>
+                    <strong style="font-size: 28px; color: #1a1a1a;">$508,000 in annual overpayment</strong>
+                </div>
+            </div>
+
+            <!-- Slide 2: Current Profile -->
+            <div class="slide">
+                <div class="subtitle">Your Current Shipping Profile</div>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <div class="metric-value">150K</div>
+                        <div class="metric-label">Annual Packages</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">68%</div>
+                        <div class="metric-label">Under 1 Pound</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">62%</div>
+                        <div class="metric-label">Zones 5-8</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">$1.27M</div>
+                        <div class="metric-label">Annual Spend</div>
+                    </div>
+                </div>
+                <div class="body-text">
+                    You're shipping lightweight packages coast-to-coast.<br>
+                    This is exactly where traditional carriers extract maximum profit.
+                </div>
+            </div>
+
+            <!-- Slide 3: The Problem -->
+            <div class="slide">
+                <h1 class="red-text">The Problem</h1>
+                <h2>Traditional carrier economics work against you</h2>
+                <div class="comparison-container">
+                    <div class="comparison-card negative">
+                        <div class="card-title red-text">Traditional Carriers</div>
+                        <div class="card-list">
+                            <li>✗ Built for heavy B2B freight</li>
+                            <li>✗ Hub-and-spoke inefficiency</li>
+                            <li>✗ Zone penalties multiply costs</li>
+                            <li>✗ Billable weight inflation</li>
+                            <li>✗ One-size-fits-all pricing</li>
+                        </div>
+                        <div class="card-metric red-text">$8.47<span style="font-size: 24px;">/pkg</span></div>
+                    </div>
+                    <div class="comparison-card positive">
+                        <div class="card-title green-text">Your Ideal Solution</div>
+                        <div class="card-list">
+                            <li>✓ Optimized for lightweight eCommerce</li>
+                            <li>✓ Direct network injection</li>
+                            <li>✓ Zone-skipping technology</li>
+                            <li>✓ Fair weight-based pricing</li>
+                            <li>✓ Dynamic routing intelligence</li>
+                        </div>
+                        <div class="card-metric green-text">$6.05<span style="font-size: 24px;">/pkg</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Zone Penalty -->
+            <div class="slide">
+                <div class="subtitle">The Zone Penalty Is Crushing You</div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Destination Zone</th>
+                            <th>% of Volume</th>
+                            <th>Traditional Cost</th>
+                            <th>Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Zones 1-4 (Regional)</td>
+                            <td>38%</td>
+                            <td>$5.80/pkg</td>
+                            <td><span class="badge badge-success">Acceptable</span></td>
+                        </tr>
+                        <tr>
+                            <td>Zones 5-6 (Cross-Country)</td>
+                            <td>41%</td>
+                            <td>$9.20/pkg</td>
+                            <td><span class="badge badge-danger">58% markup</span></td>
+                        </tr>
+                        <tr>
+                            <td>Zones 7-8 (Far Coast)</td>
+                            <td>21%</td>
+                            <td>$11.45/pkg</td>
+                            <td><span class="badge badge-danger">97% markup</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="body-text">
+                    62% of your shipments pay zone premiums that could be eliminated<br>through intelligent network injection.
+                </div>
+            </div>
+
+            <!-- Slide 5: Billable Weight Trap -->
+            <div class="slide">
+                <h1>The Billable Weight Trap</h1>
+                <div class="comparison-container">
+                    <div class="comparison-card">
+                        <div class="card-title">Rounding Rules Impact</div>
+                        <div class="card-list">
+                            <li><strong>15.99 oz</strong> → Bills as 16 oz</li>
+                            <li><strong>16.1 oz</strong> → Bills as 2 lbs (32 oz)</li>
+                            <li><strong>17 oz</strong> → Bills as 2 lbs (88% markup)</li>
+                            <li><strong>32.1 oz</strong> → Bills as 3 lbs (48 oz)</li>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="card-title">Your Annual Impact</div>
+                        <div class="card-metric red-text">$63K</div>
+                        <div style="text-align: center; color: #666; margin-top: 16px;">
+                            42% of packages fall in the 15.99-32oz "kill zone"<br><br>
+                            Average billable weight inflation: <strong>50%</strong> above actual weight
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: XParcel Solution -->
+            <div class="slide">
+                <h1 class="gradient-blue">The FirstMile XParcel Solution</h1>
+                <h2>Dynamic routing meets intelligent network selection</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <div class="feature-title">National Network</div>
+                        <div class="feature-description">100% ZIP coverage through nationwide carrier partnerships</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Select Network</div>
+                        <div class="feature-description">47 metro injection points for zone-skipping optimization</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Dynamic Routing</div>
+                        <div class="feature-description">Nightly optimization engine selects best carrier and injection point</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Service Levels -->
+            <div class="slide">
+                <div class="subtitle">XParcel Service Levels</div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <div class="feature-title">XParcel Ground</div>
+                        <div class="feature-description">
+                            <strong style="color: #182A5A;">3-8 day delivery</strong><br>
+                            Economy pricing for non-urgent shipments<br>
+                            <strong>Perfect for 73% of your volume</strong>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">XParcel Expedited</div>
+                        <div class="feature-description">
+                            <strong style="color: #182A5A;">2-5 day delivery</strong><br>
+                            Faster ground for 1-20 lb packages<br>
+                            <strong>30-40% below traditional Express</strong>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-title">XParcel Priority</div>
+                        <div class="feature-description">
+                            <strong style="color: #182A5A;">1-3 day delivery</strong><br>
+                            Premium with money-back guarantee<br>
+                            <strong>Competes with FedEx/UPS rates</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Rate Analysis -->
+            <div class="slide">
+                <h1>Your Custom Rate Analysis</h1>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Service Level</th>
+                            <th>Annual Volume</th>
+                            <th>Current Avg</th>
+                            <th>XParcel Avg</th>
+                            <th>Annual Savings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>XParcel Ground (3-8d)</strong></td>
+                            <td>68,000</td>
+                            <td><span class="red-text">$7.23</span></td>
+                            <td><span class="green-text">$4.85</span></td>
+                            <td><strong class="green-text">$161,840</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>XParcel Expedited (2-5d)</strong></td>
+                            <td>52,500</td>
+                            <td><span class="red-text">$9.12</span></td>
+                            <td><span class="green-text">$6.95</span></td>
+                            <td><strong class="green-text">$113,925</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>XParcel Priority (1-3d)</strong></td>
+                            <td>30,000</td>
+                            <td><span class="red-text">$11.34</span></td>
+                            <td><span class="green-text">$8.47</span></td>
+                            <td><strong class="green-text">$86,100</strong></td>
+                        </tr>
+                        <tr style="background: #f0f9ff; font-weight: 600;">
+                            <td><strong>TOTAL</strong></td>
+                            <td>150,000</td>
+                            <td><span class="red-text">$8.47</span></td>
+                            <td><span class="green-text">$6.05</span></td>
+                            <td><strong style="color: #182A5A; font-size: 24px;">$361,865</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="body-text" style="margin-top: 32px;">
+                    <strong>28.5% cost reduction</strong> from $1.27M to $908K annually
+                </div>
+            </div>
+
+            <!-- Slide 9: Network Fit -->
+            <div class="slide">
+                <h1>Why This Works for You</h1>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Volume Profile</div>
+                        <div class="feature-description">
+                            74% of your volume ships to top 10 states<br>
+                            9 of 10 have Select Network injection points
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚖️</div>
+                        <div class="feature-title">Weight Profile</div>
+                        <div class="feature-description">
+                            68% under 1 lb = perfect for our specialization<br>
+                            No dimensional weight penalties
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Geographic Fit</div>
+                        <div class="feature-description">
+                            CA, TX, FL, NY, IL = your top destinations<br>
+                            All have premium injection infrastructure
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Beyond Cost -->
+            <div class="slide">
+                <div class="subtitle">Service Advantages Beyond Cost</div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <div class="feature-title">Audit Queue</div>
+                        <div class="feature-description">Catches mis-rated labels before invoice hits A/P. Saves $8K-12K annually.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <div class="feature-title">Single Support Thread</div>
+                        <div class="feature-description">One team handles claims, returns, exceptions. 4.2 hour resolution vs 2-3 days.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">↩️</div>
+                        <div class="feature-title">Returns Portal</div>
+                        <div class="feature-description">QR-code returns, no printing required. Full analytics and visibility.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <div class="feature-title">Claims Recovery</div>
+                        <div class="feature-description">94% recovery rate within 14 days vs 60-120 day industry average.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Implementation -->
+            <div class="slide">
+                <h1>Implementation: Easier Than You Think</h1>
+                <div class="comparison-container">
+                    <div class="comparison-card">
+                        <div class="card-title firstmile-blue">Technical Integration</div>
+                        <div class="card-list">
+                            <li>✓ 2-3 week implementation</li>
+                            <li>✓ Single REST API</li>
+                            <li>✓ Pre-built plugins available</li>
+                            <li>✓ Same label printers & stock</li>
+                            <li>✓ No warehouse retraining needed</li>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="card-title firstmile-blue">Risk Mitigation</div>
+                        <div class="card-list">
+                            <li>✓ 90-day pilot with 20% volume</li>
+                            <li>✓ No volume commitments</li>
+                            <li>✓ No penalties to exit</li>
+                            <li>✓ Weekly business reviews</li>
+                            <li>✓ 96% customer retention rate</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: Cost of Waiting -->
+            <div class="slide">
+                <h1 class="red-text">The Cost of Waiting</h1>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <div class="metric-value" style="color: #dc2626;">$42,322</div>
+                        <div class="metric-label">Lost savings per month</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" style="color: #dc2626;">$507,864</div>
+                        <div class="metric-label">Lost savings over 12 months</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" style="color: #16a34a;">5.7% → 7.8%</div>
+                        <div class="metric-label">Profit margin improvement</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" style="color: #16a34a;">37%</div>
+                        <div class="metric-label">Bottom-line profitability gain</div>
+                    </div>
+                </div>
+                <div class="body-text">
+                    Your competitors are already optimizing.<br>
+                    Shipping cost is a competitive advantage—or a disadvantage.
+                </div>
+            </div>
+
+            <!-- Slide 13: Proof -->
+            <div class="slide">
+                <div class="subtitle">Customer Success Story</div>
+                <div class="body-text" style="max-width: 800px;">
+                    <strong style="font-size: 24px; color: #182A5A;">eCommerce Apparel Company</strong><br>
+                    15,000 packages/month | Similar weight profile | Coast-to-coast shipping
+                </div>
+                <div class="comparison-container" style="margin-top: 48px;">
+                    <div class="comparison-card negative">
+                        <div class="card-title">Before FirstMile</div>
+                        <div class="card-metric red-text">$8.92<span style="font-size: 24px;">/pkg</span></div>
+                        <div class="card-list">
+                            <li>91% SLA compliance</li>
+                            <li>Multi-carrier complexity</li>
+                            <li>Manual exception handling</li>
+                            <li>2-3 day issue resolution</li>
+                        </div>
+                    </div>
+                    <div class="comparison-card positive">
+                        <div class="card-title">After FirstMile (90 days)</div>
+                        <div class="card-metric green-text">$6.12<span style="font-size: 24px;">/pkg</span></div>
+                        <div class="card-list">
+                            <li>97% SLA compliance</li>
+                            <li>Single platform simplicity</li>
+                            <li>Proactive exception mgmt</li>
+                            <li>4.2 hour issue resolution</li>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-text" style="margin-top: 32px;">
+                    <strong>31.4% cost reduction | $200K+ annual savings</strong><br>
+                    "We thought we'd negotiated the best rates. FirstMile showed us we weren't even playing in the right market structure."
+                </div>
+            </div>
+
+            <!-- Slide 14: Value Summary -->
+            <div class="slide">
+                <h1>Complete Value Proposition</h1>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title" style="color: #16a34a; font-size: 32px;">$361,865</div>
+                        <div class="feature-description">Annual savings at current service mix (up to $508K with optimization)</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title" style="color: #182A5A;">97%+</div>
+                        <div class="feature-description">Target SLA compliance through dynamic routing and proactive management</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title" style="color: #182A5A;">1 Platform</div>
+                        <div class="feature-description">Single integration, invoice, and support team replacing multi-carrier chaos</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title" style="color: #16a34a;">$8K-12K</div>
+                        <div class="feature-description">Additional annual value from Audit Queue and claims recovery</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 15: Timeline -->
+            <div class="slide">
+                <div class="subtitle">The Path Forward</div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Timeline</th>
+                            <th>Activity</th>
+                            <th>Outcome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Week 1</strong></td>
+                            <td>Contract signature & technical kickoff</td>
+                            <td>API credentials & test environment ready</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Week 2-3</strong></td>
+                            <td>Integration development & testing</td>
+                            <td>Validated label generation & tracking</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Week 4</strong></td>
+                            <td>Pilot launch with 20% volume</td>
+                            <td>Daily monitoring & weekly reviews</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Week 5-12</strong></td>
+                            <td>Ramp to full volume over 8 weeks</td>
+                            <td>Confidence building & optimization</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Week 13+</strong></td>
+                            <td>Ongoing optimization & QBRs</td>
+                            <td>Continuous improvement & savings growth</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Slide 16: Investment -->
+            <div class="slide">
+                <div class="subtitle">The Investment Required</div>
+                <div class="comparison-container">
+                    <div class="comparison-card">
+                        <div class="card-title">Simple, Transparent Pricing</div>
+                        <div class="card-list">
+                            <li>✓ No setup fees</li>
+                            <li>✓ No integration charges</li>
+                            <li>✓ No monthly minimums</li>
+                            <li>✓ Pay per label only</li>
+                            <li>✓ $5K-10K initial deposit (draws down)</li>
+                            <li>✓ 30-day payment terms</li>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="card-title">Monthly Impact</div>
+                        <div class="body-text" style="text-align: left;">
+                            <strong>Current monthly spend:</strong><br>
+                            <span class="red-text" style="font-size: 32px;">$105,833</span><br><br>
+                            <strong>New monthly spend:</strong><br>
+                            <span class="green-text" style="font-size: 32px;">$75,677</span><br><br>
+                            <strong>Monthly savings:</strong><br>
+                            <span style="font-size: 32px; color: #182A5A;">$30,156</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-text" style="margin-top: 32px;">
+                    Deposit pays for itself in <strong>2 weeks of savings</strong>
+                </div>
+            </div>
+
+            <!-- Slide 17: The Decision -->
+            <div class="slide">
+                <h1>The Decision Point</h1>
+                <div class="comparison-container">
+                    <div class="comparison-card negative">
+                        <div class="card-title red-text">Continue Current Path</div>
+                        <div class="card-list">
+                            <li>✗ $1.27M annual shipping spend</li>
+                            <li>✗ Traditional carrier markup</li>
+                            <li>✗ Zone penalties crushing margins</li>
+                            <li>✗ Billable weight inflation</li>
+                            <li>✗ Multi-carrier complexity</li>
+                            <li>✗ $42K monthly waste</li>
+                        </div>
+                    </div>
+                    <div class="comparison-card positive">
+                        <div class="card-title green-text">Switch to FirstMile XParcel</div>
+                        <div class="card-list">
+                            <li>✓ $908K annual shipping spend</li>
+                            <li>✓ eCommerce-optimized pricing</li>
+                            <li>✓ Zone-skipping technology</li>
+                            <li>✓ Fair weight-based rates</li>
+                            <li>✓ Single platform simplicity</li>
+                            <li>✓ $361K annual savings</li>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-text" style="margin-top: 48px; font-size: 24px;">
+                    The math is clear. The risk is minimal. The upside is substantial.
+                </div>
+            </div>
+
+            <!-- Slide 18: The Close -->
+            <div class="slide">
+                <h1 class="gradient-blue">What Happens Next</h1>
+                <div class="body-text" style="max-width: 900px; font-size: 20px; line-height: 1.8;">
+                    <strong style="font-size: 24px; color: #1a1a1a;">If this makes sense—and the numbers prove it should:</strong><br><br>
+
+                    📄 Formal proposal with detailed rate cards & timeline<br>
+                    👥 Technical Q&A with your development team<br>
+                    📞 Reference customer connections if needed<br>
+                    🚀 Implementation starts immediately upon approval<br><br>
+
+                    <strong style="color: #182A5A;">Every month you wait costs $42,322 in unnecessary expenses.</strong><br><br>
+
+                    The analysis doesn't lie.<br>
+                    The savings are real.<br>
+                    The solution is proven.<br><br>
+
+                    <strong style="font-size: 28px; color: #1a1a1a;">Are you ready to fix your shipping costs?</strong>
+                </div>
+                <a href="#" class="cta-button">Let's Get Started →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="nav-hint">Use arrow keys or space to navigate | ESC to see all slides</div>
+    <div class="progress-bar" id="progress"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progress');
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('visible');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('visible');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            if (touchStartX - touchEndX > 50) {
+                showSlide(currentSlide + 1);
+            } else if (touchEndX - touchStartX > 50) {
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        updateProgress();
+    </script>
+</body>
+</html>

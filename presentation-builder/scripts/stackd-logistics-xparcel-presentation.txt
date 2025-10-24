@@ -1,0 +1,174 @@
+# Stackd Logistics - FirstMile Xparcel Proposal
+
+## Opening: Your Shipping Profile
+
+Landon, thanks for taking the time to meet today. I've completed a comprehensive analysis of your shipping data - 8,957 shipments over a two-week period from August through September. What I found is exciting, and I want to walk you through exactly how FirstMile's Xparcel network can improve both your costs and your service.
+
+Let me start with what makes your shipping profile perfect for FirstMile.
+
+## Your Current Shipping Reality
+
+You're shipping approximately 2,800 packages per month through DHL eCommerce. Your current average cost per label is $4.96, which puts your monthly shipping spend at around $44,453.
+
+Here's what makes your volume interesting: **89.9% of your packages are under 1 pound**. Let me break that down further. 55% of your shipments are 0-4 ounces. Another 27% are 4-8 ounces. And 10% are 8 ounces to 1 pound. This lightweight eCommerce profile is exactly where FirstMile's National Network excels.
+
+Your service mix is predominantly Ground - 96% of your volume - with just 4% requiring expedited service. This tells me you've got predictable delivery expectations, which is perfect for optimizing costs without sacrificing service.
+
+## The Geographic Challenge
+
+Your zone distribution reveals an important opportunity. Only 11% of your volume ships to nearby zones 1-3. The remaining 89% travels to zones 4 through 8, with the heaviest concentration in zones 6 and 7. Each of those zone jumps compounds your costs with traditional carriers.
+
+Zones 6 and 7 alone represent 48% of your total volume. Under the traditional carrier model, you're paying premium zone penalties for nearly half your shipments. This is where FirstMile's expanded network makes a dramatic difference.
+
+## The FirstMile Xparcel Solution
+
+FirstMile recently expanded our National and Select Xparcel networks significantly. We now have direct injection points across 47 major metro areas. What does this mean for you? Instead of your packages traveling through multiple carrier hubs accumulating zone charges, we inject them directly into the destination carrier network closer to the final delivery point.
+
+For your California-bound shipments from your East Coast warehouse, the package doesn't start its carrier journey on the East Coast. It starts in Los Angeles. The zone penalties effectively disappear.
+
+Our National Network provides 100% ZIP code coverage nationwide through partnerships with major carriers. For your high-density metro destinations, our Select Network offers zone-skipping optimization that can cut 2-3 zones off your effective shipping distance.
+
+## Xparcel Service Levels
+
+We offer three service tiers designed specifically for eCommerce shippers like you.
+
+**Xparcel Ground** delivers in 3-8 days - perfect for your 96% Ground volume. The pricing is optimized for lightweight packages, which is 90% of what you ship. For your under-1-pound volume to zones 4-7, you're looking at rates between $3.93 and $4.48 depending on weight and zone.
+
+**Xparcel Expedited** handles 2-5 day delivery for packages 1-20 pounds. This maps directly to your 4% expedited volume. Pricing runs 30-40% below traditional carrier Express services.
+
+**Xparcel Priority** provides 1-3 day delivery with a money-back guarantee. If you ever need emergency speed, we can handle it at rates competitive with FedEx and UPS.
+
+## Your Custom Rate Analysis
+
+Based on your actual shipping data and our current Xparcel National rates, here's what we're projecting.
+
+For your 96% Ground volume - that's approximately 2,700 packages per month - switching to Xparcel Ground would reduce your average cost per package from $4.96 to approximately $4.20-$4.60 depending on exact weight and zone distribution.
+
+The conservative estimate, using our verified rate card against your volume profile, shows **5-10% monthly savings**. On your $44,453 monthly spend, that translates to $2,200 to $4,400 per month in cost reduction, or **$26,000 to $53,000 annually**.
+
+Now, I want to be transparent here. Our early analysis suggested potentially higher savings - up to 31% - but I've taken a conservative approach because I need to verify a few data points with you. Specifically, I want to confirm that the DHL rates in your ShipHero export represent actual charged amounts and don't include any markup or surcharges. If those rates are accurate, we may have even more savings opportunity. But I'd rather underpromise and overdeliver.
+
+## Where FirstMile Shines for Stackd
+
+Your weight profile is in our sweet spot. 89.9% under 1 pound means you're shipping exactly the kind of packages where traditional carriers overprice and we deliver maximum value. Our pricing model was built specifically for lightweight eCommerce, not heavy B2B freight.
+
+Your zone distribution - heavily weighted toward zones 4-7 - is ideal for our expanded network. These are the zones where zone-skipping provides the biggest impact. Local zones save a little. Far zones save a lot.
+
+Your service mix being 96% Ground means we can optimize the vast majority of your volume without needing to manage complex service level requirements. Ground optimization is where we excel.
+
+## One Important Consideration
+
+I want to be upfront about one thing. For the small percentage of your volume over 2 pounds - that's less than 1% of your shipments, about 93 packages - Xparcel may not provide cost savings. FirstMile's specialization in lightweight packages means heavier items might stay with DHL or potentially route through a different carrier. The good news is this represents such a tiny fraction of your volume that it doesn't materially impact the overall savings picture.
+
+## Beyond Cost: The Service Advantages
+
+Cost savings are important, but FirstMile provides operational benefits that traditional carriers don't.
+
+Our **Audit Queue** catches mis-rated labels before they hit your invoice. For a shipper your size, this alone typically prevents $500 to $1,000 per month in billing errors.
+
+**Single support thread** - one FirstMile team handles claims, returns, exceptions, and billing questions. No more bouncing between carrier reps trying to figure out who's responsible. Our average exception resolution time is 4.2 hours versus the industry average of 2-3 days.
+
+**Returns Portal** with QR-code-based returns that require no printing. Your customers love it, and you get full visibility and analytics on return patterns.
+
+**Claims recovery** at a 94% success rate within 14 days. Industry average is 60-120 days with far lower recovery rates.
+
+## Implementation: Simpler Than You Think
+
+You're currently using ShipHero for order fulfillment and label generation. FirstMile integrates directly with ShipHero through their multi-carrier API. Implementation typically takes 2-3 weeks from contract signature to first production shipment.
+
+You'll use the same thermal printers, the same label stock, the same warehouse workflow. Your team won't need retraining. The complexity is invisible to you - you just see better rates and better service.
+
+We recommend starting with a 90-day pilot using 20-30% of your volume. Keep DHL running in parallel so you can compare performance head-to-head. Track SLA compliance, customer satisfaction, and cost savings. Make the full switch only when you're confident the data supports it.
+
+No volume commitments. No penalties to exit. You stay because we perform, not because you're locked in. Our customer retention rate is 96% because we deliver on our promises month after month.
+
+## The Numbers You Need to Know
+
+Let me summarize the financial impact clearly.
+
+**Current state:**
+- 2,800 packages per month
+- $4.96 average per package
+- $44,453 monthly shipping spend
+- $533,436 annual shipping costs
+
+**FirstMile Xparcel (Conservative Estimate):**
+- Same 2,800 packages per month
+- $4.20-$4.60 average per package
+- $42,000 to $42,200 monthly spend
+- **5-10% cost reduction**
+- **$26,000 to $53,000 annual savings**
+
+Payback period on any integration costs: **immediate** - first month's savings exceeds any setup investment.
+
+## The Cost of Waiting
+
+Every month you delay represents $2,200 to $4,400 in unnecessary costs. Over the next 12 months, that's $26,000 to $53,000 left on the table. And these are conservative estimates - if we verify your DHL rates and find opportunities for greater optimization, the savings could be substantially higher.
+
+Your competitors in the fulfillment space are already optimizing their shipping. If they're saving 10-30% on logistics while you're paying full DHL rates, they can underprice you on fulfillment services, offer lower thresholds, or invest those savings in customer acquisition.
+
+Shipping costs are a competitive advantage - or a competitive disadvantage. For a 3PL like Stackd, every dollar saved on shipping is a dollar that improves your margins or lets you offer more competitive pricing to your clients.
+
+## Questions I Need to Ask You
+
+Before we finalize these numbers, I need your help understanding a few things.
+
+First, what specific DHL eCommerce services are you currently using? Ground, Expedited, Priority, or SmartMail? I want to make sure we're mapping services correctly.
+
+Second, are the rates in your ShipHero export the actual costs DHL charges, or do they include any markup or fees? This helps me validate our savings calculations.
+
+Third, for your 4% expedited volume - what's driving the need for faster service? Customer SLA requirements? Marketplace delivery promises? Specific product types? Understanding this helps us optimize the service level mix.
+
+Fourth, any volume changes expected for Q4 peak season? If you're projecting growth, we can price that into the contract now.
+
+And finally, current integration - you're using ShipHero's API for label generation, correct? Just want to confirm before we loop in our tech team.
+
+## What Happens Next
+
+If this makes sense to you - and based on the data, it should - here's the path forward.
+
+**Week 1**: Contract signature and technical kickoff. Our implementation team meets with your operations team and ShipHero. We configure your FirstMile account, provision API credentials, and establish a test environment.
+
+**Week 2-3**: Integration development and testing. ShipHero builds the API connection using our documentation and sandbox environment. We validate label generation, tracking, and exception handling in test mode.
+
+**Week 4**: Pilot launch with 20-30% of your volume. We monitor daily, conduct weekly reviews, and optimize routing rules based on real performance data.
+
+**Week 5-12**: Ramp to full volume over 8 weeks as confidence builds. Parallel DHL operations until you're ready to fully commit.
+
+**Week 13+**: Ongoing optimization and quarterly business reviews. We continuously improve routing logic, identify new savings opportunities, and adapt to your changing needs.
+
+## The Investment
+
+FirstMile Xparcel operates on simple, transparent pricing. No setup fees. No integration charges. No monthly minimums. You pay per label, and the rates we've quoted are the rates you'll pay.
+
+We do require a deposit to activate your account - typically $5,000 to $10,000 depending on expected monthly volume - which draws down as you ship. Standard 30-day payment terms after that.
+
+Compared to your current $44,453 monthly shipping spend, you'll be paying approximately $42,000 to $42,200 monthly - a reduction of $2,200 to $4,400 per month. The deposit pays for itself in 2-3 weeks of savings.
+
+## The Decision Point
+
+Landon, you have a decision to make. Continue paying $44,453 monthly with DHL's traditional carrier structure, or shift to FirstMile's eCommerce-optimized network that saves you $26,000 to $53,000 per year - potentially more once we verify exact DHL pricing.
+
+The math is clear. The risk is minimal - 90-day pilot with no commitment. The upside is substantial - immediate cost reduction plus operational improvements.
+
+Your clients at Stackd Logistics expect you to run an efficient operation. Every dollar you save on shipping is a dollar that strengthens your service offering and improves their satisfaction.
+
+## What I Need from You Today
+
+If you're ready to move forward, I need two things.
+
+First, verbal commitment to proceed with the 90-day pilot. This lets me get our tech team scheduled with ShipHero for integration planning.
+
+Second, access to 10-20 sample DHL invoices from the past 90 days. I want to verify the rate accuracy in your ShipHero export so we can refine these savings projections. If your actual DHL costs are higher than what's in the data, our savings opportunity is even bigger.
+
+Once I have those two things, I'll send you a formal proposal document with detailed rate cards, implementation timeline, and contract terms. You'll review with your team, we'll schedule a Q&A session if needed, and we'll kick off implementation.
+
+## The Close
+
+The analysis doesn't lie, Landon. Your shipping profile - 90% lightweight packages, 89% shipping to zones 4-8, 96% Ground volume - is precisely what FirstMile's Xparcel network was designed to optimize.
+
+Every month you wait costs you $2,200 to $4,400. Every year you delay costs you $26,000 to $53,000 or more.
+
+The solution is proven. The implementation is straightforward. The savings are real.
+
+Are you ready to optimize your shipping costs and improve your service to your 3PL clients?

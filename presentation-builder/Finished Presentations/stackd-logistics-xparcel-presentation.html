@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackd Logistics - FirstMile Xparcel Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f1821 0%, #182A5A 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            padding: 80px 60px 100px;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Header */
+        .logo-header {
+            position: absolute;
+            top: 32px;
+            left: 48px;
+            z-index: 100;
+        }
+
+        .logo-header img {
+            height: 48px;
+            width: auto;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: #8BD74E;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e8f0;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #8BD74E;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 215, 78, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .metric:nth-child(1) { animation-delay: 0.1s; }
+        .metric:nth-child(2) { animation-delay: 0.2s; }
+        .metric:nth-child(3) { animation-delay: 0.3s; }
+        .metric:nth-child(4) { animation-delay: 0.4s; }
+
+        .metric:hover {
+            transform: translateY(-8px);
+            border-color: #8BD74E;
+            background: rgba(139, 215, 78, 0.1);
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 800;
+            color: #8BD74E;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .metric-label {
+            font-size: 18px;
+            color: #e0e8f0;
+            font-weight: 500;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        li {
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+            color: #e0e8f0;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.5s ease forwards;
+        }
+
+        li:nth-child(1) { animation-delay: 0.1s; }
+        li:nth-child(2) { animation-delay: 0.2s; }
+        li:nth-child(3) { animation-delay: 0.3s; }
+        li:nth-child(4) { animation-delay: 0.4s; }
+        li:nth-child(5) { animation-delay: 0.5s; }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #8BD74E;
+            font-weight: 700;
+            font-size: 28px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #182A5A 0%, #2A4A8A 100%);
+            color: #ffffff;
+            padding: 20px;
+            text-align: left;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 20px;
+            color: #e0e8f0;
+        }
+
+        tr:hover {
+            background: rgba(139, 215, 78, 0.05);
+        }
+
+        .highlight {
+            color: #8BD74E;
+            font-weight: 700;
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            margin: 40px 0;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 2px solid rgba(139, 215, 78, 0.2);
+        }
+
+        .chart-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #8BD74E;
+        }
+
+        .chart-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .chart-bar-label {
+            min-width: 200px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chart-bar-track {
+            flex: 1;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #182A5A 0%, #2A4A8A 50%, #8BD74E 100%);
+            border-radius: 24px;
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 16px;
+        }
+
+        .chart-bar-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Image Slides */
+        .image-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .image-slide img {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(139, 215, 78, 0.3);
+        }
+
+        /* CTA Buttons */
+        .cta-container {
+            display: flex;
+            gap: 24px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 20px 48px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #182A5A 0%, #2A4A8A 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: pulse 2s infinite;
+            box-shadow: 0 8px 24px rgba(24, 42, 90, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(24, 42, 90, 0.6);
+            background: linear-gradient(135deg, #2A4A8A 0%, #182A5A 100%);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #8BD74E;
+            color: #8BD74E;
+        }
+
+        .cta-button.secondary:hover {
+            background: #8BD74E;
+            color: #182A5A;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(139, 215, 78, 0.5);
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-button:hover {
+            background: #8BD74E;
+            color: #182A5A;
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(139, 215, 78, 0.5);
+            color: #8BD74E;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Footer Logo */
+        .logo-footer {
+            position: absolute;
+            bottom: 32px;
+            right: 48px;
+        }
+
+        .logo-footer img {
+            height: 32px;
+            width: auto;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 60px 24px 80px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 24px;
+            }
+
+            p, li {
+                font-size: 18px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-value {
+                font-size: 36px;
+            }
+
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 18px;
+            }
+
+            .chart-bar-label {
+                min-width: 120px;
+                font-size: 14px;
+            }
+
+            .logo-header img {
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                <h1>Stackd Logistics</h1>
+                <h2 style="font-size: 64px; margin-bottom: 40px;">FirstMile Xparcel Proposal</h2>
+                <p class="subtitle">Optimizing Your Shipping Profile with Data-Driven Insights</p>
+                <p style="font-size: 24px; margin-top: 40px;">Prepared for: <span class="highlight">Landon Richards</span></p>
+                <p style="font-size: 20px; color: #8BD74E;">8,957 Shipments Analyzed (2 weeks) | 17,914 Packages/Month | ~896/Day</p>
+            </div>
+            <div class="logo-footer">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile">
+            </div>
+        </div>
+
+        <!-- Slide 2: Your Shipping Profile -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Your Current Shipping Reality</h2>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <span class="metric-value">17,914</span>
+                    <span class="metric-label">Packages/Month</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">~896</span>
+                    <span class="metric-label">Average Daily Volume</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$4.96</span>
+                    <span class="metric-label">Average Cost/Label</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">89.9%</span>
+                    <span class="metric-label">Packages Under 1 lb</span>
+                </div>
+            </div>
+            <h3 style="margin-top: 40px;">Weight Distribution Breakdown</h3>
+            <ul>
+                <li><span class="highlight">55%</span> of shipments are 0-4 ounces</li>
+                <li><span class="highlight">27%</span> are 4-8 ounces</li>
+                <li><span class="highlight">10%</span> are 8 ounces to 1 pound</li>
+                <li>Only <span class="highlight">10.1%</span> are over 1 pound</li>
+            </ul>
+            <p style="margin-top: 30px; font-size: 24px; color: #8BD74E;">This lightweight eCommerce profile is exactly where FirstMile's National Network excels.</p>
+        </div>
+
+        <!-- Slide 3: Network Expansion -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>The Expansion of FirstMile's Xparcel Networks</h2>
+            <p style="font-size: 24px; margin-bottom: 40px;">From 12 injection points to <span class="highlight">47 metro markets nationwide</span></p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 50px;">
+                <div style="background: rgba(255, 100, 100, 0.1); border: 3px solid rgba(255, 100, 100, 0.5); padding: 40px; border-radius: 16px;">
+                    <h3 style="color: #ff6b6b; margin-bottom: 30px; font-size: 28px;">OLD Network</h3>
+                    <ul style="margin: 0;">
+                        <li>12 injection points</li>
+                        <li>Limited metro coverage</li>
+                        <li>Longer zone distances</li>
+                        <li>Higher transportation costs</li>
+                        <li>Fewer routing options</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(139, 215, 78, 0.15); border: 3px solid #8BD74E; padding: 40px; border-radius: 16px;">
+                    <h3 style="color: #8BD74E; margin-bottom: 30px; font-size: 28px;">NEW Network (2025)</h3>
+                    <ul style="margin: 0;">
+                        <li><span class="highlight">47 metro injection points</span></li>
+                        <li>Covers ~70% of U.S. population</li>
+                        <li>Zone-skipping advantages</li>
+                        <li>Reduced average spend per package</li>
+                        <li>Intelligent routing to closest hub</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <h3 style="margin-bottom: 30px;">Key Metro Markets Added</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                    <ul style="margin: 0;">
+                        <li>Los Angeles</li>
+                        <li>San Francisco</li>
+                        <li>Phoenix</li>
+                    </ul>
+                    <ul style="margin: 0;">
+                        <li>Dallas</li>
+                        <li>Houston</li>
+                        <li>Chicago</li>
+                    </ul>
+                    <ul style="margin: 0;">
+                        <li>New York</li>
+                        <li>Atlanta</li>
+                        <li>Miami</li>
+                    </ul>
+                    <ul style="margin: 0;">
+                        <li>Seattle</li>
+                        <li>Denver</li>
+                        <li>Boston</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Xparcel Ground Rates -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Xparcel Ground Rates - Your Primary Service</h2>
+            <p class="subtitle">3-8 Day Delivery | 96% of Your Volume</p>
+
+            <h3 style="margin-top: 40px; margin-bottom: 30px;">Under 1 Pound Rates (89.9% of Volume)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Weight</th>
+                        <th>Zone 4</th>
+                        <th>Zone 5</th>
+                        <th>Zone 6</th>
+                        <th>Zone 7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">1-4 oz</span></td>
+                        <td>$4.02</td>
+                        <td>$4.07</td>
+                        <td>$4.16</td>
+                        <td>$4.23</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">5-8 oz</span></td>
+                        <td>$4.31</td>
+                        <td>$4.35</td>
+                        <td>$4.40</td>
+                        <td>$4.40</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">9-12 oz</span></td>
+                        <td>$4.60</td>
+                        <td>$4.72</td>
+                        <td>$4.91</td>
+                        <td>$5.04</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">13-15.99 oz</span></td>
+                        <td>$5.19</td>
+                        <td>$5.41</td>
+                        <td>$5.70</td>
+                        <td>$5.92</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">1 lb (16 oz)</span></td>
+                        <td>$5.84</td>
+                        <td>$6.11</td>
+                        <td>$6.30</td>
+                        <td>$6.65</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: rgba(139, 215, 78, 0.1); border-left: 4px solid #8BD74E; padding: 32px; margin-top: 50px; border-radius: 8px;">
+                <p style="font-size: 22px; margin-bottom: 20px;"><strong>For Stackd's Profile:</strong></p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                    <div>
+                        <p style="font-size: 20px; color: #ffffff;"><strong>Current Average:</strong> $4.96/package</p>
+                        <p style="font-size: 18px;">88% of volume in zones 4-7</p>
+                    </div>
+                    <div>
+                        <p style="font-size: 20px; color: #8BD74E;"><strong>Xparcel Ground:</strong> $4.20-$4.60/package</p>
+                        <p style="font-size: 18px;">Weighted average across your zones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Xparcel Expedited Rates -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Xparcel Expedited - Faster Ground Option</h2>
+            <p class="subtitle">2-5 Day Delivery | 4% of Your Volume</p>
+
+            <h3 style="margin-top: 40px; margin-bottom: 30px;">Select Network Rates (High-Density Markets)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Weight</th>
+                        <th>Zone 4</th>
+                        <th>Zone 5</th>
+                        <th>Zone 6</th>
+                        <th>Zone 7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">1 lb</span></td>
+                        <td>$3.29</td>
+                        <td>$3.34</td>
+                        <td>$3.35</td>
+                        <td>$3.38</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">2 lbs</span></td>
+                        <td>$3.35</td>
+                        <td>$3.38</td>
+                        <td>$3.40</td>
+                        <td>$3.45</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">3 lbs</span></td>
+                        <td>$3.41</td>
+                        <td>$3.45</td>
+                        <td>$3.56</td>
+                        <td>$3.35</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">5 lbs</span></td>
+                        <td>$3.48</td>
+                        <td>$3.52</td>
+                        <td>$3.56</td>
+                        <td>$3.65</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 50px; margin-bottom: 30px;">National Network Rates (100% ZIP Coverage)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Weight</th>
+                        <th>Zone 4</th>
+                        <th>Zone 5</th>
+                        <th>Zone 6</th>
+                        <th>Zone 7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">1 lb</span></td>
+                        <td>$4.02</td>
+                        <td>$4.07</td>
+                        <td>$4.17</td>
+                        <td>$4.23</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">2 lbs</span></td>
+                        <td>$4.05</td>
+                        <td>$4.08</td>
+                        <td>$4.17</td>
+                        <td>$4.23</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">3 lbs</span></td>
+                        <td>$4.03</td>
+                        <td>$4.08</td>
+                        <td>$4.17</td>
+                        <td>$4.24</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">5 lbs</span></td>
+                        <td>$4.31</td>
+                        <td>$4.35</td>
+                        <td>$4.40</td>
+                        <td>$4.48</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: rgba(24, 42, 90, 0.3); border: 2px solid #8BD74E; padding: 24px; margin-top: 40px; border-radius: 12px; text-align: center;">
+                <p style="font-size: 22px;"><span class="highlight">30-40% below</span> traditional carrier Express services for equivalent transit times</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Zone Distribution Challenge -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>The Geographic Challenge</h2>
+            <p>Your zone distribution reveals a significant opportunity:</p>
+            <div class="chart-container">
+                <div class="chart-title">Volume Distribution by Zone</div>
+                <div class="chart-bars">
+                    <div class="chart-bar">
+                        <div class="chart-bar-label">Zones 1-3 (Local)</div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 11%;">
+                                <span class="chart-bar-value">11%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-bar-label">Zones 4-5 (Regional)</div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 40.5%;">
+                                <span class="chart-bar-value">40.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-bar-label">Zones 6-7 (Cross-Country)</div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 47.8%;">
+                                <span class="chart-bar-value">47.8%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-bar-label">Zone 8 (Far Reach)</div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 1.2%;">
+                                <span class="chart-bar-value">1.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 24px;"><span class="highlight">89% of your volume ships to zones 4-8</span> — where traditional carriers charge premium zone penalties for nearly half your shipments.</p>
+            <p style="font-size: 22px; color: #8BD74E;">This is where FirstMile's expanded network makes a dramatic difference.</p>
+        </div>
+
+        <!-- Slide 8: Service Levels -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Xparcel Service Levels</h2>
+            <p>Three service tiers designed specifically for eCommerce shippers:</p>
+            <table style="margin-top: 40px;">
+                <thead>
+                    <tr>
+                        <th>Service Level</th>
+                        <th>Transit Time</th>
+                        <th>Best For</th>
+                        <th>Your Volume Fit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Xparcel Ground</span></td>
+                        <td>3-8 days</td>
+                        <td>Economy shipments, under 1 lb</td>
+                        <td><span class="highlight">96% of your volume</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Xparcel Expedited</span></td>
+                        <td>2-5 days</td>
+                        <td>Faster ground, 1-20 lbs</td>
+                        <td><span class="highlight">4% of your volume</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Xparcel Priority</span></td>
+                        <td>1-3 days</td>
+                        <td>Premium speed with guarantee</td>
+                        <td>Available for urgent needs</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 style="margin-top: 50px;">Pricing for Your Under-1-Pound Volume (Zones 4-7)</h3>
+            <ul>
+                <li>Xparcel Ground rates: <span class="highlight">$3.93 to $4.48</span> depending on weight and zone</li>
+                <li>Xparcel Expedited: <span class="highlight">30-40% below</span> traditional carrier Express services</li>
+                <li>Optimized specifically for lightweight eCommerce packages</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: Savings Projection -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Your Conservative Savings Projection</h2>
+            <table style="margin-top: 30px;">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Current State</th>
+                        <th>FirstMile Xparcel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monthly Packages</td>
+                        <td>17,914</td>
+                        <td>17,914</td>
+                    </tr>
+                    <tr>
+                        <td>Daily Volume (5 days/wk)</td>
+                        <td>~896</td>
+                        <td>~896</td>
+                    </tr>
+                    <tr>
+                        <td>Average Cost/Package</td>
+                        <td>$4.96</td>
+                        <td class="highlight">$4.20 - $4.60</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Spend</td>
+                        <td>$88,853</td>
+                        <td class="highlight">$75,200 - $82,400</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Savings</td>
+                        <td>—</td>
+                        <td class="highlight">$6,500 - $13,700</td>
+                    </tr>
+                    <tr>
+                        <td>Annual Savings</td>
+                        <td>—</td>
+                        <td class="highlight">$78,000 - $164,000</td>
+                    </tr>
+                    <tr>
+                        <td>Cost Reduction %</td>
+                        <td>—</td>
+                        <td class="highlight">7% - 15%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="background: rgba(139, 215, 78, 0.1); border-left: 4px solid #8BD74E; padding: 24px; margin-top: 40px; border-radius: 8px;">
+                <p style="font-size: 20px; margin-bottom: 16px;"><strong>Conservative Approach:</strong></p>
+                <p style="font-size: 18px;">These projections are deliberately conservative. We need to verify DHL rate accuracy in your ShipHero export. If your actual costs are higher than the data shows, our savings opportunity could be substantially greater.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Where FirstMile Shines -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Where FirstMile Shines for Stackd</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 32px; margin-top: 40px;">
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border: 2px solid rgba(139, 215, 78, 0.2);">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">Perfect Weight Profile</h3>
+                    <p>89.9% under 1 lb is our sweet spot. Traditional carriers overprice lightweight packages — we deliver maximum value.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border: 2px solid rgba(139, 215, 78, 0.2);">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">Zone Distribution Advantage</h3>
+                    <p>88.3% of volume in zones 4-7 is ideal for our expanded network. Zone-skipping provides biggest impact in far zones.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border: 2px solid rgba(139, 215, 78, 0.2);">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">Service Mix Simplicity</h3>
+                    <p>96% Ground volume means we optimize the vast majority without complex service level requirements.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border: 2px solid rgba(139, 215, 78, 0.2);">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">Strong Volume</h3>
+                    <p>17,914 packages/month (~896/day) provides stable operations and strong negotiating position for continued rate optimization.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Service Advantages -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Beyond Cost: The Service Advantages</h2>
+            <p style="margin-bottom: 40px;">Cost savings are important, but FirstMile provides operational benefits traditional carriers don't:</p>
+            <ul>
+                <li><span class="highlight">Audit Queue</span> catches mis-rated labels before they hit your invoice — typically prevents $500-$1,000/month in billing errors for a shipper your size</li>
+                <li><span class="highlight">Single Support Thread</span> — one FirstMile team handles claims, returns, exceptions, and billing. No bouncing between carrier reps. Average resolution: 4.2 hours vs 2-3 days industry average</li>
+                <li><span class="highlight">Returns Portal</span> with QR-code-based returns requiring no printing. Your customers love it, you get full visibility and analytics on return patterns</li>
+                <li><span class="highlight">Claims Recovery</span> at 94% success rate within 14 days. Industry average: 60-120 days with far lower recovery rates</li>
+            </ul>
+            <div style="background: rgba(24, 42, 90, 0.3); border: 2px solid #8BD74E; padding: 32px; margin-top: 40px; border-radius: 12px;">
+                <p style="font-size: 24px; color: #8BD74E; font-weight: 700; margin-bottom: 16px;">For a 3PL like Stackd:</p>
+                <p style="font-size: 20px;">Every dollar saved on shipping is a dollar that strengthens your service offering and improves client satisfaction.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Implementation -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>Implementation: Simpler Than You Think</h2>
+            <p style="margin-bottom: 40px;">You're currently using ShipHero for order fulfillment and label generation. FirstMile integrates directly through their multi-carrier API.</p>
+            <div style="display: flex; gap: 40px; margin-top: 50px;">
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 30px;">Implementation Timeline</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Week</th>
+                                <th>Milestone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="highlight">Week 1</span></td>
+                                <td>Contract signature, tech kickoff with ShipHero</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight">Weeks 2-3</span></td>
+                                <td>API integration dev and testing in sandbox</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight">Week 4</span></td>
+                                <td>Pilot launch with 20-30% volume</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight">Weeks 5-12</span></td>
+                                <td>Ramp to full volume with DHL parallel</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight">Week 13+</span></td>
+                                <td>Ongoing optimization, quarterly reviews</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 30px;">What Stays the Same</h3>
+                    <ul style="margin-top: 0;">
+                        <li>Same thermal printers</li>
+                        <li>Same label stock</li>
+                        <li>Same warehouse workflow</li>
+                        <li>No team retraining needed</li>
+                    </ul>
+                    <p style="margin-top: 40px; font-size: 20px; color: #8BD74E;">The complexity is invisible to you — you just see better rates and better service.</p>
+                </div>
+            </div>
+            <div style="background: rgba(139, 215, 78, 0.1); border-left: 4px solid #8BD74E; padding: 24px; margin-top: 40px; border-radius: 8px;">
+                <p style="font-size: 20px;"><strong>90-Day Pilot:</strong> Keep DHL running in parallel. Track SLA compliance, customer satisfaction, and cost savings. Make the full switch only when you're confident.</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Next Steps -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>What Happens Next</h2>
+            <p style="font-size: 24px; margin-bottom: 50px;">If this makes sense based on the data — and it should — here's the path forward:</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border-left: 4px solid #8BD74E;">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">Today</h3>
+                    <ul style="margin: 0;">
+                        <li>Verbal commitment to 90-day pilot</li>
+                        <li>Provide 10-20 sample DHL invoices (verify rates)</li>
+                        <li>Answer key questions about service requirements</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border-left: 4px solid #8BD74E;">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">This Week</h3>
+                    <ul style="margin: 0;">
+                        <li>Formal proposal with detailed rate cards</li>
+                        <li>Implementation timeline</li>
+                        <li>Contract terms review</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border-left: 4px solid #8BD74E;">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">Week 1</h3>
+                    <ul style="margin: 0;">
+                        <li>Contract signature</li>
+                        <li>Tech kickoff with ShipHero</li>
+                        <li>FirstMile account setup</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border-left: 4px solid #8BD74E;">
+                    <h3 style="color: #8BD74E; margin-bottom: 20px;">Weeks 2-4</h3>
+                    <ul style="margin: 0;">
+                        <li>Integration development and testing</li>
+                        <li>Pilot launch with 20-30% volume</li>
+                        <li>Daily monitoring and optimization</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="background: rgba(24, 42, 90, 0.3); border: 2px solid #8BD74E; padding: 32px; margin-top: 50px; border-radius: 12px; text-align: center;">
+                <p style="font-size: 28px; color: #ffffff; font-weight: 700; margin-bottom: 16px;">No volume commitments. No penalties to exit.</p>
+                <p style="font-size: 22px; color: #8BD74E;">You stay because we perform, not because you're locked in.</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: The Decision -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <h2>The Decision Point</h2>
+            <p style="font-size: 26px; margin-bottom: 40px;">Landon, you have a decision to make:</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
+                <div style="background: rgba(255, 0, 0, 0.1); border: 3px solid rgba(255, 100, 100, 0.5); padding: 40px; border-radius: 16px;">
+                    <h3 style="color: #ff6b6b; margin-bottom: 24px; font-size: 32px;">Continue Current Path</h3>
+                    <ul style="margin: 0;">
+                        <li style="color: #ffcccc;">Pay $88,853 monthly</li>
+                        <li style="color: #ffcccc;">Traditional carrier structure</li>
+                        <li style="color: #ffcccc;">Zone penalties on 89% of volume</li>
+                        <li style="color: #ffcccc;">$1,066,236 annual shipping costs</li>
+                        <li style="color: #ffcccc;">Competitive disadvantage vs optimized 3PLs</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(139, 215, 78, 0.15); border: 3px solid #8BD74E; padding: 40px; border-radius: 16px;">
+                    <h3 style="color: #8BD74E; margin-bottom: 24px; font-size: 32px;">Optimize with FirstMile</h3>
+                    <ul style="margin: 0;">
+                        <li>Pay $75,200-$82,400 monthly</li>
+                        <li>eCommerce-optimized network</li>
+                        <li>Zone-skipping on far destinations</li>
+                        <li>$902,000-$989,000 annual shipping costs</li>
+                        <li><span class="highlight">$78K-$164K savings annually</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="font-size: 28px; color: #ffffff; font-weight: 700; margin-bottom: 24px;">Every month you wait costs you $6,500 to $13,700.</p>
+                <p style="font-size: 24px; color: #8BD74E;">Every year you delay costs you $78,000 to $164,000 or more.</p>
+            </div>
+            <div style="background: rgba(24, 42, 90, 0.5); padding: 32px; margin-top: 40px; border-radius: 12px; text-align: center;">
+                <p style="font-size: 22px;">The solution is proven. The implementation is straightforward. The savings are real.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Call to Action -->
+        <div class="slide">
+            <div class="logo-header">
+                <img src="https://cdn.prod.website-files.com/64cd224f52d06dbfde1bb90f/64cd224f52d06dbfde1bba25_firstmile-logo-only%20(1)1.svg" alt="FirstMile Logo">
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <h1 style="font-size: 72px; margin-bottom: 40px;">Ready to Optimize Your Shipping?</h1>
+                <p style="font-size: 32px; color: #8BD74E; margin-bottom: 60px;">Let's start your 90-day pilot and prove the savings.</p>
+                <div class="cta-container" style="justify-content: center;">
+                    <a href="mailto:brett@firstmile.com" class="cta-button">Email Brett Walker</a>
+                    <a href="tel:+1234567890" class="cta-button secondary">Schedule Follow-Up Call</a>
+                </div>
+                <div style="margin-top: 80px;">
+                    <p style="font-size: 24px; margin-bottom: 16px;">Brett Walker</p>
+                    <p style="font-size: 20px; color: #8BD74E;">FirstMile Sales Executive</p>
+                    <p style="font-size: 18px; margin-top: 20px;">brett@firstmile.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-button" onclick="previousSlide()">← Previous</button>
+            <div class="slide-counter">
+                <span id="current-slide">1</span> / <span id="total-slides">14</span>
+            </div>
+            <button class="nav-button" onclick="nextSlide()">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+
+            // Trigger chart animations when entering slide
+            const chartBars = slides[currentSlide].querySelectorAll('.chart-bar-fill');
+            chartBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Touch navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) previousSlide();
+        }
+
+        // Initialize first slide chart animations
+        window.addEventListener('load', () => {
+            const firstSlideCharts = slides[0].querySelectorAll('.chart-bar-fill');
+            firstSlideCharts.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

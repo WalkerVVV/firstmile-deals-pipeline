@@ -1,0 +1,125 @@
+================================================================================
+                   FIRSTMILE XPARCEL RATE PROPOSAL
+                     HOW TO VIEW THIS PRESENTATION
+================================================================================
+
+QUICK START
+-----------
+1. Download the HTML file to your computer
+2. Double-click the HTML file to open in your web browser
+3. Use arrow keys or navigation buttons to advance through slides
+
+SYSTEM REQUIREMENTS
+-------------------
+✓ Any modern web browser (Chrome, Edge, Firefox, Safari)
+✓ Internet connection (for fonts and FirstMile logo)
+✓ No software installation required
+✓ Works on Windows, Mac, Linux
+
+NAVIGATION CONTROLS
+-------------------
+→ Keyboard:
+  • Right Arrow (→) or Spacebar: Next slide
+  • Left Arrow (←): Previous slide
+
+→ Mouse/Touchpad:
+  • Click "Next →" button at bottom center
+  • Click "← Previous" button at bottom center
+
+→ Touch Devices (Mobile/Tablet):
+  • Swipe left: Next slide
+  • Swipe right: Previous slide
+
+SLIDE COUNTER
+-------------
+The bottom center shows your current position:
+  Example: "5 / 14" means slide 5 of 14 total slides
+
+TROUBLESHOOTING
+---------------
+
+PROBLEM: Email blocks the .html file attachment
+SOLUTION:
+  • Ask sender to rename file to .txt before sending
+  • After downloading, rename from .txt back to .html
+  • Then double-click to open
+
+PROBLEM: Browser shows security warning
+SOLUTION:
+  • Click "Show anyway" or "Allow"
+  • This is a safe HTML file with no executable code
+  • It contains only presentation content (text, images, styling)
+
+PROBLEM: Fonts look different or logo doesn't appear
+SOLUTION:
+  • Ensure you have internet connection
+  • Fonts load from Google Fonts CDN
+  • Logo loads from FirstMile's website
+  • Content will still be readable without internet
+
+PROBLEM: Can't open the file / Nothing happens
+SOLUTION:
+  • Right-click the HTML file
+  • Select "Open with..."
+  • Choose your web browser (Chrome, Edge, Firefox, Safari)
+  • File should open in browser window
+
+PROBLEM: Presentation looks too small/large
+SOLUTION:
+  • Use browser zoom controls:
+    Windows: Ctrl + Plus/Minus
+    Mac: Cmd + Plus/Minus
+  • Reset zoom: Ctrl+0 (Windows) or Cmd+0 (Mac)
+
+BEST VIEWING EXPERIENCE
+-----------------------
+→ Full screen mode:
+  • Press F11 (Windows) or Cmd+Shift+F (Mac)
+  • Exit full screen: Press F11 or Esc
+
+→ Recommended browser window size:
+  • Maximized window for best experience
+  • Works on screens as small as tablets
+
+→ Presentation features:
+  • Animated slide transitions
+  • Interactive charts with smooth animations
+  • Professional FirstMile branding
+  • Responsive design adapts to screen size
+
+SHARING THIS PRESENTATION
+-------------------------
+→ You can forward this HTML file to colleagues
+→ No special permissions or licenses required
+→ File is self-contained (except fonts/logo which load from internet)
+→ Works the same on any computer with a web browser
+
+PRINTING OR SAVING AS PDF
+--------------------------
+If you want a PDF version:
+1. Open the presentation in your browser
+2. Navigate to each slide you want to save
+3. Press Ctrl+P (Windows) or Cmd+P (Mac)
+4. Select "Save as PDF" as printer
+5. Repeat for each slide (or print all slides)
+
+Note: For best results, use browser's print function on each individual
+slide rather than printing all at once.
+
+QUESTIONS OR ISSUES?
+--------------------
+If you experience any technical difficulties viewing this presentation:
+
+Contact: Brett Walker
+Email: brett@firstmile.com
+Phone: [Your Phone Number]
+
+We can also schedule a live screen-share presentation if you prefer
+to review the content together.
+
+================================================================================
+                    Thank you for reviewing our proposal!
+================================================================================
+
+FirstMile - Optimizing eCommerce Shipping
+Website: https://www.firstmile.com

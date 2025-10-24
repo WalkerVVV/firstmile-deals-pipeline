@@ -1,0 +1,240 @@
+# Xparcel Rate Presentation Script Template
+
+## Slide 1: Title & Introduction
+[Customer Name] - FirstMile Xparcel Proposal
+Optimizing Your Shipping Profile with Data-Driven Insights
+Prepared for: [Contact Name]
+[X shipments analyzed] | [Monthly Volume] Packages/Month | [Daily Average]
+
+## Slide 2: Current Shipping Reality
+Your current shipping profile shows:
+- [Monthly Volume] packages per month
+- ~[Daily Average] average daily volume
+- $[Cost/Package] average cost per label
+- [X%] packages under 1 lb
+
+Weight Distribution Breakdown:
+- [X%] of shipments are 0-4 ounces
+- [X%] are 4-8 ounces
+- [X%] are 8 ounces to 1 pound
+- Only [X%] are over 1 pound
+
+This lightweight eCommerce profile is exactly where FirstMile's National Network excels.
+
+## Slide 3: Network Expansion
+The Expansion of FirstMile's Xparcel Networks
+From 12 injection points to 47 metro markets nationwide
+
+OLD Network:
+- 12 injection points
+- Limited metro coverage
+- Longer zone distances
+- Higher transportation costs
+- Fewer routing options
+
+NEW Network (2025):
+- 47 metro injection points
+- Covers ~70% of U.S. population
+- Zone-skipping advantages
+- Reduced average spend per package
+- Intelligent routing to closest hub
+
+Key Metro Markets: Los Angeles, San Francisco, Phoenix, Dallas, Houston, Chicago, New York, Atlanta, Miami, Seattle, Denver, Boston
+
+## Slide 4: Xparcel Ground Rates
+Your Primary Service - 3-8 Day Delivery
+
+Under 1 Pound Rates (Your Sweet Spot):
+Present rate table showing zones 4-7 pricing for:
+- 1-4 oz
+- 5-8 oz
+- 9-12 oz
+- 13-15.99 oz
+- 1 lb (16 oz)
+
+For [Customer]'s Profile:
+- Current Average: $[X.XX]/package
+- [X%] of volume in zones 4-7
+- Xparcel Ground: $[X.XX]-$[X.XX]/package (weighted average)
+
+## Slide 5: Xparcel Expedited Rates
+Faster Ground Option - 2-5 Day Delivery
+
+Select Network Rates (High-Density Markets):
+Present rate table for zones 4-7, weights 1-5 lbs
+
+National Network Rates (100% ZIP Coverage):
+Present rate table for zones 4-7, weights 1-5 lbs
+
+30-40% below traditional carrier Express services for equivalent transit times
+
+## Slide 6: Zone Distribution Challenge
+Your zone distribution reveals a significant opportunity:
+
+Volume Distribution by Zone:
+- Zones 1-3 (Local): [X%]
+- Zones 4-5 (Regional): [X%]
+- Zones 6-7 (Cross-Country): [X%]
+- Zone 8 (Far Reach): [X%]
+
+[X%] of your volume ships to zones 4-8 — where traditional carriers charge premium zone penalties.
+This is where FirstMile's expanded network makes a dramatic difference.
+
+## Slide 7: Service Levels
+Three service tiers designed specifically for eCommerce shippers:
+
+Xparcel Ground: 3-8 days | Economy shipments, under 1 lb | [X%] of your volume
+Xparcel Expedited: 2-5 days | Faster ground, 1-20 lbs | [X%] of your volume
+Xparcel Priority: 1-3 days | Premium speed with guarantee | Available for urgent needs
+
+Pricing for Your Under-1-Pound Volume (Zones 4-7):
+- Xparcel Ground rates: $[X.XX] to $[X.XX] depending on weight and zone
+- Xparcel Expedited: 30-40% below traditional carrier Express services
+- Optimized specifically for lightweight eCommerce packages
+
+## Slide 8: Conservative Savings Projection
+
+Current State vs FirstMile Xparcel:
+- Monthly Packages: [X,XXX] → [X,XXX]
+- Daily Volume: ~[XXX] → ~[XXX]
+- Average Cost/Package: $[X.XX] → $[X.XX - X.XX]
+- Monthly Spend: $[XX,XXX] → $[XX,XXX - XX,XXX]
+- Monthly Savings: — → $[X,XXX - XX,XXX]
+- Annual Savings: — → $[XX,XXX - XXX,XXX]
+- Cost Reduction %: — → [X% - XX%]
+
+Conservative Approach:
+These projections are deliberately conservative. We need to verify [Current Carrier] rate accuracy in your system export. If your actual costs are higher than the data shows, our savings opportunity could be substantially greater.
+
+## Slide 9: Where FirstMile Shines
+Perfect Weight Profile:
+[X%] under 1 lb is our sweet spot. Traditional carriers overprice lightweight packages — we deliver maximum value.
+
+Zone Distribution Advantage:
+[X%] of volume in zones 4-7 is ideal for our expanded network. Zone-skipping provides biggest impact in far zones.
+
+Service Mix Simplicity:
+[X%] Ground volume means we optimize the vast majority without complex service level requirements.
+
+Strong Volume:
+[X,XXX] packages/month (~[XXX]/day) provides stable operations and strong negotiating position for continued rate optimization.
+
+## Slide 10: Service Advantages Beyond Cost
+Cost savings are important, but FirstMile provides operational benefits traditional carriers don't:
+
+Audit Queue: Catches mis-rated labels before they hit your invoice — typically prevents $500-$1,000/month in billing errors for a shipper your size
+
+Single Support Thread: One FirstMile team handles claims, returns, exceptions, and billing. No bouncing between carrier reps. Average resolution: 4.2 hours vs 2-3 days industry average
+
+Returns Portal: QR-code-based returns requiring no printing. Your customers love it, you get full visibility and analytics on return patterns
+
+Claims Recovery: 94% success rate within 14 days. Industry average: 60-120 days with far lower recovery rates
+
+For [Customer Type - e.g., 3PL, Brand, Retailer]:
+Every dollar saved on shipping is a dollar that strengthens your service offering and improves [client/customer] satisfaction.
+
+## Slide 11: Implementation Timeline
+You're currently using [System Name] for order fulfillment and label generation. FirstMile integrates directly through their multi-carrier API.
+
+Implementation Timeline:
+Week 1: Contract signature, tech kickoff with [System]
+Weeks 2-3: API integration dev and testing in sandbox
+Week 4: Pilot launch with 20-30% volume
+Weeks 5-12: Ramp to full volume with [Current Carrier] parallel
+Week 13+: Ongoing optimization, quarterly reviews
+
+What Stays the Same:
+- Same thermal printers
+- Same label stock
+- Same warehouse workflow
+- No team retraining needed
+
+The complexity is invisible to you — you just see better rates and better service.
+
+90-Day Pilot: Keep [Current Carrier] running in parallel. Track SLA compliance, customer satisfaction, and cost savings. Make the full switch only when you're confident.
+
+## Slide 12: What Happens Next
+If this makes sense based on the data — and it should — here's the path forward:
+
+Today:
+- Verbal commitment to 90-day pilot
+- Provide 10-20 sample [Current Carrier] invoices (verify rates)
+- Answer key questions about service requirements
+
+This Week:
+- Formal proposal with detailed rate cards
+- Implementation timeline
+- Contract terms review
+
+Week 1:
+- Contract signature
+- Tech kickoff with [System]
+- FirstMile account setup
+
+Weeks 2-4:
+- Integration development and testing
+- Pilot launch with 20-30% volume
+- Daily monitoring and optimization
+
+No volume commitments. No penalties to exit.
+You stay because we perform, not because you're locked in.
+
+## Slide 13: The Decision Point
+[Contact Name], you have a decision to make:
+
+Continue Current Path:
+- Pay $[XX,XXX] monthly
+- Traditional carrier structure
+- Zone penalties on [X%] of volume
+- $[XXX,XXX] annual shipping costs
+- Competitive disadvantage vs optimized [competitors]
+
+Optimize with FirstMile:
+- Pay $[XX,XXX]-$[XX,XXX] monthly
+- eCommerce-optimized network
+- Zone-skipping on far destinations
+- $[XXX,XXX]-$[XXX,XXX] annual shipping costs
+- $[XX]K-$[XXX]K savings annually
+
+Every month you wait costs you $[X,XXX] to $[XX,XXX].
+Every year you delay costs you $[XX,XXX] to $[XXX,XXX] or more.
+
+The solution is proven. The implementation is straightforward. The savings are real.
+
+## Slide 14: Call to Action
+Ready to Optimize Your Shipping?
+Let's start your 90-day pilot and prove the savings.
+
+Brett Walker
+FirstMile Sales Executive
+brett@firstmile.com
+[Phone Number]
+
+---
+
+## INSTRUCTIONS FOR USE:
+
+1. Replace all bracketed placeholders with actual customer data
+2. Use data from PLD analysis or shipping data export
+3. Calculate savings conservatively (5-15% range is typical)
+4. Always verify current carrier rates before presenting aggressive savings
+5. Customize "Where FirstMile Shines" section for customer's specific profile
+6. Adjust implementation timeline based on customer's tech stack
+7. Update contact information with your details
+
+## DATA YOU'LL NEED:
+- Monthly package volume
+- Daily average volume
+- Current average cost per package
+- Weight distribution (% under 1 lb, breakdown by oz)
+- Zone distribution (% in zones 1-3, 4-5, 6-7, 8)
+- Service mix (% Ground vs Expedited)
+- Current shipping system (ShipHero, ShipStation, etc.)
+- Current carrier (DHL, UPS, FedEx, etc.)
+
+## TYPICAL CUSTOMER PROFILES:
+- **eCommerce Brands**: 85-95% under 1 lb, high zone 5-7 volume
+- **3PLs**: Mixed weight profiles, need strong operational support
+- **Subscription Boxes**: Very consistent volume, predictable weight
+- **Apparel**: 90%+ under 1 lb, high expedited %
+- **Electronics**: Heavier profile, focus on claims/insurance

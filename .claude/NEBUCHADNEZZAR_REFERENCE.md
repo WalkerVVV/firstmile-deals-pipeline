@@ -2,7 +2,7 @@
 
 ## System Overview
 
-The Nebuchadnezzar v2.0 is a fully automated 10-stage pipeline consciousness for FirstMile Deals management. Zero manual data entry, real-time tracking via folder movement, N8N automation, and HubSpot CRM integration.
+The Nebuchadnezzar v3.0 is a fully automated 10-stage pipeline consciousness for FirstMile Deals management. Zero manual data entry, real-time tracking via folder movement, N8N automation, and HubSpot CRM integration.
 
 ---
 

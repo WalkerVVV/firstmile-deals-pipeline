@@ -22,7 +22,7 @@
 
 ## System Overview
 
-The Nebuchadnezzar v2.0 is a fully automated sales pipeline system integrating:
+The Nebuchadnezzar v3.0 is a fully automated sales pipeline system integrating:
 
 - **10-Stage Pipeline** with folder-based tracking
 - **HubSpot CRM** via MCP integration
@@ -554,7 +554,7 @@ FirstMile_Deals/
 
 ### Contact
 **Owner**: Brett Walker
-**System**: Nebuchadnezzar v2.0
+**System**: Nebuchadnezzar v3.0
 **Status**: Production (Live)
 **Last Updated**: October 7, 2025
 
@@ -562,4 +562,4 @@ FirstMile_Deals/
 
 **"Free your mind from manual processes. The system sees all movements."**
 
-*— The Nebuchadnezzar v2.0*
+*— The Nebuchadnezzar v3.0*

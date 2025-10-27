@@ -21,7 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 FirstMile Deals - Sales pipeline and customer analysis system for FirstMile shipping solutions. This codebase manages deal tracking, customer data analysis, rate calculations, and performance reporting for FirstMile's Xparcel shipping services.
 
-The system is called "The Nebuchadnezzar v2.0" - a fully automated 10-stage pipeline consciousness with N8N automation watching deal folder movements, zero manual data entry, and real-time tracking.
+The system is called "The Nebuchadnezzar v3.0" - a fully automated 10-stage pipeline consciousness with N8N automation watching deal folder movements, zero manual data entry, and real-time tracking.
 
 ## Core Business Context
 
@@ -39,7 +39,7 @@ FirstMile is a **carrier** (not a platform/3PL) offering Xparcel ship methods:
 
 ## High-Level Architecture
 
-### Deal Pipeline Structure (Nebuchadnezzar v2.0)
+### Deal Pipeline Structure (Nebuchadnezzar v3.0)
 The repository follows a 10-stage pipeline system with automated folder-based tracking:
 ```
 [00-LEAD] → [01-DISCOVERY-SCHEDULED] → [02-DISCOVERY-COMPLETE] →

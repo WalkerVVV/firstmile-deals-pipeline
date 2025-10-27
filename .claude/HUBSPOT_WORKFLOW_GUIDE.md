@@ -1,5 +1,5 @@
 # HubSpot MCP Workflow Guide
-**Complete Integration Reference for Nebuchadnezzar v2.0**
+**Complete Integration Reference for Nebuchadnezzar v3.0**
 
 ---
 
@@ -729,5 +729,5 @@ python hubspot_pipeline_verify.py      # Pipeline health check
 ---
 
 **Last Updated**: October 7, 2025
-**System**: Nebuchadnezzar v2.0
+**System**: Nebuchadnezzar v3.0
 **Integration**: HubSpot MCP via Claude Code

@@ -1,5 +1,5 @@
 # FirstMile Deals - Documentation Index
-**Complete Guide to Nebuchadnezzar v2.0 System**
+**Complete Guide to Nebuchadnezzar v3.0 System**
 
 ---
 
@@ -373,6 +373,6 @@ Downloads/
 ---
 
 **Last Updated**: October 7, 2025
-**System Version**: Nebuchadnezzar v2.0
+**System Version**: Nebuchadnezzar v3.0
 **Documentation Status**: Complete
 **Maintained By**: Brett Walker

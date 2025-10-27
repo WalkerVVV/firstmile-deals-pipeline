@@ -772,5 +772,5 @@ C:\Users\BrettWalker\FirstMile_Deals\DEAL_FOLDER_TEMPLATES\
 ---
 
 **Last Updated**: October 7, 2025
-**System**: Nebuchadnezzar v2.0
+**System**: Nebuchadnezzar v3.0
 **Purpose**: Ensure consistent, complete deal management across all stages

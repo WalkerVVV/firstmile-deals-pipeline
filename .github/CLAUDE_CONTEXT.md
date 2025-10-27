@@ -1,6 +1,6 @@
 # GitHub Claude Integration - FirstMile Deals Context
 
-**System**: The Nebuchadnezzar v2.0
+**System**: The Nebuchadnezzar v3.0
 **Purpose**: Comprehensive context for GitHub Claude App (@claude mentions)
 **Last Updated**: 2025-10-27
 **Owner**: Brett Walker
@@ -26,7 +26,7 @@
 
 ### What is FirstMile Deals?
 
-FirstMile Deals is a fully automated sales pipeline management system for FirstMile shipping solutions. The system (nicknamed "Nebuchadnezzar v2.0") manages:
+FirstMile Deals is a fully automated sales pipeline management system for FirstMile shipping solutions. The system (nicknamed "Nebuchadnezzar v3.0") manages:
 
 - **10-stage deal pipeline** with folder-based tracking
 - **HubSpot CRM integration** via MCP
@@ -732,15 +732,15 @@ Services: Xparcel Ground (3-8d), Expedited (2-5d), Priority (1-3d)
 
 ## System Status
 
-**Version**: Nebuchadnezzar v2.0
+**Version**: Nebuchadnezzar v3.0
 **Status**: Production Active
 **Pipeline Value**: $81.7M across 87 deals
 **Automation**: Zero manual data entry
-**Integration**: Folder ↔ HubSpot ↔ N8N
+**Integration**: Folder ↔ HubSpot ↔ N8N ↔ GitHub Claude
 **Target**: 40% savings for customers, 2-day nationwide delivery
 
 ---
 
 **"Free your mind from manual processes. The system sees all movements."**
 
-*— The Nebuchadnezzar v2.0*
+*— The Nebuchadnezzar v3.0*

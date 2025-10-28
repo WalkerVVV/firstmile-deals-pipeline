@@ -5,7 +5,7 @@
 
 ## Overview
 
-The Daily Sync system ensures systematic pipeline management, customer engagement, and continuous improvement through structured touchpoints at 9AM, NOON, EOD, and End of Week.
+The Daily Sync system ensures systematic pipeline management, customer engagement, and continuous improvement through structured touchpoints at 9AM, NOON, 3PM, EOD, End of Week, and Monthly.
 
 ### Purpose
 - **Pipeline Visibility**: Real-time deal status and priorities
@@ -322,7 +322,87 @@ EOD PREP:
 ```
 
 ### Next Sync
-**EOD (5:00 PM)** - Learning capture
+**3PM Sync** - Afternoon momentum check
+
+---
+
+## 3PM Sync - Afternoon Momentum Check
+
+### Purpose
+Mid-afternoon checkpoint to maintain momentum, address blockers, and ensure EOD readiness.
+
+### Execution
+
+**Quick Manual Check** (5-10 minutes)
+
+```bash
+# Optional: Quick pipeline status
+python hubspot_pipeline_verify.py
+```
+
+### Process Flow
+
+#### Phase 1: Afternoon Progress Review
+```
+Questions:
+1. Are NOON priorities on track for completion?
+2. Any new customer responses requiring immediate action?
+3. What blockers emerged this afternoon?
+4. Do I have what I need for tomorrow's meetings?
+```
+
+**Quick Checklist**:
+- ✅ P1 actions from NOON sync addressed
+- ✅ Critical blockers escalated or resolved
+- ✅ Tomorrow's meeting prep materials ready
+- ✅ Any urgent customer responses handled
+
+#### Phase 2: EOD Prep Assessment
+```
+Prepare for:
+1. Outstanding analysis or data work
+2. Materials needed for tomorrow's first meeting
+3. Customer responses that need same-day reply
+4. Deal folder updates for today's activities
+```
+
+**Example Output**:
+```
+3PM MOMENTUM CHECK:
+
+COMPLETED TODAY:
+✅ Stackd PLD analysis finished
+✅ DYLN dimensions request sent
+✅ Upstate Prep follow-up email sent
+
+REMAINING FOR EOD:
+1. Update Stackd Customer Relationship Doc (15min)
+2. Review Logystico rate card from Stephen (10min)
+3. Prep tomorrow's Stackd meeting materials (20min)
+
+BLOCKERS TO ESCALATE:
+- DYLN: Still waiting on Brock data (email sent 9AM, no response)
+
+TOMORROW PREP:
+✅ Stackd meeting materials ready
+⏳ Need to print rate card for in-person presentation
+```
+
+#### Phase 3: Evening Planning
+```
+Set up for:
+1. Realistic EOD completion time
+2. Tomorrow's first priority
+3. Any after-hours customer responses to monitor
+```
+
+**Time Management**:
+- If workload heavy → prioritize for EOD
+- If workload light → consider early wrap or get ahead on tomorrow
+- If blockers critical → escalate before 4PM
+
+### Next Sync
+**EOD (5:00 PM)** - Learning capture and daily closeout
 
 ---
 
@@ -801,6 +881,190 @@ Weekly reflection, pipeline velocity analysis, next week planning, archive to Sa
 
 ---
 
+## Monthly Sync - End of Month Review
+
+### Purpose
+Monthly pipeline health assessment, win/loss analysis, strategic planning, and system optimization review.
+
+### Execution
+
+**Timing**: Last business day of the month (after EOD sync)
+
+**File**: `_MONTHLY_REVIEW_[MONTH].md` (Downloads folder)
+
+### Process Flow
+
+#### Phase 1: Monthly Pipeline Metrics
+```markdown
+## MONTH OF [MONTH YEAR] REVIEW
+
+### Pipeline Performance
+- Total Deals in Pipeline: [count at month end]
+- Pipeline Value: $[total amount]
+- Deals Closed Won: [count] ($[value])
+- Deals Closed Lost: [count] ($[value])
+- Win Rate: [won / (won + lost)] %
+- Average Deal Size: $[total value / count]
+
+### Stage Velocity (Average Days)
+- [01] → [02]: [X] days (target: <7)
+- [02] → [03]: [X] days (target: <10)
+- [03] → [04]: [X] days (target: <14) **BOTTLENECK METRIC**
+- [04] → [07]: [X] days (target: <30)
+- Total Pipeline Velocity: [X] days (target: <60)
+
+### Activity Metrics
+- Total Customer Touchpoints: [count]
+- Discovery Calls Completed: [count]
+- Proposals Delivered: [count]
+- New Leads Created: [count]
+- Average Response Time: [hours]
+```
+
+#### Phase 2: Win/Loss Analysis
+```markdown
+## WIN/LOSS ANALYSIS
+
+### Wins This Month ([count] deals, $[value])
+1. [Company Name]: $[amount] - [Key success factors]
+2. [Company Name]: $[amount] - [Key success factors]
+
+**Common Win Factors**:
+- [Pattern 1: e.g., Fast rate turnaround <7 days]
+- [Pattern 2: e.g., Multi-location discovery]
+- [Pattern 3: e.g., Strong incumbent pain point]
+
+### Losses This Month ([count] deals, $[value])
+1. [Company Name]: $[amount] - [Loss reason]
+2. [Company Name]: $[amount] - [Loss reason]
+
+**Common Loss Factors**:
+- [Pattern 1: e.g., Pricing too high]
+- [Pattern 2: e.g., Incumbent relationship too strong]
+- [Pattern 3: e.g., Timing not right]
+
+### Strategic Insights
+- What do we need to do differently to win more?
+- What competitive advantages emerged?
+- What objections need better handling?
+```
+
+#### Phase 3: Stage Health & Bottleneck Analysis
+```markdown
+## PIPELINE HEALTH ASSESSMENT
+
+### Bottleneck Stages
+**[03-RATE-CREATION]**: [count] deals
+- SLA Violations (>14 days): [count]
+- Avg Days in Stage: [X] days
+- Primary Blockers: [list top 3]
+- Action Plan: [specific improvements]
+
+**[04-PROPOSAL-SENT]**: [count] deals
+- Stale Deals (>30 days): [count]
+- Response Rate: [%]
+- Follow-up Effectiveness: [analysis]
+- Action Plan: [specific improvements]
+
+### High-Value At-Risk Deals
+1. [Company]: $[amount] - [X] days in [STAGE] - [Action needed]
+2. [Company]: $[amount] - [X] days in [STAGE] - [Action needed]
+
+### Conversion Rates by Stage
+- [01] → [02]: [%]
+- [02] → [03]: [%]
+- [03] → [04]: [%]
+- [04] → [07]: [%]
+```
+
+#### Phase 4: System Optimization Review
+```markdown
+## SYSTEM & PROCESS REVIEW
+
+### SOP Changes This Month
+**Implemented & Working** ✅:
+- v[X.X]: [Change description] - [Impact]
+- v[X.X]: [Change description] - [Impact]
+
+**Implemented & Failing** ❌:
+- v[X.X]: [Change description] - [Why it failed] - [Rollback plan]
+
+**Testing in Progress** 🟡:
+- v[X.X]: [Change description] - [Current status]
+
+### Automation Performance
+- N8N Workflows: [uptime %]
+- HubSpot Sync Success Rate: [%]
+- Daily Sync Execution: [days completed / total days]
+- Brand Scout Lead Quality: [leads converted / leads generated]
+
+### Tool Effectiveness
+- HubSpot MCP: [usage stats, issues]
+- Python Analysis Scripts: [most used, gaps identified]
+- Excel Report Generation: [quality feedback]
+```
+
+#### Phase 5: Strategic Planning for Next Month
+```markdown
+## NEXT MONTH STRATEGIC PRIORITIES
+
+### Revenue Goals
+- Target Pipeline Value: $[amount]
+- Target Closed Won: [count] deals ($[amount])
+- Focus Verticals: [list top 3]
+
+### Process Improvements
+1. **[Priority 1]**: [Specific initiative with timeline]
+2. **[Priority 2]**: [Specific initiative with timeline]
+3. **[Priority 3]**: [Specific initiative with timeline]
+
+### Competitive Strategy
+- New positioning angles to test: [list]
+- Competitor weaknesses to exploit: [list]
+- Case studies to develop: [list]
+
+### Skill Development
+- Sales techniques to improve: [list]
+- Technical knowledge gaps: [list]
+- Industry expertise to build: [list]
+
+### Known Major Events
+- [Date]: [Customer meeting/event]
+- [Date]: [Internal deadline/launch]
+- [Week of]: [Conference/trade show]
+```
+
+#### Phase 6: Archive & Reflection
+```markdown
+## PERSONAL REFLECTION
+
+### What I Learned This Month
+1. [Key learning about sales process]
+2. [Key learning about customer behavior]
+3. [Key learning about personal effectiveness]
+
+### What I'll Do Differently
+1. [Specific behavior change]
+2. [Specific process change]
+3. [Specific approach change]
+
+### Energy & Motivation Check
+- What's energizing me? [reflection]
+- What's draining me? [reflection]
+- What support do I need? [reflection]
+```
+
+**Archive Process**:
+1. Save monthly review to: `C:\Users\BrettWalker\Downloads\_MONTHLY_REVIEW_[MONTH].md`
+2. Export summary to Saner.ai with tag: `#monthly-review #[month-year]`
+3. Update quarterly tracking spreadsheet (if applicable)
+4. Share relevant metrics with sales leadership
+
+### Next Sync
+**Next Business Day 9AM** - Start new month with fresh priorities
+
+---
+
 ## Automated EOD Email Analysis Workflow
 
 ### Using Chrome DevTools MCP + Superhuman AI
@@ -1076,16 +1340,23 @@ Dashboard: C:\Users\BrettWalker\Desktop\AUTOMATION_MONITOR_LOCAL.html
 ## Summary
 
 The Daily Sync Operations system ensures:
-1. **Morning Clarity**: Know exactly what to do each day
-2. **Midday Adjustment**: Course-correct based on developments
-3. **Evening Reflection**: Capture learnings while fresh
-4. **Weekly Evolution**: Continuous improvement of sales process
+1. **Morning Clarity** (9AM): Know exactly what to do each day
+2. **Midday Adjustment** (NOON): Course-correct based on developments
+3. **Afternoon Momentum** (3PM): Maintain focus and prepare for EOD
+4. **Evening Reflection** (EOD): Capture learnings while fresh
+5. **Weekly Evolution** (Friday EOD): Continuous improvement of sales process
+6. **Monthly Strategy** (Month End): Big picture analysis and planning
 
 **Success Formula**:
 > Consistent Execution + Ruthless Learning Capture = Pipeline Velocity
 
+**Complete Sync Cycle**:
+- **Daily**: 9AM → NOON → 3PM → EOD
+- **Weekly**: Friday EOD for reflection and next week planning
+- **Monthly**: Last business day for strategic review
+
 ---
 
-**Last Updated**: October 7, 2025
+**Last Updated**: October 27, 2025
 **System**: Nebuchadnezzar v3.0
 **Status**: Production Active

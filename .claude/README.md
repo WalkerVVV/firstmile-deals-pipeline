@@ -1,4 +1,4 @@
-# FirstMile Deals - The Nebuchadnezzar System v2.0
+# FirstMile Deals - The Nebuchadnezzar System v3.0
 
 **Complete Sales Execution & Pipeline Management System**
 

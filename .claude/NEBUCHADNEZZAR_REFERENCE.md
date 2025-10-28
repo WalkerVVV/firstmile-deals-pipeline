@@ -1,4 +1,4 @@
-# NEBUCHADNEZZAR v2.0 - System Reference Guide
+# NEBUCHADNEZZAR v3.0 - System Reference Guide
 
 ## System Overview
 

@@ -1,0 +1,43 @@
+name: Create HubSpot Tasks
+
+on:
+  workflow_dispatch:
+    inputs:
+      task_set:
+        description: 'Which tasks to create'
+        required: true
+        default: 'morning_priorities'
+        type: choice
+        options:
+          - morning_priorities
+          - critical_only
+          - proposal_followups
+
+jobs:
+  create-tasks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Create HubSpot Tasks
+        env:
+          HUBSPOT_API_KEY: ${{ secrets.HUBSPOT_API_KEY }}
+        run: |
+          python create_tasks_with_env.py
+
+      - name: Task creation summary
+        run: |
+          echo "✅ Task creation workflow completed"
+          echo "Check HubSpot for new tasks"

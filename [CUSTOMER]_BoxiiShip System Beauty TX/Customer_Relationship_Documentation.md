@@ -546,3 +546,102 @@
 **[DOCUMENTATION UPDATED: 2025-10-03 11:45 AM MST]**
 **[6 ACTION ITEMS TRACKED]**
 **[1 COMPLETE, 5 PENDING]**
+
+---
+
+## XPARCEL ZIP LIMIT IMPACT ANALYSIS
+
+### Analysis Date: October 29, 2025
+**Data Source**: October 1-20, 2025 PLD (11,167 shipments)
+**Origin Point**: 761 (Beaumont/Port Arthur, TX)
+
+### ZIP Limit Coverage
+**Xparcel Network Coverage from Origin 761**:
+- **Xparcel Ground**: 2,863 eligible destination ZIPs
+- **Xparcel Expedited**: 2,804 eligible destination ZIPs
+- **Ground-Only ZIPs**: 59 ZIPs (Expedited not available - too far for 5-day SLA)
+
+### Current Carrier Mix (Before ZIP Limits)
+
+| Carrier | Shipments | % Volume | Avg Weight (oz) |
+|---------|-----------|----------|-----------------|
+| **DHL** | 6,531 | **58.5%** | 12.15 |
+| **ACI** | 4,634 | **41.5%** | 11.81 |
+
+**Total Volume**: 11,167 shipments
+
+### Volume Shift After ZIP Limits Applied
+
+#### **WORST CASE SCENARIO** (Ineligible ACI shipments move to DHL)
+
+| Carrier | Shipments | % Volume | Change from Current |
+|---------|-----------|----------|---------------------|
+| **ACI** | 4,528 | **40.5%** | ⬇️ **-106 shipments (-1.0%)** |
+| **DHL** | 6,637 | **59.4%** | ⬆️ **+106 shipments (+0.9%)** |
+
+**Impact Summary**:
+- **ACI loses**: 106 shipments (2.3% of current ACI volume)
+- **DHL gains**: 106 shipments
+- **New split**: ACI 40.5% / DHL 59.4%
+
+#### **BEST CASE SCENARIO** (BoxiiShip consolidates ACI-eligible volume)
+
+| Carrier | Shipments | % Volume | Change from Current |
+|---------|-----------|----------|---------------------|
+| **ACI** | 6,157 | **55.1%** | ⬆️ **+1,523 shipments (+32.9%)** |
+| **DHL** | 5,008 | **44.8%** | ⬇️ **-1,523 shipments (-23.3%)** |
+
+**Opportunity Summary**:
+- **ACI could gain**: 1,629 shipments from DHL (currently using DHL for ACI-eligible ZIPs)
+- **ACI retains**: 4,528 of current volume
+- **New split**: ACI 55.1% / DHL 44.8%
+
+### Detailed Findings
+
+#### Current ACI Volume Impact
+**Current ACI**: 4,634 shipments
+- ✅ **Can stay with ACI**: 4,528 (97.7%)
+- ❌ **Must move to DHL**: 106 (2.3%)
+
+**Service breakdown of forced moves (106 shipments)**:
+- Expedited: 66 shipments (62.3%)
+- Ground: 40 shipments (37.7%)
+
+#### Current DHL Volume Opportunity
+**Current DHL**: 6,531 shipments
+- 🔄 **Could move to ACI**: 1,629 (24.9%)
+- ⚠️ **Stays with DHL**: 4,902 (75.1%) - destinations NOT in Xparcel ZIP limits
+
+### Key Business Insights
+
+1. **Minimal Loss Risk**: Only 2.3% of current ACI volume is at risk due to ZIP limits
+
+2. **Strong Retention**: ACI retains 97.7% of current volume (4,528 shipments)
+
+3. **Growth Opportunity**: 1,629 DHL shipments currently going to ACI-eligible ZIPs could consolidate to ACI
+
+4. **DHL Need Persists**: 4,902 shipments (75% of current DHL volume) go to destinations NOT covered by Xparcel from origin 761
+   - These require alternative network coverage (National Network or alternative carrier)
+
+### Strategic Implications
+
+**The ZIP limits will cause minimal disruption**:
+- ACI volume drops only 1.0 percentage points (41.5% → 40.5%)
+- 106 shipments is a small fraction of total volume
+- Strong foundation for Xparcel service from origin 761
+
+**Opportunity for consolidation**:
+- If BoxiiShip prioritizes ACI for eligible destinations, volume could shift from 41.5% → 55.1%
+- Would require business decision to prefer ACI over DHL for the 1,629 eligible shipments
+
+**Dual-carrier reality**:
+- 44.4% of total volume (4,963 shipments) goes to non-Xparcel ZIPs
+- BoxiiShip will likely continue using both carriers
+- DHL serves destinations outside Xparcel Select Network coverage
+
+### Analysis Files Generated
+- `carrier_mix_zip_limit_analysis.py` - Full carrier mix impact analysis
+- `zip_limit_volume_shift_analysis.py` - Volume shift scenarios and projections
+- Both scripts available in customer folder for future updates
+
+---

@@ -1,94 +1,12 @@
-# Environment Configuration
+# MINIMAL .gitignore - Exact Clone Strategy
+# Only exclude secrets and system files
+# Everything else will be committed to GitHub
+
+# ============================================================================
+# SECRETS & CREDENTIALS (NEVER COMMIT)
+# ============================================================================
 .env
-.env.local
-.env.*.local
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual Environments
-venv/
-ENV/
-env/
-.venv
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Claude Code - Local Settings (user-specific, don't commit)
-.claude/settings.local.json
-
-# Jupyter Notebooks
-.ipynb_checkpoints
-
-# Data Files (selective exclusion - MATRIX v3.0)
-# Allow most data files for version control
-# Exclude only sensitive/temporary data files
-*_raw_data.csv
-*_customer_export.csv
-*_confidential.xlsx
-*_temp.xlsx
-~$*.xlsx
-~$*.xls
-
-# Logs
-*.log
-logs/
-_DAILY_LOG.md
-_PIPELINE_TRACKER.csv
-FOLLOW_UP_REMINDERS.txt
-
-# Temporary Files
-*.tmp
-*.bak
-*.backup
-*_backup.*
-*_old.*
-*_v[0-9].*
-*_fixed.*
-
-# OS Files
-Thumbs.db
-.DS_Store
-desktop.ini
-
-# Reports (generated files)
-*_report_*.xlsx
-*_dashboard_*.xlsx
-FirstMile_Xparcel_Performance_*.xlsx
-
-# Archives
-_archive/
-backup/
-
-# Sensitive Data
+.env.*
 *_credentials.*
 *_keys.*
 *_secrets.*
@@ -96,12 +14,33 @@ backup/
 *password*
 *token*
 
-# Matrix v3.0 Specific Exclusions
-*_BACKUP_*/
-phase0_backup_system.py
-phase0_backup_auto.py
-.agent_lock
-*.lock
+# ============================================================================
+# PYTHON CACHE (System-generated)
+# ============================================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-# Git Automation (generated files)
-git_automation/__pycache__/
+# ============================================================================
+# OS FILES (System-generated)
+# ============================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================================
+# CLAUDE CODE LOCAL SETTINGS (User-specific)
+# ============================================================================
+.claude/settings.local.json
+
+# ============================================================================
+# NOTE: Everything else will be committed
+# This includes:
+# - Customer data files (.xlsx, .csv, .txt)
+# - Analysis scripts (.py)
+# - Documentation (.md)
+# - Logs and reports
+# - Temporary files
+# - All customer folders
+# ============================================================================

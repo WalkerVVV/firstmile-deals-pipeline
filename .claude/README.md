@@ -68,6 +68,12 @@ qm hubspot update-deal        # Move deal stages
 python daily_9am_workflow.py       # Morning priority report
 python daily_9am_sync.py          # Task verification
 python pipeline_sync_verification.py  # Folder ↔ HubSpot sync
+
+# 🎯 NEW: Sales Discipline Agents
+python .claude/agents/prioritization_agent.py --daily-reminder  # Top 3 priorities
+python .claude/agents/sales_execution_agent.py                  # Stale proposal check
+python .claude/agents/weekly_metrics_tracker.py                 # 5/2/3/1 goals (Friday)
+python .claude/agents/brand_scout_agent.py --batch 10           # 10 leads (Monday 6AM)
 ```
 
 ---
@@ -88,6 +94,14 @@ python pipeline_sync_verification.py  # Folder ↔ HubSpot sync
 6. **Phase 5**: Pipeline health check and SLA violations
 
 **Output**: Priority-ranked action list with next steps
+
+**🎯 NEW - Sales Discipline Integration**:
+```bash
+# Run after main sync
+python .claude/agents/prioritization_agent.py --daily-reminder  # Top 3 priorities
+python .claude/agents/sales_execution_agent.py                  # Stale proposals
+```
+**Output**: Daily priority reminder + urgency follow-up emails
 
 ### NOON Sync - Midday Check
 **Purpose**: Progress check and afternoon planning
@@ -119,6 +133,24 @@ python pipeline_sync_verification.py  # Folder ↔ HubSpot sync
 3. Pipeline velocity analysis
 4. Next week priorities
 5. Archive learnings to Saner.ai
+
+**🎯 NEW - Weekly Metrics Accountability**:
+```bash
+python .claude/agents/weekly_metrics_tracker.py
+```
+**Output**: `~/Downloads/WEEKLY_METRICS_YYYY-MM-DD_to_YYYY-MM-DD.md`
+**Tracks**: 5 new leads, 2 discoveries, 3 proposals, 1 close per week
+**Coaching**: 4/4 goals = Excellent, 3/4 = Strong, 2/4 = Average, 1/4 = Below, 0/4 = Critical
+
+### Monday 6AM - Weekly Lead Generation
+**Purpose**: Automated brand research for 10 new wellness/D2C leads
+
+**🎯 NEW - Brand Scout Automation** (Scheduled):
+```bash
+python .claude/agents/brand_scout_agent.py --batch 10
+```
+**Output**: Brand profiles + `[00-LEAD]_BrandName` folders
+**Setup**: Windows Task Scheduler, Monday 6:00 AM weekly trigger
 
 ---
 

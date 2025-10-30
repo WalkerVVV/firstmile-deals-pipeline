@@ -21,36 +21,89 @@ The Daily Sync system ensures systematic pipeline management, customer engagemen
 ## 9AM Sync - Day Start
 
 ### Purpose
-Generate priority-ranked action list with urgency scoring for optimal daily execution.
+**Workflow Continuity**: Start your day with full context from yesterday - completed items, pending follow-ups, HubSpot priorities, and overnight Brand Scout results. NO MORE starting blind.
+
+**🎯 NEW: Sales Discipline Integration** - Enforce 5/2/3/1 weekly goals through automated priority reminders and stale proposal scanning.
 
 ### Execution
 
-**Script**: `daily_9am_workflow.py`
-
+**Main Sync Script**:
 ```bash
 cd C:\Users\BrettWalker\FirstMile_Deals
-python daily_9am_workflow.py
+python daily_9am_sync.py
 ```
 
-### Process Flow
+**🎯 Sales Discipline Agents** (Run after main sync):
+```bash
+# 1. Priority Reminder (Top 3 deals for today)
+python .claude/agents/prioritization_agent.py --daily-reminder
 
-#### Phase 0: Load Previous Day Learnings
-```
-Input: _DAILY_LOG_FEEDBACK.md from Downloads folder
-Action: Review what worked, what failed, what to apply today
-Output: Context for today's execution
+# 2. Stale Proposal Scanner (Urgency follow-ups needed)
+python .claude/agents/sales_execution_agent.py
 ```
 
-**Example Learnings**:
-- ✅ Customer Relationship Docs saved 30min per deal
-- ❌ Long emails bury critical asks → use dedicated emails
-- 🔧 Pre-check internal dependencies before customer comms
+### What You Get (Integrated Report)
 
-#### Phase 0.5: Brand Scout Overnight Processing Review
+1. **📅 Yesterday's Context**
+   - What you completed
+   - What was pending at end of day
+   - Date of last update
+
+2. **🚨 Critical Follow-Ups**
+   - Top 5 items from `FOLLOW_UP_REMINDERS.txt`
+   - Customer names, status, and next actions
+   - Urgency scoring
+
+3. **💼 HubSpot Priority Deals**
+   - Live data from HubSpot API
+   - Grouped by stage ([03-RATE-CREATION], [04-PROPOSAL-SENT], [06-IMPLEMENTATION])
+   - Deal amounts and counts
+   - Top 3 deals per stage
+
+4. **🔍 Brand Scout Overnight Results**
+   - New reports generated in last 24 hours
+   - Location: `.claude/brand_scout/output/`
+   - Action reminder for discovery outreach
+
+5. **💡 Key Learnings**
+   - Last 5 learnings from `_DAILY_LOG_FEEDBACK.md`
+   - What worked, what failed, what to apply today
+
+### Data Sources (Auto-Integrated)
+
+#### Phase 1: Yesterday's Context
 ```
-Check: .claude/brand_scout/output/ for new reports
-Action: Review automated lead creation results
-Output: Priority list for discovery outreach
+Input: ~/Downloads/_DAILY_LOG.md
+Extracts: Completed items, pending items, afternoon priorities
+Output: Where you left off yesterday
+```
+
+#### Phase 2: Critical Follow-Ups
+```
+Input: ~/Downloads/FOLLOW_UP_REMINDERS.txt
+Extracts: Top 5 critical items from action queue
+Output: What needs immediate attention
+```
+
+#### Phase 3: HubSpot Live Data
+```
+Input: HubSpot API (live)
+Fetches: Priority stage deals ([01], [03], [04], [06])
+Output: Current pipeline state with amounts
+```
+
+#### Phase 4: Brand Scout Overnight
+```
+Input: .claude/brand_scout/output/*.md (last 24h)
+Checks: New reports generated overnight
+Output: Discovery leads requiring outreach
+```
+
+#### Phase 5: Key Learnings
+```
+Input: ~/Downloads/_DAILY_LOG_FEEDBACK.md
+Extracts: Last 5 learnings to apply today
+Output: Continuous improvement context
 ```
 
 **Brand Scout Quality Check**:
@@ -770,9 +823,20 @@ Metrics to capture:
 ### Purpose
 Weekly reflection, pipeline velocity analysis, next week planning, archive to Saner.ai.
 
+**🎯 NEW: Weekly Metrics Accountability** - Track 5/2/3/1 goals (leads, discoveries, proposals, closes) with coaching feedback.
+
 ### Execution
 
+**Main Sync**:
 **File**: `_DAILY_LOG_FEEDBACK.md` (special Friday section)
+
+**🎯 Weekly Metrics Tracker** (Run first):
+```bash
+cd C:\Users\BrettWalker\FirstMile_Deals
+python .claude/agents/weekly_metrics_tracker.py
+```
+**Output**: `~/Downloads/WEEKLY_METRICS_YYYY-MM-DD_to_YYYY-MM-DD.md`
+**Review**: Goals met (4/4 = Excellent, 3/4 = Strong, 2/4 = Average, 1/4 = Below, 0/4 = Critical)
 
 ### Process Flow
 
@@ -878,6 +942,48 @@ Weekly reflection, pipeline velocity analysis, next week planning, archive to Sa
 ## Action Items for Next Week
 [Carried forward priorities]
 ```
+
+---
+
+## Monday 6AM Sync - Weekly Lead Generation
+
+### Purpose
+**Automated Brand Research**: Generate 10 new wellness/D2C brand leads every Monday morning to maintain 5 new leads/week goal.
+
+**🎯 NEW: Brand Scout Automation** - Scheduled batch processing for consistent lead pipeline.
+
+### Execution
+
+**🎯 Brand Scout Agent** (Scheduled via Windows Task Scheduler or manual):
+```bash
+cd C:\Users\BrettWalker\FirstMile_Deals
+python .claude/agents/brand_scout_agent.py --batch 10
+```
+
+**Output**:
+- Brand profiles: `.claude/brand_scout/output/BrandName_YYYYMMDD_HHMMSS.md`
+- Deal folders: `[00-LEAD]_BrandName/`
+- Batch summary with success/failure tracking
+
+**Windows Task Scheduler Setup**:
+1. Open Task Scheduler
+2. Create Basic Task: "Brand Scout - Monday 6AM"
+3. Trigger: Weekly, Monday 6:00 AM
+4. Action: Start Program
+   - Program: `python`
+   - Arguments: `.claude/agents/brand_scout_agent.py --batch 10`
+   - Start in: `C:\Users\BrettWalker\FirstMile_Deals`
+
+**9AM Review** (After Brand Scout completes):
+1. Review generated brand profiles in `.claude/brand_scout/output/`
+2. Complete research for each brand (contacts, carriers, shipping data)
+3. Create HubSpot leads via `qm hubspot create-lead`
+4. Begin outreach process
+
+**Brand List Management**:
+- Edit `.claude/brand_scout/input/brand_list.txt` to add new brands
+- List should contain 50+ wellness/D2C brands
+- Script processes first 10 each run
 
 ---
 

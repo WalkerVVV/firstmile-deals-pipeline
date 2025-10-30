@@ -12,25 +12,32 @@
 
 ### 📋 Daily Operations
 4. **[DAILY_SYNC_OPERATIONS.md](DAILY_SYNC_OPERATIONS.md)** - 9AM, NOON, EOD, and weekly sync workflows
-5. **[EOD_SYNC_MASTER_PROMPT.md](EOD_SYNC_MASTER_PROMPT.md)** - Comprehensive EOD sync automation prompt (mistake-proof)
-6. **[S4_OPTIMIZATION_PATTERNS.md](S4_OPTIMIZATION_PATTERNS.md)** - Sonnet 4.5 specific optimization patterns
-7. **[REPEATABLE_IMPROVEMENT_TEMPLATE.md](REPEATABLE_IMPROVEMENT_TEMPLATE.md)** - Template for capturing workflow improvements
-8. **[HUBSPOT_WORKFLOW_GUIDE.md](HUBSPOT_WORKFLOW_GUIDE.md)** - HubSpot MCP integration and workflows
-9. **[DEAL_FOLDER_TEMPLATE.md](DEAL_FOLDER_TEMPLATE.md)** - Standard deal folder structure by stage
+5. **agents/[README.md](agents/README.md)** - 🎯 Sales Discipline Agents (NEW: 5/2/3/1 accountability)
+6. **[EOD_SYNC_MASTER_PROMPT.md](EOD_SYNC_MASTER_PROMPT.md)** - Comprehensive EOD sync automation prompt (mistake-proof)
+7. **[S4_OPTIMIZATION_PATTERNS.md](S4_OPTIMIZATION_PATTERNS.md)** - Sonnet 4.5 specific optimization patterns
+8. **[REPEATABLE_IMPROVEMENT_TEMPLATE.md](REPEATABLE_IMPROVEMENT_TEMPLATE.md)** - Template for capturing workflow improvements
+9. **[HUBSPOT_WORKFLOW_GUIDE.md](HUBSPOT_WORKFLOW_GUIDE.md)** - HubSpot MCP integration and workflows
+10. **[DEAL_FOLDER_TEMPLATE.md](DEAL_FOLDER_TEMPLATE.md)** - Standard deal folder structure by stage
 
 ### 🧠 Strategy & Methodology
-10. **[Brett_Walker_Instructions_v4.3.md](Brett_Walker_Instructions_v4.3.md)** - Morpheus Method and positioning
-11. **[APPROVED_PIPELINE_STRUCTURE.md](APPROVED_PIPELINE_STRUCTURE.md)** - Official 10-stage pipeline definition
-12. **HubSpot/[HUBSPOT_MCP_CHEATSHEET.md](HubSpot/HUBSPOT_MCP_CHEATSHEET.md)** - Complete API reference
-13. **[CLAUDE.md](CLAUDE.md)** - AI assistant project context
+11. **[Brett_Walker_Instructions_v4.3.md](Brett_Walker_Instructions_v4.3.md)** - Morpheus Method and positioning
+12. **[APPROVED_PIPELINE_STRUCTURE.md](APPROVED_PIPELINE_STRUCTURE.md)** - Official 10-stage pipeline definition
+13. **HubSpot/[HUBSPOT_MCP_CHEATSHEET.md](HubSpot/HUBSPOT_MCP_CHEATSHEET.md)** - Complete API reference
+14. **[CLAUDE.md](CLAUDE.md)** - AI assistant project context
 
 ### 🔧 Specialized Guides
-14. **[EXCEL_PROCESS_TEMPLATES.md](EXCEL_PROCESS_TEMPLATES.md)** - Quick reference for all Excel deliverables
-15. **[FULL_XPARCEL_ANALYSIS_TEMPLATE.md](FULL_XPARCEL_ANALYSIS_TEMPLATE.md)** - Standard Full Xparcel Analysis process
-16. **BULK_RATE_PROCESSING/[RATE_CREATION_BLITZ.md](BULK_RATE_PROCESSING/RATE_CREATION_BLITZ.md)** - Rapid rate creation workflow
-17. **[PLD_DISCOVERY_ANALYSIS_PROMPT.md](PLD_DISCOVERY_ANALYSIS_PROMPT.md)** - Shipping analysis methodology
-18. **brand_scout/[BRAND_SCOUT_SYSTEM.md](brand_scout/BRAND_SCOUT_SYSTEM.md)** - Autonomous lead research system
-19. **_DAILY_LOG_FEEDBACK.md** (Downloads) - Continuous learning capture
+15. **[EXCEL_PROCESS_TEMPLATES.md](EXCEL_PROCESS_TEMPLATES.md)** - Quick reference for all Excel deliverables
+16. **[FULL_XPARCEL_ANALYSIS_TEMPLATE.md](FULL_XPARCEL_ANALYSIS_TEMPLATE.md)** - Standard Full Xparcel Analysis process
+17. **BULK_RATE_PROCESSING/[RATE_CREATION_BLITZ.md](BULK_RATE_PROCESSING/RATE_CREATION_BLITZ.md)** - Rapid rate creation workflow
+18. **[PLD_DISCOVERY_ANALYSIS_PROMPT.md](PLD_DISCOVERY_ANALYSIS_PROMPT.md)** - Shipping analysis methodology
+19. **brand_scout/[BRAND_SCOUT_SYSTEM.md](brand_scout/BRAND_SCOUT_SYSTEM.md)** - Autonomous lead research system
+20. **_DAILY_LOG_FEEDBACK.md** (Downloads) - Continuous learning capture
+
+### 🤖 Sales Automation Agents
+21. **agents/sales_execution_agent.py** - Auto-generate urgency follow-ups for stale proposals
+22. **agents/brand_scout_agent.py** - Automated brand research (on-demand + Monday 6AM)
+23. **agents/weekly_metrics_tracker.py** - Track 5/2/3/1 weekly goals with coaching feedback
+24. **agents/prioritization_agent.py** - Ensure enterprise deals get 10x attention
 
 ---
 
@@ -53,8 +60,10 @@
 **Morning Routine (9AM)**:
 1. Review [DAILY_SYNC_OPERATIONS.md](DAILY_SYNC_OPERATIONS.md#9am-sync---day-start)
 2. Run: `python daily_9am_workflow.py`
-3. Execute P1 actions from output
-4. **Optional**: Batch Brand Scout research on queued leads
+3. **🎯 NEW**: `python .claude/agents/prioritization_agent.py --daily-reminder` (Top 3 priorities)
+4. **🎯 NEW**: `python .claude/agents/sales_execution_agent.py` (Check stale proposals)
+5. Execute P1 actions from output
+6. **Optional**: Batch Brand Scout research on queued leads
 
 **Midday Check (NOON)**:
 1. Review [DAILY_SYNC_OPERATIONS.md](DAILY_SYNC_OPERATIONS.md#noon-sync---midday-progress-check)
@@ -67,6 +76,14 @@
 3. Update: `_DAILY_LOG_FEEDBACK.md` in Downloads folder
 4. Capture learnings in 4 categories (worked, failed, unclear, missing)
 5. **Optional**: Quality check Brand Scout reports, sync to HubSpot
+
+**Weekly Review (Friday EOD)**:
+1. **🎯 NEW**: `python .claude/agents/weekly_metrics_tracker.py` (Track 5/2/3/1 goals)
+2. Review weekly performance against targets
+3. Identify gaps for next week
+
+**Monday Morning (6AM - Scheduled)**:
+1. **🎯 NEW**: `python .claude/agents/brand_scout_agent.py --batch 10` (Auto-generate 10 leads)
 
 ### Creating & Managing Deals
 

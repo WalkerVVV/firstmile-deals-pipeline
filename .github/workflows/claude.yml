@@ -1,6 +1,7 @@
 name: Claude Code
 
 on:
+  workflow_dispatch:  # Allow manual triggering only
   issue_comment:
     types: [created]
   pull_request_review_comment:
@@ -9,6 +10,8 @@ on:
     types: [opened, assigned]
   pull_request_review:
     types: [submitted]
+
+# Explicitly exclude push events to prevent automatic runs on commits
 
 jobs:
   claude:

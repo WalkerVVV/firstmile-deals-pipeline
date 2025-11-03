@@ -127,7 +127,8 @@ pip install pandas numpy openpyxl xlsxwriter matplotlib seaborn plotly
 # Morning priority report (9AM sync)
 python daily_9am_workflow.py
 
-# Task verification and missing task creation
+# Morning sync - INTEGRATED CONTEXT-AWARE START
+# Combines: Yesterday's log + Follow-ups + HubSpot + Brand Scout
 python daily_9am_sync.py
 
 # Folder-to-HubSpot sync verification

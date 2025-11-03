@@ -7,14 +7,23 @@ Adds all action items from morning plan to HubSpot
 
 import sys
 import io
+import os
 import requests
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
 # Fix Windows encoding
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-# Configuration (matching daily_9am_sync.py)
-API_KEY = "pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764"
+# Load environment variables from .env file
+load_dotenv()
+
+# Configuration - Load from environment (SECURE)
+API_KEY = os.environ.get('HUBSPOT_API_KEY')
+if not API_KEY:
+    print("\n❌ ERROR: HUBSPOT_API_KEY not found in environment")
+    print("   Please check .env file contains: HUBSPOT_API_KEY=pat-na1-...")
+    sys.exit(1)
 OWNER_ID = "699257003"
 PIPELINE_ID = "8bd9336b-4767-4e67-9fe2-35dfcad7c8be"
 

@@ -8,10 +8,20 @@ Midday priority check and afternoon action planning
 import io, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
+import os
 import requests
 from datetime import datetime
+from dotenv import load_dotenv
 
-API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'
+# Load environment variables from .env file
+load_dotenv()
+
+# Configuration - Load from environment (SECURE)
+API_KEY = os.environ.get('HUBSPOT_API_KEY')
+if not API_KEY:
+    print("\n❌ ERROR: HUBSPOT_API_KEY not found in environment")
+    print("   Please check .env file contains: HUBSPOT_API_KEY=pat-na1-...")
+    sys.exit(1)
 OWNER_ID = '699257003'
 PIPELINE_ID = '8bd9336b-4767-4e67-9fe2-35dfcad7c8be'
 
@@ -140,25 +150,22 @@ def main():
     print('─' * 80)
     print('  1. Work through [03-RATE-CREATION] backlog (highest priority)')
     print('  2. Follow up on stale [04-PROPOSAL-SENT] deals')
-    print('  3. 2:30 PM: Call Brock Hansen Test (Claude Code/VSCode setup)')
-    print('  4. Check for any new inbound leads or responses')
-    print('  5. Update HubSpot tasks with progress')
+    print('  3. Check for any new inbound leads or responses')
+    print('  4. Update HubSpot tasks with progress')
+    print('  5. Review priority deal progress from morning')
     print()
 
-    print('💡 TODAY\'S ACCOMPLISHMENTS SO FAR')
-    print('─' * 80)
-    print('  ✅ Version 3.1.0 security infrastructure complete')
-    print('  ✅ Eliminated hardcoded API keys (26+ scripts)')
-    print('  ✅ Created config.py, hubspot_utils.py, date_utils.py')
-    print('  ✅ Documentation: SECURITY.md, MIGRATION_GUIDE.md')
-    print('  ✅ CHANGELOG.md updated to v3.1.0')
-    print('  ✅ Workflow integration verified')
-    print('  ✅ Task created for Brock Hansen call (91166446156)')
+    print('=' * 80)
+    print('🎯 SALES DISCIPLINE CHECK (Optional Mid-Day)')
+    print('=' * 80)
+    print('\nIf stale proposals need urgent attention, run:')
+    print('  python .claude/agents/sales_execution_agent.py')
+    print('\n💡 Best practice: Review morning priority progress before 3PM sync')
     print()
 
     print('=' * 80)
     print('NOON SYNC COMPLETE')
-    print('Next Check: EOD Sync (end of day)')
+    print('Next Check: 3PM Sync (afternoon checkpoint)')
     print('=' * 80)
 
 if __name__ == '__main__':

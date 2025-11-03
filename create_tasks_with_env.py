@@ -14,20 +14,16 @@ from datetime import datetime, timedelta
 # Fix Windows encoding
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-# Configuration - read from environment or fallback to file
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
+
+# Configuration - Load from environment (SECURE)
 API_KEY = os.environ.get('HUBSPOT_API_KEY')
 if not API_KEY:
-    print("⚠️  HUBSPOT_API_KEY not in environment, reading from config...")
-    try:
-        # Fallback: read from daily_9am_sync.py for local execution
-        with open('daily_9am_sync.py', 'r') as f:
-            for line in f:
-                if 'API_KEY = "pat-na1-' in line:
-                    API_KEY = line.split('"')[1]
-                    break
-    except:
-        print("❌ Cannot find API key. Set HUBSPOT_API_KEY environment variable.")
-        sys.exit(1)
+    print("\n❌ ERROR: HUBSPOT_API_KEY not found in environment")
+    print("   Please check .env file contains: HUBSPOT_API_KEY=pat-na1-...")
+    sys.exit(1)
 
 OWNER_ID = "699257003"
 PIPELINE_ID = "8bd9336b-4767-4e67-9fe2-35dfcad7c8be"

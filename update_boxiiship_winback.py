@@ -4,11 +4,21 @@
 import io, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
+import os
 import requests
 import json
 from datetime import datetime
+from dotenv import load_dotenv
 
-API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'
+# Load environment variables from .env file
+load_dotenv()
+
+# Configuration - Load from environment (SECURE)
+API_KEY = os.environ.get('HUBSPOT_API_KEY')
+if not API_KEY:
+    print("\n❌ ERROR: HUBSPOT_API_KEY not found in environment")
+    print("   Please check .env file contains: HUBSPOT_API_KEY=pat-na1-...")
+    sys.exit(1)
 DEAL_ID = '36466918934'  # BoxiiShip- American Fork
 WIN_BACK_STAGE = '9c8d7f6e-4a3b-2c1d-8e7f-9a0b1c2d3e4f'  # [09-WIN-BACK]
 

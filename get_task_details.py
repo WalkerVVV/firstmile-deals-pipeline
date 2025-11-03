@@ -7,12 +7,21 @@ Task: Call Brock Hanson at 2:30 PM about Claude Code, VSCode setup
 import io, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
+import os
 import requests
 import json
 from datetime import datetime
+from dotenv import load_dotenv
 
-# Using existing API key (will migrate to .env later)
-API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'
+# Load environment variables from .env file
+load_dotenv()
+
+# Configuration - Load from environment (SECURE)
+API_KEY = os.environ.get('HUBSPOT_API_KEY')
+if not API_KEY:
+    print("\n❌ ERROR: HUBSPOT_API_KEY not found in environment")
+    print("   Please check .env file contains: HUBSPOT_API_KEY=pat-na1-...")
+    sys.exit(1)
 
 headers = {
     'Authorization': f'Bearer {API_KEY}',

@@ -306,6 +306,18 @@ def main():
     else:
         print("No recent learnings logged\n")
 
+    # Phase 6: Sales Discipline Agents
+    print("\n" + "="*80)
+    print("🎯 SALES DISCIPLINE AGENTS (Run These Next)")
+    print("="*80)
+    print("\nAutomated sales discipline enforcement - forces 5/2/3/1 weekly goals:\n")
+    print("1. Priority Reminder (Top 3 deals for today):")
+    print("   python .claude/agents/prioritization_agent.py --daily-reminder\n")
+    print("2. Stale Proposal Scanner (Urgency follow-ups):")
+    print("   python .claude/agents/sales_execution_agent.py\n")
+    print("💡 TIP: These agents run independently and generate actionable outputs")
+    print("        Review their reports before starting your day")
+
     # Summary
     print("\n" + "="*80)
     print("🎯 NEXT STEPS")

@@ -1,0 +1,82 @@
+"BoxiiShip System Beauty Logistics LLC TX - October 1, 2025 to October 20, 2025",,
+,,
+Row Labels,Count of Tracking Number,Average of Days Since Request
+1-Oct,1,18
+"Tendered to delivery service provider, allow 1-3 days for updates for packages within the us",1,18
+6-Oct,287,13
+Delivery status not updated,2,13
+Shipment info received.,284,13
+"Tendered to delivery service provider, allow 1-3 days for updates for packages within the us",1,13
+7-Oct,14,12
+Delivered,4,12
+"Departed, hub facility",9,12
+"Tendered to delivery service provider, allow 1-3 days for updates for packages within the us",1,12
+8-Oct,52,11
+"Accepted, delivery facility",1,11
+"Accepted, hub facility",1,11
+Arrive USPS facility,2,11
+Delivered,13,11
+Delivery delay,2,11
+Delivery status not updated,1,11
+"Departed, hub facility",29,11
+Insufficient address,1,11
+Out for delivery,2,11
+9-Oct,22,10
+"Accepted, hub facility",2,10
+Delivered,13,10
+Delivery delay,1,10
+Depart USPS facility,1,10
+"Departed, hub facility",3,10
+Out for delivery,1,10
+Shipment info received.,1,10
+10-Oct,29,9
+"Accepted, delivery facility",1,9
+"Accepted, hub facility",3,9
+Delivered,15,9
+"Delivered, parcel locker",1,9
+Depart USPS facility,1,9
+"Departed, hub facility",4,9
+In transit,1,9
+Processed through USPS facility,2,9
+Shipping label created,1,9
+13-Oct,50,6
+"Accepted, delivery facility",1,6
+"Accepted, hub facility",5,6
+Delivered,37,6
+"Departed, hub facility",2,6
+In transit,1,6
+"In transit to next facility, arriving late",2,6
+Shipping label created,1,6
+Unsuccessful attempt - unable to access,1,6
+14-Oct,26,5
+"Accepted, delivery facility",3,5
+"Accepted, hub facility",1,5
+Delivered,18,5
+"Delivered, in/at mailbox",1,5
+"Departed, hub facility",1,5
+"In transit to next facility, arriving late",1,5
+"Tendered to delivery service provider, allow 1-3 days for updates for packages within the us",1,5
+15-Oct,16,4
+"Accepted, delivery facility",1,4
+Delivered,12,4
+"Delivered, parcel locker",1,4
+En route to DHL ecommerce or awaiting processing,1,4
+Out for delivery,1,4
+16-Oct,25,3
+"Accepted, delivery facility",3,3
+"Accepted, hub facility",1,3
+Delivered,18,3
+Out for delivery,2,3
+Processed through USPS sort facility,1,3
+17-Oct,305,2
+"Accepted, delivery facility",15,2
+"Accepted, hub facility",10,2
+Arrived at USPS regional facility,1,2
+Delivered,242,2
+"Delivered, front door/porch",1,2
+Delivery delay,1,2
+Depart USPS facility,1,2
+"Departed, hub facility",18,2
+Out for delivery,9,2
+Shipping label created,7,2
+Grand Total,827,7

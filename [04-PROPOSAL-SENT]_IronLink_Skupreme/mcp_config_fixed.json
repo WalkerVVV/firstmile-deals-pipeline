@@ -1,0 +1,77 @@
+{
+    "mcpServers": {
+        "zapier": {
+            "type": "http",
+            "url": "https://api.zapier.com/v1/mcp/sse",
+            "gallery": true
+        },
+        "context7": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "@upstash/context7-mcp@latest"
+            ],
+            "gallery": true
+        },
+        "figma": {
+            "type": "http",
+            "url": "http://127.0.0.1:3845/sse",
+            "gallery": true
+        },
+        "github": {
+            "type": "http",
+            "url": "https://api.githubcopilot.com/mcp/",
+            "gallery": true
+        },
+        "notion": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "@notionhq/notion-mcp-server@latest"
+            ],
+            "env": {
+                "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer ${input:NOTION_TOKEN}\", \"Notion-Version\": \"2022-06-28\"}"
+            },
+            "gallery": true
+        },
+        "firecrawl": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "firecrawl-mcp@latest"
+            ],
+            "env": {
+                "FIRECRAWL_API_KEY": "${input:firecrawl_api_key}"
+            },
+            "gallery": true
+        },
+        "webflow": {
+            "type": "http",
+            "url": "https://mcp.webflow.com/sse",
+            "gallery": true
+        }
+    },
+    "inputs": [
+        {
+            "id": "memory_file_path",
+            "type": "promptString",
+            "description": "Path to the memory storage file",
+            "password": false
+        },
+        {
+            "id": "NOTION_TOKEN",
+            "type": "promptString",
+            "description": "Notion API Token (https://www.notion.so/profile/integrations)",
+            "password": true
+        },
+        {
+            "id": "firecrawl_api_key",
+            "type": "promptString",
+            "description": "Firecrawl API Key (get from https://www.firecrawl.dev/app/api-keys)",
+            "password": true
+        }
+    ]
+}

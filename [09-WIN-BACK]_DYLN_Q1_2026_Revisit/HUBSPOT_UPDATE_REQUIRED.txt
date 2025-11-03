@@ -1,0 +1,40 @@
+HUBSPOT UPDATE REQUIRED - DYLN Deal
+
+Deal ID: 43542873685
+Deal Name: DYLN Inc. - New Deal
+Current Value: $3,600,000
+
+MANUAL ACTION REQUIRED:
+======================
+
+1. Update Deal Stage:
+   - Move from [03-RATE-CREATION] to [08-CLOSED-LOST]
+   - Close Date: November 3, 2025
+
+2. Add Note to Deal:
+   "Deal closed - Customer obtained DHL rates directly. Cannot compete with Xparcel when bundled with DHL. Q1 2026 revisit scheduled for standalone Xparcel proposal. RATE-1907 discontinued. Updated Nov 3, 2025."
+
+3. Set Follow-Up Reminder:
+   - Date: January 15, 2026
+   - Type: EMAIL
+   - Subject: "DYLN Q1 2026 Revisit - Standalone Xparcel Proposal"
+   - Description: "Re-engage to assess DHL performance and explore standalone Xparcel domestic rates (non-DHL bundled)"
+
+4. Update Deal Properties:
+   - Lost Reason: "Customer went direct with carrier (DHL)"
+   - Next Action: "Q1 2026 follow-up for standalone Xparcel"
+
+CONTEXT:
+========
+- RATE-1907 request discontinued
+- Customer established direct DHL relationship
+- No value proposition for bundled Xparcel + DHL
+- Opportunity: Standalone Xparcel for domestic volume in Q1 2026
+
+FILE SYSTEM STATUS:
+===================
+✅ Deal folder moved to: [09-WIN-BACK]_DYLN_Q1_2026_Revisit
+✅ Closure note created: DEAL_STATUS_CLOSED_Q1_2026_REVISIT.md
+✅ Priority lists updated
+
+Note: HubSpot API update failed due to authentication. Please complete manually via HubSpot UI.

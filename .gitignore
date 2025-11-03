@@ -33,6 +33,7 @@ desktop.ini
 # CLAUDE CODE LOCAL SETTINGS (User-specific)
 # ============================================================================
 .claude/settings.local.json
+.claude/
 
 # ============================================================================
 # NOTE: Everything else will be committed

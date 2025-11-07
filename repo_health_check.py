@@ -110,7 +110,8 @@ class HealthCheck:
         issues_found = False
         
         for py_file in self.repo_root.glob('**/*.py'):
-            if '.git' in str(py_file) or 'venv' in str(py_file):
+            # Skip excluded directories
+            if self._should_exclude_path(py_file):
                 continue
             
             try:
@@ -121,8 +122,7 @@ class HealthCheck:
                         lines = content.split('\n')
                         for i, line in enumerate(lines):
                             if pattern in line and 'os.getenv' not in line and 'Config.' not in line:
-                                # Skip comments, regex patterns, and documentation
-                                if not line.strip().startswith('#') and 'pattern' not in line.lower() and 'regex' not in line.lower() and 'r"' not in line and "r'" not in line:
+                                if self._should_check_credential_line(line):
                                     print(f"  ⚠️  Potential hardcoded credential in {py_file.name}:{i+1}")
                                     self.results['warnings'].append(f"Check {py_file.name}:{i+1} for hardcoded credential")
                                     issues_found = True
@@ -134,6 +134,45 @@ class HealthCheck:
         
         self.results['checks'].append('Security scan completed')
         return True
+    
+    def _should_exclude_path(self, path: Path) -> bool:
+        """Check if path should be excluded from scanning"""
+        path_str = str(path)
+        return '.git' in path_str or 'venv' in path_str
+    
+    def _should_check_credential_line(self, line: str) -> bool:
+        """Check if line should be flagged for potential credential"""
+        # Skip comments, regex patterns, and documentation
+        if line.strip().startswith('#'):
+            return False
+        if any(keyword in line.lower() for keyword in ['pattern', 'regex']):
+            return False
+        if 'r"' in line or "r'" in line:
+            return False
+        return True
+    
+    def _calculate_repo_size(self) -> str:
+        """Calculate repository size in a cross-platform way"""
+        # Try Unix du command first (faster)
+        try:
+            result = subprocess.run(['du', '-sh', str(self.repo_root)], 
+                                    capture_output=True, text=True, timeout=5)
+            if result.returncode == 0:
+                return result.stdout.split()[0]
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            pass
+        
+        # Fallback to cross-platform Python calculation
+        try:
+            total_size = sum(f.stat().st_size for f in self.repo_root.rglob('*') if f.is_file())
+            # Convert to human-readable format
+            for unit in ['B', 'K', 'M', 'G', 'T']:
+                if total_size < 1024.0:
+                    return f"{total_size:.0f}{unit}"
+                total_size /= 1024.0
+            return f"{total_size:.0f}P"
+        except Exception:
+            return "Unknown"
     
     def check_python_syntax(self) -> bool:
         """Check Python syntax of key files"""
@@ -277,10 +316,8 @@ class HealthCheck:
         
         # Get repository size
         try:
-            result = subprocess.run(['du', '-sh', str(self.repo_root)], 
-                                    capture_output=True, text=True, timeout=5)
-            if result.returncode == 0:
-                size = result.stdout.split()[0]
+            size = self._calculate_repo_size()
+            if size:
                 self.results['stats']['repo_size'] = size
                 print(f"  💾 Repository size: {size}")
         except Exception:
@@ -403,7 +440,7 @@ def main():
     is_healthy = checker.run()
     
     # Exit with appropriate code
-    sys.exit(0 if is_healthy or len(checker.results['errors']) == 0 else 1)
+    sys.exit(0 if is_healthy else 1)
 
 
 if __name__ == '__main__':

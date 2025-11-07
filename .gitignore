@@ -42,6 +42,11 @@ desktop.ini
 .claude/
 
 # ============================================================================
+# HEALTH CHECK REPORTS (Auto-generated)
+# ============================================================================
+HEALTH_CHECK_REPORT.json
+
+# ============================================================================
 # NOTE: Everything else will be committed
 # This includes:
 # - Customer data files (.xlsx, .csv, .txt)

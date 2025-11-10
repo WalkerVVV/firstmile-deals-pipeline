@@ -79,7 +79,7 @@ def extract_monday_action_queue(weekly_report_path):
 def extract_yesterday_context():
     """Extract what you were working on yesterday"""
     if not DAILY_LOG.exists():
-        return {"priorities": [], "completed": [], "pending": []}
+        return {"date": None, "priorities": [], "completed": [], "pending": [], "afternoon_notes": []}
 
     content = DAILY_LOG.read_text(encoding='utf-8')
     context = {"date": None, "priorities": [], "completed": [], "pending": [], "afternoon_notes": []}

@@ -64,9 +64,13 @@ qm hubspot convert-to-deal    # Convert lead → deal
 qm hubspot search-deals       # Search pipeline
 qm hubspot update-deal        # Move deal stages
 
-# Daily Sync Scripts
-python daily_9am_workflow.py       # Morning priority report
-python daily_9am_sync.py          # Task verification
+# Unified Sync System (v1.0)
+python unified_sync.py 9am        # Morning priority report
+python unified_sync.py noon       # Mid-day progress check
+python unified_sync.py 3pm        # Afternoon momentum check
+python unified_sync.py eod        # End of day learning capture
+python unified_sync.py weekly     # End of week (Sunday EOD)
+python unified_sync.py monthly    # End of month review
 python pipeline_sync_verification.py  # Folder ↔ HubSpot sync
 
 # 🎯 NEW: Sales Discipline Agents
@@ -450,8 +454,8 @@ qm hubspot update-deal --deal-id [ID] --stage "[NEW-STAGE]"
 
 **Fix**:
 ```bash
-# Run task verification script
-python daily_9am_sync.py
+# Run 9AM sync (includes task verification)
+python unified_sync.py 9am
 
 # Creates missing EMAIL tasks automatically
 ```

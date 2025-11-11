@@ -32,24 +32,32 @@ FirstMile is a **carrier** (not a platform/3PL) offering Xparcel ship methods:
 ## Core Workflows
 
 ### 1. Daily Sync Operations
+
+**Unified Sync System v1.0** - Single script for all sync times:
 ```bash
 # Morning priority report (9AM sync)
-python daily_9am_sync.py
+python unified_sync.py 9am
 
 # Noon progress check
-python noon_sync.py
+python unified_sync.py noon
 
 # Afternoon update (3PM sync)
-python 3pm_sync.py
+python unified_sync.py 3pm
 
 # End of day summary
-python eod_sync.py
+python unified_sync.py eod
 
 # Weekly rollup (Sunday EOD)
-python end_of_week_sync_COMPLETE.py
+python unified_sync.py weekly
+
+# Monthly review (End of month)
+python unified_sync.py monthly
 ```
 
-**Important**: All sync scripts use shared `hubspot_sync_core.py` module for consistent HubSpot operations.
+**Important**:
+- All syncs use comprehensive format with email integration, HubSpot live data, and execution plans
+- Automatic continuity chain: Each sync writes to `_DAILY_LOG.md` for next sync's context
+- See `UNIFIED_SYNC_GUIDE.md` for complete usage documentation
 
 ### 2. HubSpot Deal Management
 ```bash
@@ -316,19 +324,19 @@ cd "[01-DISCOVERY-SCHEDULED]_NewCompany"
 ### Run Daily Sync Cycle
 ```bash
 # Morning (9 AM CT)
-python daily_9am_sync.py
+python unified_sync.py 9am
 # Review output, update priorities
 
 # Noon (12 PM CT)
-python noon_sync.py
+python unified_sync.py noon
 # Check progress, adjust actions
 
 # Afternoon (3 PM CT)
-python 3pm_sync.py
+python unified_sync.py 3pm
 # Final priorities, prepare EOD
 
 # End of Day (before 6 PM CT)
-python eod_sync.py
+python unified_sync.py eod
 # Capture learnings, plan tomorrow
 ```
 

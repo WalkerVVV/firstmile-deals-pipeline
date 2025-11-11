@@ -1,0 +1,269 @@
+name: FirstMile Deals Scheduled Syncs
+
+on:
+  # Scheduled runs (Central Time converted to UTC)
+  # Note: Central Time is UTC-6 (CST) or UTC-5 (CDT)
+  # Using UTC-6 (CST) for consistency year-round
+  schedule:
+    # 9AM CT = 15:00 UTC (3 PM)
+    - cron: '0 15 * * 1-5'
+    # Noon CT = 18:00 UTC (6 PM)
+    - cron: '0 18 * * 1-5'
+    # 3PM CT = 21:00 UTC (9 PM)
+    - cron: '0 21 * * 1-5'
+    # 5:30PM CT (EOD) = 23:30 UTC (11:30 PM)
+    - cron: '30 23 * * 1-5'
+
+  # Allow manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      sync_type:
+        description: 'Sync type to run'
+        required: true
+        type: choice
+        options:
+          - '9am'
+          - 'noon'
+          - '3pm'
+          - 'eod'
+          - 'all'
+
+# Repository secrets required:
+# - HUBSPOT_API_KEY: HubSpot Private App API token (pat-na1-...)
+# - BRIGHTDATA_API_TOKEN: BrightData API token for Brand Scout (optional)
+
+jobs:
+  # Determine which sync to run based on schedule or manual input
+  determine-sync:
+    runs-on: ubuntu-latest
+    outputs:
+      sync-type: ${{ steps.determine.outputs.sync-type }}
+    steps:
+      - name: Determine sync type
+        id: determine
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "sync-type=${{ github.event.inputs.sync_type }}" >> $GITHUB_OUTPUT
+          else
+            # Parse cron schedule from github.event.schedule
+            HOUR=$(date -u +%H)
+            case $HOUR in
+              15) echo "sync-type=9am" >> $GITHUB_OUTPUT ;;
+              18) echo "sync-type=noon" >> $GITHUB_OUTPUT ;;
+              21) echo "sync-type=3pm" >> $GITHUB_OUTPUT ;;
+              23) echo "sync-type=eod" >> $GITHUB_OUTPUT ;;
+              *) echo "sync-type=unknown" >> $GITHUB_OUTPUT ;;
+            esac
+          fi
+
+  # 9AM Morning Sync
+  morning-sync:
+    runs-on: ubuntu-latest
+    needs: determine-sync
+    if: needs.determine-sync.outputs.sync-type == '9am' || needs.determine-sync.outputs.sync-type == 'all'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create .env file
+        run: |
+          echo "HUBSPOT_API_KEY=${{ secrets.HUBSPOT_API_KEY }}" > .env
+          echo "BRIGHTDATA_API_TOKEN=${{ secrets.BRIGHTDATA_API_TOKEN }}" >> .env
+
+      - name: Run 9AM Sync
+        id: sync
+        run: |
+          python unified_sync.py 9am > sync_report_9am.txt 2>&1
+          echo "exit-code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Upload sync report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sync-report-9am-${{ github.run_number }}
+          path: sync_report_9am.txt
+          retention-days: 30
+
+      - name: Check sync status
+        if: steps.sync.outputs.exit-code != '0'
+        run: |
+          echo "::error::9AM sync failed with exit code ${{ steps.sync.outputs.exit-code }}"
+          cat sync_report_9am.txt
+          exit 1
+
+  # Noon Sync
+  noon-sync:
+    runs-on: ubuntu-latest
+    needs: determine-sync
+    if: needs.determine-sync.outputs.sync-type == 'noon' || needs.determine-sync.outputs.sync-type == 'all'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create .env file
+        run: |
+          echo "HUBSPOT_API_KEY=${{ secrets.HUBSPOT_API_KEY }}" > .env
+
+      - name: Run Noon Sync
+        id: sync
+        run: |
+          python unified_sync.py noon > sync_report_noon.txt 2>&1
+          echo "exit-code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Upload sync report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sync-report-noon-${{ github.run_number }}
+          path: sync_report_noon.txt
+          retention-days: 30
+
+      - name: Check sync status
+        if: steps.sync.outputs.exit-code != '0'
+        run: |
+          echo "::error::Noon sync failed with exit code ${{ steps.sync.outputs.exit-code }}"
+          cat sync_report_noon.txt
+          exit 1
+
+  # 3PM Afternoon Sync
+  afternoon-sync:
+    runs-on: ubuntu-latest
+    needs: determine-sync
+    if: needs.determine-sync.outputs.sync-type == '3pm' || needs.determine-sync.outputs.sync-type == 'all'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create .env file
+        run: |
+          echo "HUBSPOT_API_KEY=${{ secrets.HUBSPOT_API_KEY }}" > .env
+
+      - name: Run 3PM Sync
+        id: sync
+        run: |
+          python unified_sync.py 3pm > sync_report_3pm.txt 2>&1
+          echo "exit-code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Upload sync report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sync-report-3pm-${{ github.run_number }}
+          path: sync_report_3pm.txt
+          retention-days: 30
+
+      - name: Check sync status
+        if: steps.sync.outputs.exit-code != '0'
+        run: |
+          echo "::error::3PM sync failed with exit code ${{ steps.sync.outputs.exit-code }}"
+          cat sync_report_3pm.txt
+          exit 1
+
+  # EOD (5:30 PM) Sync
+  eod-sync:
+    runs-on: ubuntu-latest
+    needs: determine-sync
+    if: needs.determine-sync.outputs.sync-type == 'eod' || needs.determine-sync.outputs.sync-type == 'all'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create .env file
+        run: |
+          echo "HUBSPOT_API_KEY=${{ secrets.HUBSPOT_API_KEY }}" > .env
+
+      - name: Run EOD Sync
+        id: sync
+        run: |
+          python unified_sync.py eod > sync_report_eod.txt 2>&1
+          echo "exit-code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Upload sync report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sync-report-eod-${{ github.run_number }}
+          path: sync_report_eod.txt
+          retention-days: 30
+
+      - name: Check sync status
+        if: steps.sync.outputs.exit-code != '0'
+        run: |
+          echo "::error::EOD sync failed with exit code ${{ steps.sync.outputs.exit-code }}"
+          cat sync_report_eod.txt
+          exit 1
+
+  # Notification job (optional - runs after all syncs)
+  notify-completion:
+    runs-on: ubuntu-latest
+    needs: [determine-sync, morning-sync, noon-sync, afternoon-sync, eod-sync]
+    if: always()
+
+    steps:
+      - name: Report sync status
+        run: |
+          echo "Sync Type: ${{ needs.determine-sync.outputs.sync-type }}"
+          echo "Morning Sync: ${{ needs.morning-sync.result }}"
+          echo "Noon Sync: ${{ needs.noon-sync.result }}"
+          echo "Afternoon Sync: ${{ needs.afternoon-sync.result }}"
+          echo "EOD Sync: ${{ needs.eod-sync.result }}"
+
+          # Check for failures
+          if [[ "${{ needs.morning-sync.result }}" == "failure" ]] || \
+             [[ "${{ needs.noon-sync.result }}" == "failure" ]] || \
+             [[ "${{ needs.afternoon-sync.result }}" == "failure" ]] || \
+             [[ "${{ needs.eod-sync.result }}" == "failure" ]]; then
+            echo "::warning::One or more syncs failed. Check workflow artifacts for details."
+          fi

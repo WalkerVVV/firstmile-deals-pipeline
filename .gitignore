@@ -39,7 +39,9 @@ desktop.ini
 # CLAUDE CODE LOCAL SETTINGS (User-specific)
 # ============================================================================
 .claude/settings.local.json
-.claude/
+.claude/.session/
+.claude/temp/
+# Allow .claude/ documentation to be committed
 
 # ============================================================================
 # NOTE: Everything else will be committed
@@ -51,3 +53,4 @@ desktop.ini
 # - Temporary files
 # - All customer folders
 # ============================================================================
+nul

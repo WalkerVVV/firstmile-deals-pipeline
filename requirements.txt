@@ -1,24 +1,25 @@
 # FirstMile Deals System Dependencies
 # Install with: pip install -r requirements.txt
+# Last Updated: 2025-11-06
 
 # Core Data Processing
-pandas>=2.0.0
-numpy>=1.24.0
+pandas==2.2.3
+numpy==2.2.6
 
 # HTTP Requests & API
-requests>=2.28.0
-urllib3>=2.0.0
+requests==2.32.3
+urllib3==2.5.0
 
 # Excel File Processing
-openpyxl>=3.1.0
-xlsxwriter>=3.1.0
-xlrd>=2.0.1
+openpyxl==3.1.5
+xlsxwriter==3.2.0
+xlrd==2.0.2
 
 # Environment Variables
-python-dotenv>=1.0.0
+python-dotenv==1.0.1
 
 # Date/Time Utilities
-python-dateutil>=2.8.0
+python-dateutil==2.9.0.post0
 
 # Optional: For enhanced functionality
 # Uncomment if needed

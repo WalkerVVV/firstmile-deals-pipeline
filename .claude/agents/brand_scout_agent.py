@@ -151,14 +151,17 @@ def create_hubspot_lead_payload(brand_name, profile_data=None):
 
 
 def create_deal_folder(brand_name):
-    """Create [00-LEAD]_BrandName folder with Customer_Relationship_Documentation.md"""
+    """Create brand folder in _LEADS directory"""
 
     # Sanitize brand name for folder
-    folder_name = f"[00-LEAD]_{brand_name.replace(' ', '_')}"
-    deal_folder = REPO_ROOT / folder_name
+    folder_name = brand_name.replace(' ', '_')
+    leads_folder = REPO_ROOT / "_LEADS"
+    leads_folder.mkdir(exist_ok=True)  # Ensure _LEADS exists
+
+    deal_folder = leads_folder / folder_name
 
     if deal_folder.exists():
-        print(f"⚠️  Folder already exists: {folder_name}")
+        print(f"⚠️  Folder already exists: _LEADS/{folder_name}")
         return deal_folder
 
     # Create folder

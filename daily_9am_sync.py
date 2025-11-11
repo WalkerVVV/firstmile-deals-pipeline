@@ -79,14 +79,34 @@ def extract_monday_action_queue(weekly_report_path):
 def extract_yesterday_context():
     """Extract what you were working on yesterday"""
     if not DAILY_LOG.exists():
-        return {"priorities": [], "completed": [], "pending": []}
+        return {"priorities": [], "completed": [], "pending": [], "stale": False}
 
     content = DAILY_LOG.read_text(encoding='utf-8')
-    context = {"date": None, "priorities": [], "completed": [], "pending": [], "afternoon_notes": []}
+    context = {"date": None, "priorities": [], "completed": [], "pending": [], "afternoon_notes": [], "stale": False}
 
-    date_match = re.search(r'##\s+(\w+day),\s+(\w+\s+\d+,\s+\d+)', content)
-    if date_match:
-        context["date"] = date_match.group(0).replace("## ", "")
+    # Extract date from log content - GET LAST (MOST RECENT) DATE
+    date_matches = re.findall(r'##\s+(\w+day),\s+(\w+)\s+(\d+),\s+(\d+)', content)
+    if date_matches:
+        # Use the LAST match (most recent entry)
+        date_match = date_matches[-1]
+        context["date"] = f"{date_match[0]}, {date_match[1]} {date_match[2]}, {date_match[3]}"
+        # Parse the date to check if it's stale
+        try:
+            month_str = date_match[1]  # tuple index, not .group()
+            day = int(date_match[2])
+            year = int(date_match[3])
+            month_map = {"January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
+                        "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12}
+            month = month_map.get(month_str, 1)
+            log_date = datetime(year, month, day)
+            days_old = (datetime.now() - log_date).days
+
+            if days_old > 3:
+                context["stale"] = True
+                context["days_old"] = days_old
+                return context
+        except:
+            pass  # If date parsing fails, continue with normal flow
 
     completed_section = re.search(r'COMPLETED.*?\n(.*?)(?=\n##|PRIORITY|\Z)', content, re.DOTALL)
     if completed_section:
@@ -231,20 +251,26 @@ def main():
     print("-" * 80)
     yesterday = extract_yesterday_context()
 
-    if yesterday["date"]:
+    if yesterday.get("stale"):
+        print(f"⚠️  STALE DATA DETECTED: Daily log is {yesterday['days_old']} days old")
+        print(f"⚠️  Last entry: {yesterday.get('date', 'Unknown date')} - showing live HubSpot data instead")
+        print("💡 Action: Update _DAILY_LOG.md with recent work to enable context tracking\n")
+    elif yesterday["date"]:
         print(f"Last Update: {yesterday['date']}\n")
 
-    if yesterday["completed"]:
-        print("✅ COMPLETED:")
-        for item in yesterday["completed"][:5]:
-            print(f"  {item}")
-        print()
+        if yesterday["completed"]:
+            print("✅ COMPLETED:")
+            for item in yesterday["completed"][:5]:
+                print(f"  {item}")
+            print()
 
-    if yesterday["afternoon_notes"]:
-        print("⏳ PENDING FROM YESTERDAY:")
-        for item in yesterday["afternoon_notes"][:5]:
-            print(f"  {item}")
-        print()
+        if yesterday["afternoon_notes"]:
+            print("⏳ PENDING FROM YESTERDAY:")
+            for item in yesterday["afternoon_notes"][:5]:
+                print(f"  {item}")
+            print()
+    else:
+        print("ℹ️  No recent context in daily log\n")
 
     # Phase 2: Critical Follow-Ups
     print("\n🚨 CRITICAL FOLLOW-UPS (From Action Queue)")
@@ -306,17 +332,52 @@ def main():
     else:
         print("No recent learnings logged\n")
 
-    # Phase 6: Sales Discipline Agents
+    # Phase 6: Current Priorities from Agent (auto-run)
     print("\n" + "="*80)
-    print("🎯 SALES DISCIPLINE AGENTS (Run These Next)")
+    print("🎯 TODAY'S TOP PRIORITIES (LIVE FROM PRIORITIZATION AGENT)")
     print("="*80)
-    print("\nAutomated sales discipline enforcement - forces 5/2/3/1 weekly goals:\n")
-    print("1. Priority Reminder (Top 3 deals for today):")
-    print("   python .claude/agents/prioritization_agent.py --daily-reminder\n")
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["python", ".claude/agents/prioritization_agent.py", "--daily-reminder"],
+            capture_output=True, text=True, encoding='utf-8', timeout=10, cwd=Path(__file__).parent
+        )
+        if result.returncode == 0:
+            # Extract just the top 3 priorities from output
+            output_lines = result.stdout.split('\n')
+            in_top_3 = False
+            priority_count = 0
+
+            for line in output_lines:
+                # Start capturing after seeing the header
+                if '## 🎯 YOUR TOP 3 TODAY' in line or 'YOUR TOP 3 TODAY' in line:
+                    in_top_3 = True
+                    continue
+
+                if in_top_3:
+                    stripped = line.strip()
+                    # Stop at focus deal or empty line after getting priorities
+                    if stripped.startswith('**Focus Deal**') or (priority_count >= 3):
+                        break
+                    # Capture lines starting with 1., 2., or 3.
+                    if stripped and (stripped.startswith('1.') or stripped.startswith('2.') or stripped.startswith('3.')):
+                        print(f"  {stripped}")
+                        priority_count += 1
+
+            if priority_count == 0:
+                print("⚠️  Run manually: python .claude/agents/prioritization_agent.py --daily-reminder\n")
+            else:
+                print()
+        else:
+            print("⚠️  Could not fetch priorities from agent\n")
+    except Exception as e:
+        print(f"⚠️  Error running prioritization agent: {e}\n")
+
+    print("\n📊 ADDITIONAL SALES DISCIPLINE AGENTS")
+    print("-" * 80)
     print("2. Stale Proposal Scanner (Urgency follow-ups):")
     print("   python .claude/agents/sales_execution_agent.py\n")
     print("💡 TIP: These agents run independently and generate actionable outputs")
-    print("        Review their reports before starting your day")
 
     # Summary
     print("\n" + "="*80)
@@ -332,6 +393,14 @@ def main():
     print("4. Work priority deals in HubSpot")
     print("5. Log progress in _DAILY_LOG.md throughout day")
     print("6. NOON SYNC: Check morning progress at 12PM")
+    print("\n" + "="*80)
+    print("📋 WORKFLOW LAUNCH PAD PROTOCOL")
+    print("="*80)
+    print("After sync completes:")
+    print("1. Present results in Claude Code chat (workflow launch pad)")
+    print("2. Include: Urgent items, Top 3 priorities, Pipeline snapshot")
+    print("3. Ask: 'What do you want to tackle first?'")
+    print("4. Work directly from chat - this is your command center")
     print("\n✅ You're now up to speed with full context\n")
 
 if __name__ == "__main__":

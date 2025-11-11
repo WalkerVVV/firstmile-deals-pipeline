@@ -1,145 +1,162 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-RUTHLESS PRIORITIZATION AGENT
+RUTHLESS PRIORITIZATION AGENT v2.0 - HUBSPOT API VERSION
 Purpose: Ensure enterprise deals get 10x attention through scoring and time allocation
 Coaching directive: "Enterprise deals require enterprise attention"
 
-Usage: python prioritization_agent.py [--daily-reminder]
+FIX: Now queries HubSpot API directly to avoid folder sync issues
+Usage: python prioritization_agent_FIXED.py [--daily-reminder]
 """
 
-import sys, io, os, re
+import sys, io, os
 from datetime import datetime
 from pathlib import Path
+import requests
+from dotenv import load_dotenv
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+load_dotenv()
 
-# Repository root
-REPO_ROOT = Path(__file__).parent.parent.parent
+API_KEY = os.environ.get('HUBSPOT_API_KEY')
+if not API_KEY:
+    print("\n❌ ERROR: HUBSPOT_API_KEY not found in environment")
+    sys.exit(1)
+
+OWNER_ID = "699257003"
+PIPELINE_ID = "8bd9336b-4767-4e67-9fe2-35dfcad7c8be"
 DOWNLOADS = Path.home() / "Downloads"
 
+# Stage mapping (VERIFIED 2025-10-10 from HubSpot API)
+STAGE_MAP = {
+    '1090865183': '[01-DISCOVERY-SCHEDULED]',
+    'd2a08d6f-cc04-4423-9215-594fe682e538': '[02-DISCOVERY-COMPLETE]',
+    'e1c4321e-afb6-4b29-97d4-2b2425488535': '[03-RATE-CREATION]',
+    'd607df25-2c6d-4a5d-9835-6ed1e4f4020a': '[04-PROPOSAL-SENT]',
+    '4e549d01-674b-4b31-8a90-91ec03122715': '[05-SETUP-DOCS-SENT]',
+    '08d9c411-5e1b-487b-8732-9c2bcbbd0307': '[06-IMPLEMENTATION]',
+    '3fd46d94-78b4-452b-8704-62a338a210fb': '[07-STARTED-SHIPPING]',
+    '02d8a1d7-d0b3-41d9-adc6-44ab768a61b8': '[08-CLOSED-LOST]'  # EXCLUDE THIS
+}
+
+# Active stages only (exclude CLOSED-LOST)
+ACTIVE_STAGES = [
+    '1090865183',  # [01-DISCOVERY-SCHEDULED]
+    'd2a08d6f-cc04-4423-9215-594fe682e538',  # [02-DISCOVERY-COMPLETE]
+    'e1c4321e-afb6-4b29-97d4-2b2425488535',  # [03-RATE-CREATION]
+    'd607df25-2c6d-4a5d-9835-6ed1e4f4020a',  # [04-PROPOSAL-SENT]
+    '4e549d01-674b-4b31-8a90-91ec03122715',  # [05-SETUP-DOCS-SENT]
+    '08d9c411-5e1b-487b-8732-9c2bcbbd0307'   # [06-IMPLEMENTATION]
+]
+
 # Priority scoring algorithm weights
+# CRITICAL: Stage is most important (revenue-generating implementations)
+# Deal size is secondary to stage progression
 SCORING_WEIGHTS = {
-    "deal_size": 0.50,      # 50% - Deal value drives priority
-    "stage": 0.20,          # 20% - Later stages need more attention
-    "stagnation": 0.15,     # 15% - Stale deals need immediate action
-    "complexity": 0.10,     # 10% - Complex deals need more time
-    "strategic": 0.05       # 5% - Strategic accounts bonus
+    "stage": 0.50,          # HIGHEST: Stage progression = revenue
+    "deal_size": 0.20,      # REDUCED: Size matters but stage matters more
+    "stagnation": 0.15,     # Time urgency
+    "hs_priority": 0.10,    # NEW: HubSpot manual priority flag
+    "complexity": 0.05      # Deal complexity
 }
 
-# Stage multipliers
+# Stage multipliers - ORDERED BY REVENUE IMPORTANCE
+# Implementation = bringing on new shipping customer (HIGHEST VALUE)
 STAGE_MULTIPLIERS = {
-    "[00-LEAD]": 0.2,
-    "[01-DISCOVERY-SCHEDULED]": 0.3,
-    "[02-DISCOVERY-COMPLETE]": 0.4,
-    "[03-RATE-CREATION]": 0.6,
-    "[04-PROPOSAL-SENT]": 0.8,
-    "[05-SETUP-DOCS-SENT]": 0.9,
-    "[06-IMPLEMENTATION]": 1.0,
-    "[07-CLOSED-WON]": 0.1,
-    "[08-CLOSED-LOST]": 0.0,
-    "[09-WIN-BACK]": 0.3
+    "[06-IMPLEMENTATION]": 1.0,         # HIGHEST: New customer about to ship
+    "[05-SETUP-DOCS-SENT]": 0.85,       # Setup phase, nearly closed
+    "[04-PROPOSAL-SENT]": 0.70,         # Proposal out, awaiting decision
+    "[03-RATE-CREATION]": 0.55,         # Creating rates, active sales work
+    "[02-DISCOVERY-COMPLETE]": 0.35,    # Discovery done, needs follow-up
+    "[01-DISCOVERY-SCHEDULED]": 0.20,   # LOWEST: Early stage/leads
+    "[07-STARTED-SHIPPING]": 0.1        # Customer (not sales priority)
 }
 
-# Deal size thresholds (ARR)
+# Deal size thresholds
 DEAL_TIERS = {
-    "mega": 10_000_000,      # $10M+ (Athleta, ODW)
-    "enterprise": 1_000_000,  # $1M+ (Josh's Frogs, Upstate Prep)
-    "mid_market": 500_000,    # $500K+ (Stackd, Logystico)
-    "small": 100_000,         # $100K+ (smaller wellness brands)
-    "micro": 0                # <$100K
+    "mega": 10_000_000,
+    "enterprise": 1_000_000,
+    "mid_market": 500_000,
+    "small": 100_000,
+    "micro": 0
 }
 
 
-def get_deal_folders():
-    """Get all deal folders with stage prefix"""
-    deal_folders = []
+def fetch_active_deals_from_hubspot():
+    """Fetch active deals from HubSpot API (excluding CLOSED-LOST)"""
 
-    for folder in REPO_ROOT.iterdir():
-        if folder.is_dir() and folder.name.startswith('['):
-            # Extract stage, customer name, value from folder
-            match = re.match(r'\[(\\d+)-([^\]]+)\]_(.+)', folder.name)
-            if match:
-                stage_num = match.group(1)
-                stage_name = match.group(2)
-                customer_name = match.group(3).replace('_', ' ')
+    headers = {
+        'Authorization': f'Bearer {API_KEY}',
+        'Content-Type': 'application/json'
+    }
 
-                deal_folders.append({
-                    'folder': folder,
-                    'stage': f"[{stage_num}-{stage_name}]",
-                    'customer': customer_name,
-                    'stage_num': int(stage_num)
-                })
-
-    return deal_folders
-
-
-def extract_deal_value(folder):
-    """Extract deal value from Customer_Relationship_Documentation.md or README"""
-    deal_value = 0
-
-    for doc_file in ['Customer_Relationship_Documentation.md', 'README.md']:
-        doc_path = folder / doc_file
-        if doc_path.exists():
-            content = doc_path.read_text(encoding='utf-8', errors='ignore')
-
-            # Look for deal value patterns
-            value_patterns = [
-                r'\\$([0-9,]+)K',  # $950K
-                r'\\$([0-9,]+)M',  # $25M
-                r'\\$([0-9,]+)',   # $950000
-                r'([0-9,]+)\\s*shipments',  # 15,000 shipments
+    payload = {
+        'filterGroups': [{
+            'filters': [
+                {'propertyName': 'hubspot_owner_id', 'operator': 'EQ', 'value': OWNER_ID},
+                {'propertyName': 'pipeline', 'operator': 'EQ', 'value': PIPELINE_ID},
+                {'propertyName': 'dealstage', 'operator': 'IN', 'values': ACTIVE_STAGES}  # ONLY ACTIVE
             ]
+        }],
+        'properties': ['dealname', 'dealstage', 'amount', 'createdate', 'hs_lastmodifieddate', 'hs_priority', 'notes_last_updated'],
+        'limit': 100
+    }
 
-            for pattern in value_patterns:
-                matches = re.findall(pattern, content)
-                if matches:
-                    value_str = matches[0].replace(',', '')
-                    try:
-                        if 'K' in content:
-                            deal_value = int(value_str) * 1000
-                        elif 'M' in content:
-                            deal_value = int(value_str) * 1000000
-                        else:
-                            deal_value = int(value_str)
-                        break
-                    except:
-                        pass
-
-    return deal_value
-
-
-def get_folder_last_modified_days(folder):
-    """Get days since folder was last modified"""
     try:
-        import subprocess
-        result = subprocess.run(
-            ['git', 'log', '-1', '--format=%ct', '--', str(folder)],
-            cwd=REPO_ROOT,
-            capture_output=True,
-            text=True
+        response = requests.post(
+            'https://api.hubapi.com/crm/v3/objects/deals/search',
+            headers=headers,
+            json=payload,
+            timeout=10
         )
 
-        if result.stdout.strip():
-            last_commit_timestamp = int(result.stdout.strip())
-            last_modified = datetime.fromtimestamp(last_commit_timestamp)
-            days_ago = (datetime.now() - last_modified).days
-            return days_ago
-        else:
-            mtime = folder.stat().st_mtime
-            last_modified = datetime.fromtimestamp(mtime)
-            days_ago = (datetime.now() - last_modified).days
-            return days_ago
+        if response.status_code != 200:
+            print(f'❌ Error fetching deals: {response.status_code}')
+            return []
+
+        results = response.json()
+        deals = results.get('results', [])
+
+        return deals
+
+    except Exception as e:
+        print(f"⚠️  HubSpot API error: {e}")
+        return []
+
+
+def days_since(date_str):
+    """Calculate days since date string"""
+    if not date_str:
+        return 999
+    try:
+        from dateutil import parser
+        date = parser.parse(date_str)
+        return (datetime.now(date.tzinfo) - date).days
     except:
-        return 0
+        return 999
 
 
-def calculate_priority_score(deal, deal_value, days_stagnant):
-    """Calculate comprehensive priority score (0-100)"""
+def calculate_priority_score(deal_name, deal_value, stage_name, days_stagnant, hs_priority=None, days_since_notes=999):
+    """
+    Calculate comprehensive priority score (0-100)
+
+    CRITICAL LOGIC:
+    - Stage progression = revenue generation (50% weight)
+    - [06-IMPLEMENTATION] is HIGHEST priority (new customer about to ship)
+    - Deal size is SECONDARY to stage (20% weight)
+    - HubSpot manual priority flags boost score (10% weight)
+    - Active deals with recent notes beat cold leads
+    """
 
     score = 0
 
-    # 1. Deal size score (0-50 points)
+    # 1. STAGE SCORE (0-50 points) - HIGHEST WEIGHT
+    # Implementation = new shipping customer = MAXIMUM PRIORITY
+    stage_multiplier = STAGE_MULTIPLIERS.get(stage_name, 0.5)
+    stage_score = stage_multiplier * 100  # Max 100 points for Implementation stage
+    score += stage_score * SCORING_WEIGHTS["stage"]  # Apply 50% weight
+
+    # 2. DEAL SIZE SCORE (0-20 points) - SECONDARY
     if deal_value >= DEAL_TIERS["mega"]:
         size_score = 50
         tier = "MEGA"
@@ -156,29 +173,34 @@ def calculate_priority_score(deal, deal_value, days_stagnant):
         size_score = 10
         tier = "MICRO"
 
-    score += size_score * SCORING_WEIGHTS["deal_size"]
+    score += size_score * SCORING_WEIGHTS["deal_size"]  # Apply 20% weight
 
-    # 2. Stage score (0-20 points)
-    stage_multiplier = STAGE_MULTIPLIERS.get(deal['stage'], 0.5)
-    stage_score = stage_multiplier * 20
-    score += stage_score * SCORING_WEIGHTS["stage"]
-
-    # 3. Stagnation urgency (0-15 points)
+    # 3. STAGNATION URGENCY (0-15 points)
     if days_stagnant > 60:
-        stagnation_score = 15  # Critical
+        stagnation_score = 15
     elif days_stagnant > 21:
-        stagnation_score = 12  # High urgency
+        stagnation_score = 12
     elif days_stagnant > 14:
-        stagnation_score = 9   # Medium urgency
+        stagnation_score = 9
     elif days_stagnant > 7:
-        stagnation_score = 6   # Low urgency
+        stagnation_score = 6
     else:
-        stagnation_score = 3   # Recent activity
+        stagnation_score = 3
 
     score += stagnation_score * SCORING_WEIGHTS["stagnation"]
 
-    # 4. Complexity multiplier (0-10 points)
-    # Larger deals are more complex
+    # 4. HUBSPOT PRIORITY FLAG (0-10 points) - MANUAL OVERRIDE
+    # If Brett marked it as "high" priority in HubSpot, boost it significantly
+    priority_score = 0
+    if hs_priority:
+        if hs_priority.lower() == 'high':
+            priority_score = 100  # Maximum boost for manual high priority
+        elif hs_priority.lower() == 'medium':
+            priority_score = 50
+
+    score += priority_score * SCORING_WEIGHTS["hs_priority"]
+
+    # 5. COMPLEXITY MULTIPLIER (0-5 points)
     if deal_value >= DEAL_TIERS["enterprise"]:
         complexity_score = 10
     elif deal_value >= DEAL_TIERS["mid_market"]:
@@ -188,17 +210,12 @@ def calculate_priority_score(deal, deal_value, days_stagnant):
 
     score += complexity_score * SCORING_WEIGHTS["complexity"]
 
-    # 5. Strategic account bonus (0-5 points)
-    # Wellness brands, large ecommerce
-    strategic_keywords = ["wellness", "vitamin", "supplement", "health", "beauty"]
-    is_strategic = any(kw in deal['customer'].lower() for kw in strategic_keywords)
-
-    if is_strategic:
-        strategic_score = 5
-    else:
-        strategic_score = 0
-
-    score += strategic_score * SCORING_WEIGHTS["strategic"]
+    # 6. ACTIVE DEAL vs COLD LEAD DETECTION
+    # Deals with recent activity should beat cold leads in same stage
+    if days_since_notes < 7:
+        score *= 1.15  # 15% boost for deals with activity in last week
+    elif days_since_notes > 60 and stage_name == "[01-DISCOVERY-SCHEDULED]":
+        score *= 0.7  # 30% penalty for stale leads with no activity
 
     return round(score, 1), tier
 
@@ -211,7 +228,6 @@ def calculate_recommended_time_allocation(scored_deals):
     if total_score == 0:
         return scored_deals
 
-    # Assume 40 hours/week available for deal work
     weekly_hours = 40
 
     for deal in scored_deals:
@@ -223,91 +239,6 @@ def calculate_recommended_time_allocation(scored_deals):
         deal['daily_hours'] = round(weekly_hours_allocated / 5, 1)
 
     return scored_deals
-
-
-def generate_prioritization_report(scored_deals):
-    """Generate comprehensive prioritization report"""
-
-    report = f"""# RUTHLESS PRIORITIZATION REPORT
-Generated: {datetime.now().strftime("%B %d, %Y at %I:%M %p")}
-
----
-
-## 🎯 PRIORITY RANKING
-
-**Total Active Deals**: {len(scored_deals)}
-**Total Pipeline Value**: ${sum(d['value'] for d in scored_deals):,.0f}
-
-| Rank | Deal | Value | Stage | Priority | Tier | Daily Hours |
-|------|------|-------|-------|----------|------|-------------|
-"""
-
-    for i, deal in enumerate(scored_deals, 1):
-        report += f"| {i} | **{deal['customer']}** | ${deal['value']:,.0f} | {deal['stage']} | **{deal['priority_score']}** | {deal['tier']} | {deal['daily_hours']}h |\n"
-
-    report += "\n---\n\n## 🔥 TOP 5 PRIORITIES (Enterprise Focus)\n\n"
-
-    for i, deal in enumerate(scored_deals[:5], 1):
-        report += f"### {i}. {deal['customer']} (Priority: {deal['priority_score']})\n\n"
-        report += f"- **Value**: ${deal['value']:,.0f} ({deal['tier']})\n"
-        report += f"- **Stage**: {deal['stage']}\n"
-        report += f"- **Stagnation**: {deal['days_stagnant']} days\n"
-        report += f"- **Recommended Time**: {deal['daily_hours']} hours/day ({deal['allocation_pct']}% of time)\n"
-
-        if deal['priority_score'] >= 80:
-            report += f"- **⚠️  ACTION**: This is an enterprise deal requiring enterprise attention. Block calendar time daily.\n"
-        elif deal['priority_score'] >= 60:
-            report += f"- **🎯 ACTION**: High-value opportunity. Prioritize above smaller deals.\n"
-        else:
-            report += f"- **📋 ACTION**: Maintain steady progress, delegate where possible.\n"
-
-        report += "\n"
-
-    report += "---\n\n## 📊 TIME ALLOCATION SUMMARY\n\n"
-
-    # Group by tier
-    mega_deals = [d for d in scored_deals if d['tier'] == "MEGA"]
-    enterprise_deals = [d for d in scored_deals if d['tier'] == "ENTERPRISE"]
-    midmarket_deals = [d for d in scored_deals if d['tier'] == "MID-MARKET"]
-
-    if mega_deals:
-        mega_time = sum(d['allocation_pct'] for d in mega_deals)
-        report += f"**Mega Deals ($10M+)**: {len(mega_deals)} deals, {mega_time:.1f}% of time\n"
-
-    if enterprise_deals:
-        enterprise_time = sum(d['allocation_pct'] for d in enterprise_deals)
-        report += f"**Enterprise ($1M+)**: {len(enterprise_deals)} deals, {enterprise_time:.1f}% of time\n"
-
-    if midmarket_deals:
-        midmarket_time = sum(d['allocation_pct'] for d in midmarket_deals)
-        report += f"**Mid-Market ($500K+)**: {len(midmarket_deals)} deals, {midmarket_time:.1f}% of time\n"
-
-    report += "\n**Coaching Rule**: Enterprise deals should receive ≥20% of total time. Mega deals require daily touchpoints.\n"
-
-    report += "\n---\n\n## 🚨 PRIORITIZATION RULES\n\n"
-    report += "1. **Enterprise First**: Mega and Enterprise deals always come first\n"
-    report += "2. **Block Time**: Calendar-block daily hours for top 3 priorities\n"
-    report += "3. **Delegate Down**: Small deals (<$500K) should be delegated or automated\n"
-    report += "4. **Daily Touch**: Top deal gets touched every single day\n"
-    report += "5. **Stagnation Alert**: Deals >14 days stagnant need immediate action\n"
-
-    report += "\n---\n\n## 📅 DAILY ACTION PLAN\n\n"
-
-    if scored_deals:
-        top_deal = scored_deals[0]
-        report += f"### This Week's Focus: {top_deal['customer']}\n\n"
-        report += f"**Priority Score**: {top_deal['priority_score']} ({top_deal['tier']})\n"
-        report += f"**Daily Commitment**: {top_deal['daily_hours']} hours/day\n\n"
-        report += "**Daily Actions**:\n"
-        report += f"1. Review {top_deal['customer']} folder for progress\n"
-        report += f"2. Identify next concrete action (follow-up, rate work, proposal)\n"
-        report += f"3. Execute action before smaller deals\n"
-        report += f"4. Log activity in HubSpot\n"
-        report += f"5. Repeat tomorrow\n"
-
-    report += "\n**Remember**: Revenue-generating activities ALWAYS come before systems improvements.\n"
-
-    return report
 
 
 def generate_daily_reminder(scored_deals):
@@ -340,7 +271,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Ruthless Prioritization Agent - Ensure enterprise deals get 10x attention"
+        description="Ruthless Prioritization Agent v2.0 - HubSpot API Version"
     )
     parser.add_argument(
         "--daily-reminder",
@@ -351,33 +282,51 @@ def main():
     args = parser.parse_args()
 
     print("\n" + "="*80)
-    print("RUTHLESS PRIORITIZATION AGENT")
+    print("RUTHLESS PRIORITIZATION AGENT v2.0 (HUBSPOT API)")
     print("="*80 + "\n")
 
-    # Get all deal folders
-    deal_folders = get_deal_folders()
+    # Fetch active deals from HubSpot
+    print("🔄 Fetching active deals from HubSpot API...")
+    hubspot_deals = fetch_active_deals_from_hubspot()
 
-    # Filter to active deals (exclude CLOSED-WON, CLOSED-LOST, WIN-BACK)
-    active_deals = [d for d in deal_folders if d['stage_num'] not in [7, 8, 9]]
-
-    print(f"📊 Found {len(active_deals)} active deals in pipeline\n")
+    print(f"📊 Found {len(hubspot_deals)} active deals in pipeline (stages 1-6 only, CLOSED-LOST excluded)\n")
 
     # Score each deal
     scored_deals = []
 
-    for deal in active_deals:
-        deal_value = extract_deal_value(deal['folder'])
-        days_stagnant = get_folder_last_modified_days(deal['folder'])
+    for deal in hubspot_deals:
+        deal_name = deal['properties'].get('dealname', 'Unnamed')
+        stage_id = deal['properties'].get('dealstage')
+        stage_name = STAGE_MAP.get(stage_id, 'UNKNOWN')
 
-        priority_score, tier = calculate_priority_score(deal, deal_value, days_stagnant)
+        # Parse amount (handle null/empty)
+        amount_str = deal['properties'].get('amount', '0')
+        try:
+            deal_value = int(float(amount_str)) if amount_str else 0
+        except:
+            deal_value = 0
+
+        # Calculate days since last modified
+        last_modified = deal['properties'].get('hs_lastmodifieddate')
+        days_stagnant = days_since(last_modified)
+
+        # Get HubSpot priority and notes activity
+        hs_priority = deal['properties'].get('hs_priority')
+        notes_updated = deal['properties'].get('notes_last_updated')
+        days_since_notes = days_since(notes_updated)
+
+        priority_score, tier = calculate_priority_score(
+            deal_name, deal_value, stage_name, days_stagnant, hs_priority, days_since_notes
+        )
 
         scored_deals.append({
-            'customer': deal['customer'],
+            'customer': deal_name,
             'value': deal_value,
-            'stage': deal['stage'],
+            'stage': stage_name,
             'days_stagnant': days_stagnant,
             'priority_score': priority_score,
-            'tier': tier
+            'tier': tier,
+            'hs_priority': hs_priority or 'none'
         })
 
     # Sort by priority score (highest first)
@@ -397,25 +346,15 @@ def main():
         print(f"\n✅ Saved to: {reminder_file}")
 
     else:
-        # Generate full report
-        report = generate_prioritization_report(scored_deals)
-
-        # Save report
-        timestamp = datetime.now().strftime("%Y%m%d")
-        report_file = DOWNLOADS / f"PRIORITIZATION_REPORT_{timestamp}.md"
-
-        report_file.write_text(report, encoding='utf-8')
-
-        print(f"✅ Report saved: {report_file}\n")
-
         # Print top 5
         print("="*80)
         print("TOP 5 PRIORITIES")
         print("="*80 + "\n")
 
         for i, deal in enumerate(scored_deals[:5], 1):
-            print(f"{i}. {deal['customer']}")
-            print(f"   Priority: {deal['priority_score']} | Value: ${deal['value']:,.0f} | Daily: {deal['daily_hours']}h")
+            priority_flag = f" [HS: {deal['hs_priority'].upper()}]" if deal['hs_priority'] != 'none' else ""
+            print(f"{i}. {deal['customer']}{priority_flag}")
+            print(f"   Score: {deal['priority_score']} | ${deal['value']:,.0f} | {deal['stage']} | {deal['daily_hours']}h/day")
             print()
 
     print("="*80 + "\n")

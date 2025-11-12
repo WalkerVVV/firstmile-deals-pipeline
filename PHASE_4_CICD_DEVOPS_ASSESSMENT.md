@@ -450,7 +450,7 @@ docker-compose down
 ```bash
 ✅ .env.example file EXISTS (good template)
 ❌ Hardcoded credentials in 19 Python files
-❌ API key exposed: pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764
+❌ API key exposed: ${HUBSPOT_API_KEY}
 ❌ No dev/staging/production separation
 ❌ No secrets management (Azure Key Vault, GitHub Secrets)
 ❌ No environment-specific configurations

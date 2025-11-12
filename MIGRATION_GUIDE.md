@@ -69,7 +69,7 @@ python 9am_sync_secure.py
 
 ```python
 # BEFORE (Insecure):
-API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'
+API_KEY = '${HUBSPOT_API_KEY}'
 OWNER_ID = '699257003'
 PIPELINE_ID = '8bd9336b-4767-4e67-9fe2-35dfcad7c8be'
 

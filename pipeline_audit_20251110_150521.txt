@@ -1,0 +1,146 @@
+================================================================================
+HUBSPOT PIPELINE AUDIT - DETAILED REPORT
+Generated: 2025-11-10 15:05:21
+================================================================================
+
+Total Active Deals: 12
+Deals Needing Updates: 12
+Total Issues: 25
+
+================================================================================
+DEALS REQUIRING UPDATES
+================================================================================
+
+Deal: Root'd-
+Stage: [03-RATE-CREATION]
+Amount: $0
+Deal ID: 18385949034
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18385949034
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Amount (annual revenue) missing or zero
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: Spartan Den
+Stage: [04-PROPOSAL-SENT]
+Amount: $1200
+Deal ID: 36617484682
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/36617484682
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: 2022 Fedex rates
+Stage: [04-PROPOSAL-SENT]
+Amount: $50000
+Deal ID: 36624057353
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/36624057353
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: 2024 Estella Domestic and International
+Stage: [04-PROPOSAL-SENT]
+Amount: $75000
+Deal ID: 36619306404
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/36619306404
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: 10 Park Pharmacy 2024 Xparcel Domestic and International
+Stage: [04-PROPOSAL-SENT]
+Amount: $70000
+Deal ID: 36619771011
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/36619771011
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: Be Sweet / Sugar Bear Pro-
+Stage: [04-PROPOSAL-SENT]
+Amount: $30000
+Deal ID: 18380242210
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18380242210
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: Trio Beauty-
+Stage: [06-IMPLEMENTATION]
+Amount: $338000
+Deal ID: 18381165452
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18381165452
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: String - ShipX Referral - Xparcel
+Stage: [04-PROPOSAL-SENT]
+Amount: $832000
+Deal ID: 18384113586
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18384113586
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: Primal Strength & Balance-
+Stage: [04-PROPOSAL-SENT]
+Amount: $150000
+Deal ID: 18387642881
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18387642881
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: Be Sweet/Sugar Bear Pro International
+Stage: [04-PROPOSAL-SENT]
+Amount: $50000
+Deal ID: 18387706455
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18387706455
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: Lucky & Me Inc-
+Stage: [04-PROPOSAL-SENT]
+Amount: $260000
+Deal ID: 18406972587
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18406972587
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+
+Deal: Gulf Coast Brands LLC-2024 Xparcel
+Stage: [04-PROPOSAL-SENT]
+Amount: $75000
+Deal ID: 18432595223
+HubSpot Link: https://app.hubspot.com/contacts/8210927/record/0-3/18432595223
+Issues:
+  ⚠️  Monthly volume missing
+  ❌ Next Step field empty or 'None'
+
+--------------------------------------------------------------------------------
+

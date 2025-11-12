@@ -73,7 +73,7 @@ FirstMile_Deals/
 
 ### 🚨 CRITICAL: Hardcoded API Keys
 
-**Issue**: HubSpot API key `pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764` is hardcoded in 26+ Python scripts.
+**Issue**: HubSpot API key `${HUBSPOT_API_KEY}` is hardcoded in 26+ Python scripts.
 
 **Affected Files** (Sample):
 - [9am_sync.py:17](C:\Users\BrettWalker\FirstMile_Deals\9am_sync.py#L17)
@@ -90,7 +90,7 @@ FirstMile_Deals/
 **Immediate Remediation**:
 ```python
 # CURRENT (Insecure):
-API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'
+API_KEY = '${HUBSPOT_API_KEY}'
 
 # RECOMMENDED (Secure):
 import os

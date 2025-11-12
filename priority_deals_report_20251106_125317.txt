@@ -1,0 +1,754 @@
+
+================================================================================
+HUBSPOT PRIORITY DEALS REPORT
+Pipeline: My Pipeline (FM) BW Clone
+Generated: 2025-11-06 12:53:17
+================================================================================
+
+SUMMARY
+Total Deals: 100
+Total Pipeline Value: $55,990,343
+
+================================================================================
+
+
+================================================================================
+[06-IMPLEMENTATION] (1 deals | $338,000)
+================================================================================
+
+Deal: Trio Beauty-
+  Amount: $338,000
+  Days Idle: 6 days
+  Next Step: 7/18  went bankrupt
+  Deal ID: 18381165452
+
+
+================================================================================
+[05-SETUP-DOCS-SENT] (1 deals | $0)
+================================================================================
+
+*** URGENT *** Deal: Tshirt Co-
+  Amount: $0
+  Days Idle: 46 days
+  Next Step: None
+  Deal ID: 17928842547
+
+
+================================================================================
+[04-PROPOSAL-SENT] (10 deals | $1,593,200)
+================================================================================
+
+*** URGENT *** Deal: Be Sweet / Sugar Bear Pro-
+  Amount: $30,000
+  Days Idle: 140 days
+  Next Step: None
+  Deal ID: 18380242210
+
+*** URGENT *** Deal: Lucky & Me Inc-
+  Amount: $260,000
+  Days Idle: 133 days
+  Next Step: None
+  Deal ID: 18406972587
+
+*** URGENT *** Deal: Primal Strength & Balance-
+  Amount: $150,000
+  Days Idle: 47 days
+  Next Step: None
+  Deal ID: 18387642881
+
+*** URGENT *** Deal: Gulf Coast Brands LLC-2024 Xparcel
+  Amount: $75,000
+  Days Idle: 47 days
+  Next Step: Currently with Mail Innovations so a competitive battle
+  Deal ID: 18432595223
+
+*** URGENT *** Deal: Be Sweet/Sugar Bear Pro International
+  Amount: $50,000
+  Days Idle: 47 days
+  Next Step: None
+  Deal ID: 18387706455
+
+*** URGENT *** Deal: Spartan Den
+  Amount: $1,200
+  Days Idle: 47 days
+  Next Step: None
+  Deal ID: 36617484682
+
+*** URGENT *** Deal: 2024 Estella Domestic and International
+  Amount: $75,000
+  Days Idle: 46 days
+  Next Step: Had several discussions prior to rate creation and they said cost was an issue.  We will save them money
+  Deal ID: 36619306404
+
+*** URGENT *** Deal: 10 Park Pharmacy 2024 Xparcel Domestic and International
+  Amount: $70,000
+  Days Idle: 46 days
+  Next Step: Discovered they also ship from their warehouse in Florida.  I visited their 2 stores in NYC
+  Deal ID: 36619771011
+
+*** URGENT *** Deal: 2022 Fedex rates
+  Amount: $50,000
+  Days Idle: 46 days
+  Next Step: None
+  Deal ID: 36624057353
+
+*** URGENT *** Deal: String - ShipX Referral - Xparcel
+  Amount: $832,000
+  Days Idle: 41 days
+  Next Step: None
+  Deal ID: 18384113586
+
+
+================================================================================
+[03-RATE-CREATION] (1 deals | $0)
+================================================================================
+
+*** URGENT *** Deal: Root'd-
+  Amount: $0
+  Days Idle: 133 days
+  Next Step: None
+  Deal ID: 18385949034
+
+
+================================================================================
+[02-DISCOVERY-COMPLETE] (2 deals | $1,008,000)
+================================================================================
+
+*** URGENT *** Deal: Hooray Hoopla, LLC-
+  Amount: $0
+  Days Idle: 133 days
+  Next Step: None
+  Deal ID: 18404204058
+
+*** URGENT *** Deal: Beverly Hills Silver
+  Amount: $1,008,000
+  Days Idle: 25 days
+  Next Step: Send FAST Group Update & redo rates created before July 13 gri
+
+  Deal ID: 35596950165
+
+
+================================================================================
+[07-STARTED-SHIPPING] (16 deals | $10,254,800)
+================================================================================
+
+*** URGENT *** Deal: Heavier weight
+  Amount: $2,500,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 18403532957
+
+*** URGENT *** Deal: Growve - New Business (SLC & TN)
+  Amount: $2,450,000
+  Days Idle: 49 days
+  Next Step: Request in with Sales to rework rates. Need to get more competitive to win.
+  Deal ID: 18387706171
+
+*** URGENT *** Deal: Power Tool Superstore-
+  Amount: $1,500,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 18382429621
+
+*** URGENT *** Deal: Product Society-Xparcel
+  Amount: $405,000
+  Days Idle: 49 days
+  Next Step: 8/22. API credentials provided. Test label & Pmt
+  Deal ID: 18383519315
+
+*** URGENT *** Deal: 160 South-
+  Amount: $358,800
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36470636720
+
+*** URGENT *** Deal: A1 Distribution-
+  Amount: $300,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36479349574
+
+*** URGENT *** Deal: 73 Direct-
+  Amount: $86,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36508143229
+
+*** URGENT *** Deal: TESTING
+  Amount: $60,000
+  Days Idle: 49 days
+  Next Step: Follow up on Jira Ticket
+  Deal ID: 35539763112
+
+*** URGENT *** Deal: 36 Vine-
+  Amount: $50,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36508763949
+
+*** URGENT *** Deal: 712 Brands-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36510148138
+
+*** URGENT *** Deal: Ambitronic
+  Amount: $150,000
+  Days Idle: 38 days
+  Next Step: None
+  Deal ID: 36506169953
+
+*** URGENT *** Deal: Access Denied LLC - Xparcel Domestic, no International
+  Amount: $400,000
+  Days Idle: 35 days
+  Next Step: Started Shipping!  80 pcs for their first day.  Follow up with Miguel & Mendel tomorrow.  Talk about Walmart orders
+  Deal ID: 36510413489
+
+*** URGENT *** Deal: Aluva
+  Amount: $250,000
+  Days Idle: 35 days
+  Next Step: Shipping
+  Deal ID: 36457840214
+
+*** URGENT *** Deal: 3PLzen-
+  Amount: $234,000
+  Days Idle: 16 days
+  Next Step: None
+  Deal ID: 36468003630
+
+Deal: Boxiiship_System Beauty Logistics LLC-
+  Amount: $1,100,000
+  Days Idle: 0 days
+  Next Step: None
+  Deal ID: 18388015715
+
+Deal: Teamson-Xparcel
+  Amount: $411,000
+  Days Idle: 0 days
+  Next Step: 8/20 Waiting on implementation.
+  Deal ID: 18407417242
+
+
+================================================================================
+[08-CLOSED-LOST] (69 deals | $42,796,343)
+================================================================================
+
+*** URGENT *** Deal: Carolina Test-
+  Amount: $0
+  Days Idle: 177 days
+  Next Step: None
+  Deal ID: 17174448046
+
+*** URGENT *** Deal: Acupuncture ATL - Returns
+  Amount: $10,000
+  Days Idle: 54 days
+  Next Step: None
+  Deal ID: 35587633000
+
+*** URGENT *** Deal: 1 800 Contacts-
+  Amount: $15,000,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36473887910
+
+*** URGENT *** Deal: Acktify-Remote locations
+  Amount: $5,000,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36479967283
+
+*** URGENT *** Deal: 4 Ocean, LLC.-
+  Amount: $5,000,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36509073447
+
+*** URGENT *** Deal: 2Ship LA
+  Amount: $3,000,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36481052189
+
+*** URGENT *** Deal: 2Ship NY
+  Amount: $2,000,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36470329647
+
+*** URGENT *** Deal: 3PLWINNER-
+  Amount: $1,500,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36467540242
+
+*** URGENT *** Deal: Brand Bolt KY
+  Amount: $1,200,000
+  Days Idle: 49 days
+  Next Step: Text Nick - Email Jono & Team, Nick, Andrew.
+  Deal ID: 35605211155
+
+*** URGENT *** Deal: 8&9 Clothing Co. -Xparcel
+  Amount: $1,100,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36483065695
+
+*** URGENT *** Deal: ACH Fulfillment-switching to Shipstation
+  Amount: $1,000,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36480122262
+
+*** URGENT *** Deal: Elevate Promo - Xparcel & DHL GM
+  Amount: $720,000
+  Days Idle: 49 days
+  Next Step: 7/18/24  Lost their biggest 3PL client days after go live. Working to re-engage with new decision maker.
+  Deal ID: 18403423109
+
+*** URGENT *** Deal: American Blues Boutique-
+  Amount: $700,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36465988140
+
+*** URGENT *** Deal: Fulfillment Express, Inc- Xparcel/DHL GM
+  Amount: $605,000
+  Days Idle: 49 days
+  Next Step: 12/1. Per Josh; still interested, can't talk til January. Stay on his radar, share peak literature. Will follow up 9/4.
+  Deal ID: 18387575054
+
+*** URGENT *** Deal: Brock Hansen Test-
+  Amount: $350,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 18380325431
+
+*** URGENT *** Deal: 3fittheory.com-
+  Amount: $300,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36518664825
+
+*** URGENT *** Deal: Ordoro - Partnership 2020
+  Amount: $250,000
+  Days Idle: 49 days
+  Next Step: Call with Jagath
+  Deal ID: 36468003374
+
+*** URGENT *** Deal: 88 Media- Domestic Garden Grove XParcel and RPD rates
+  Amount: $250,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36476869659
+
+*** URGENT *** Deal: 1 Apollo-
+  Amount: $200,000
+  Days Idle: 49 days
+  Next Step: review/set up
+  Deal ID: 36506631205
+
+*** URGENT *** Deal: &collar.com-
+  Amount: $185,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36463732409
+
+*** URGENT *** Deal: 3Vgear
+  Amount: $120,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36469085337
+
+*** URGENT *** Deal: 5 Boro Deals - 2024
+  Amount: $120,000
+  Days Idle: 49 days
+  Next Step: Get feedback on 2023 rates
+  Deal ID: 36478109963
+
+*** URGENT *** Deal: A2Z Balloons and Party Supplies-
+  Amount: $104,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36514099830
+
+*** URGENT *** Deal: A Plastic Bag- FULL xParcel 2020
+  Amount: $101,343
+  Days Idle: 49 days
+  Next Step: Rates to Mash
+  Deal ID: 36476715017
+
+*** URGENT *** Deal: A Fine Gauge, Inc.- PostOne/NGWS
+  Amount: $100,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36510569482
+
+*** URGENT *** Deal: amazinglogistics.com-
+  Amount: $100,000
+  Days Idle: 49 days
+  Next Step: Waiting on formstack to be filled in
+  Deal ID: 36469550850
+
+*** URGENT *** Deal: American Duchess, Inc.-
+  Amount: $100,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36471872562
+
+*** URGENT *** Deal: SilverCeuticals- Xparcel
+  Amount: $100,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 18435146777
+
+*** URGENT *** Deal: 1MissionNutrition.com
+  Amount: $50,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36469241516
+
+*** URGENT *** Deal: Acirassi Books Ltd..-
+  Amount: $35,000
+  Days Idle: 49 days
+  Next Step: Follow up w/ Vishal is "Next step"
+  Deal ID: 36474504569
+
+*** URGENT *** Deal: Active Faith
+  Amount: $20,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36484328343
+
+*** URGENT *** Deal: 4Media Group- FedEx
+  Amount: $10,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36473113653
+
+*** URGENT *** Deal: Test Deal
+  Amount: $1,000
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 35594860632
+
+*** URGENT *** Deal: Eight Cig-OSM and FC
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36463518052
+
+*** URGENT *** Deal: Ten Thousand-FirstMile
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36463888754
+
+*** URGENT *** Deal: Shake Library-Shipping
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36464042603
+
+*** URGENT *** Deal: Cahoot-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36470018225
+
+*** URGENT *** Deal: Brandless-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36470329719
+
+*** URGENT *** Deal: Bad Birdie | Xparcel
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36470790026
+
+*** URGENT *** Deal: Taber Wholesale- First Class
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36479656713
+
+*** URGENT *** Deal: High impact-Fulfillment
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36481360992
+
+*** URGENT *** Deal: WOD BOM-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36484170761
+
+*** URGENT *** Deal: Collins Learning-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36484328298
+
+*** URGENT *** Deal: Argento SC - XParcel 2020
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36507989854
+
+*** URGENT *** Deal: Back to the Future-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36507990085
+
+*** URGENT *** Deal: testing 1234-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36508299113
+
+*** URGENT *** Deal: NaMar Packaging-Fulfillment Center
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36509685314
+
+*** URGENT *** Deal: SF Company-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36509840535
+
+*** URGENT *** Deal: One Click Ventures-USPS
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36510569344
+
+*** URGENT *** Deal: AutoShip Logistics-First Class
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36518664630
+
+*** URGENT *** Deal: Roolee Boutique - New Deal
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: TouchBase with
+ brett M
+  Deal ID: 36878037272
+
+*** URGENT *** Deal: 3PL Guys-USPS/FedEx
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36458458675
+
+*** URGENT *** Deal: Zyon Labs-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36479349428
+
+*** URGENT *** Deal: A Dip of Darling- xprior
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36477025458
+
+*** URGENT *** Deal: Ambient Inks - PM - 115k / yr.
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: check in for 2021 rates and services.  Shipping Easy
+  Deal ID: 36476869511
+
+*** URGENT *** Deal: 2020 Ave
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36472493104
+
+*** URGENT *** Deal: 31 Bits-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36469241496
+
+*** URGENT *** Deal: 902 Sports-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36507531895
+
+*** URGENT *** Deal: A2 Equipment LLC- UPS
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36483373833
+
+*** URGENT *** Deal: 2Ship UT-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36482290438
+
+*** URGENT *** Deal: Zurri, LLC dba Zurri- Domestic XParcel
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36480122538
+
+*** URGENT *** Deal: 1-800-Flowers-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36457840238
+
+*** URGENT *** Deal: 6DS, Inc-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: Email Byron - List of additional info for pricing
+  Deal ID: 36468626436
+
+*** URGENT *** Deal: Ace Division Inc.-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: Obtained ship data w costs.  Sales/Freight checking LTL pickup rates.  Pickups too expensive
+  Deal ID: 36518664817
+
+*** URGENT *** Deal: Jupiter Gear Inc-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: 9/4. Had a great intro call with them last year. Went unresponsive afterwards, need to check back in.
+  Deal ID: 18387892912
+
+*** URGENT *** Deal: abc test acct-
+  Amount: $0
+  Days Idle: 49 days
+  Next Step: None
+  Deal ID: 36507532144
+
+*** URGENT *** Deal: Carolina-
+  Amount: $0
+  Days Idle: 43 days
+  Next Step: None
+  Deal ID: 18174995328
+
+*** URGENT *** Deal: Redo Tech, Inc.- USPS GA Returns
+  Amount: $2,625,000
+  Days Idle: 19 days
+  Next Step: 7/18 Account is ready to go. Delayed with XP Returns dev work, decision maker is now unresponsive.
+  Deal ID: 18407546750
+
+Deal: Chebeauty
+  Amount: $840,000
+  Days Idle: 6 days
+  Next Step: 7/18  Irakli lives out of U.S. no replies, will follow up with him.
+  Deal ID: 18407021379
+
+
+================================================================================
+*** URGENT: DEALS IDLE >7 DAYS ***
+================================================================================
+
+[05-SETUP-DOCS-SENT]: Tshirt Co- (46 days idle)
+[04-PROPOSAL-SENT]: Be Sweet / Sugar Bear Pro- (140 days idle)
+[04-PROPOSAL-SENT]: Lucky & Me Inc- (133 days idle)
+[04-PROPOSAL-SENT]: Primal Strength & Balance- (47 days idle)
+[04-PROPOSAL-SENT]: Gulf Coast Brands LLC-2024 Xparcel (47 days idle)
+[04-PROPOSAL-SENT]: Be Sweet/Sugar Bear Pro International (47 days idle)
+[04-PROPOSAL-SENT]: Spartan Den (47 days idle)
+[04-PROPOSAL-SENT]: 2024 Estella Domestic and International (46 days idle)
+[04-PROPOSAL-SENT]: 10 Park Pharmacy 2024 Xparcel Domestic and International (46 days idle)
+[04-PROPOSAL-SENT]: 2022 Fedex rates (46 days idle)
+[04-PROPOSAL-SENT]: String - ShipX Referral - Xparcel (41 days idle)
+[03-RATE-CREATION]: Root'd- (133 days idle)
+[02-DISCOVERY-COMPLETE]: Hooray Hoopla, LLC- (133 days idle)
+[02-DISCOVERY-COMPLETE]: Beverly Hills Silver (25 days idle)
+[07-STARTED-SHIPPING]: Heavier weight (49 days idle)
+[07-STARTED-SHIPPING]: Growve - New Business (SLC & TN) (49 days idle)
+[07-STARTED-SHIPPING]: Power Tool Superstore- (49 days idle)
+[07-STARTED-SHIPPING]: Product Society-Xparcel (49 days idle)
+[07-STARTED-SHIPPING]: 160 South- (49 days idle)
+[07-STARTED-SHIPPING]: A1 Distribution- (49 days idle)
+[07-STARTED-SHIPPING]: 73 Direct- (49 days idle)
+[07-STARTED-SHIPPING]: TESTING (49 days idle)
+[07-STARTED-SHIPPING]: 36 Vine- (49 days idle)
+[07-STARTED-SHIPPING]: 712 Brands- (49 days idle)
+[07-STARTED-SHIPPING]: Ambitronic (38 days idle)
+[07-STARTED-SHIPPING]: Access Denied LLC - Xparcel Domestic, no International (35 days idle)
+[07-STARTED-SHIPPING]: Aluva (35 days idle)
+[07-STARTED-SHIPPING]: 3PLzen- (16 days idle)
+[08-CLOSED-LOST]: Carolina Test- (177 days idle)
+[08-CLOSED-LOST]: Acupuncture ATL - Returns (54 days idle)
+[08-CLOSED-LOST]: 1 800 Contacts- (49 days idle)
+[08-CLOSED-LOST]: Acktify-Remote locations (49 days idle)
+[08-CLOSED-LOST]: 4 Ocean, LLC.- (49 days idle)
+[08-CLOSED-LOST]: 2Ship LA (49 days idle)
+[08-CLOSED-LOST]: 2Ship NY (49 days idle)
+[08-CLOSED-LOST]: 3PLWINNER- (49 days idle)
+[08-CLOSED-LOST]: Brand Bolt KY (49 days idle)
+[08-CLOSED-LOST]: 8&9 Clothing Co. -Xparcel (49 days idle)
+[08-CLOSED-LOST]: ACH Fulfillment-switching to Shipstation (49 days idle)
+[08-CLOSED-LOST]: Elevate Promo - Xparcel & DHL GM (49 days idle)
+[08-CLOSED-LOST]: American Blues Boutique- (49 days idle)
+[08-CLOSED-LOST]: Fulfillment Express, Inc- Xparcel/DHL GM (49 days idle)
+[08-CLOSED-LOST]: Brock Hansen Test- (49 days idle)
+[08-CLOSED-LOST]: 3fittheory.com- (49 days idle)
+[08-CLOSED-LOST]: Ordoro - Partnership 2020 (49 days idle)
+[08-CLOSED-LOST]: 88 Media- Domestic Garden Grove XParcel and RPD rates (49 days idle)
+[08-CLOSED-LOST]: 1 Apollo- (49 days idle)
+[08-CLOSED-LOST]: &collar.com- (49 days idle)
+[08-CLOSED-LOST]: 3Vgear (49 days idle)
+[08-CLOSED-LOST]: 5 Boro Deals - 2024 (49 days idle)
+[08-CLOSED-LOST]: A2Z Balloons and Party Supplies- (49 days idle)
+[08-CLOSED-LOST]: A Plastic Bag- FULL xParcel 2020 (49 days idle)
+[08-CLOSED-LOST]: A Fine Gauge, Inc.- PostOne/NGWS (49 days idle)
+[08-CLOSED-LOST]: amazinglogistics.com- (49 days idle)
+[08-CLOSED-LOST]: American Duchess, Inc.- (49 days idle)
+[08-CLOSED-LOST]: SilverCeuticals- Xparcel (49 days idle)
+[08-CLOSED-LOST]: 1MissionNutrition.com (49 days idle)
+[08-CLOSED-LOST]: Acirassi Books Ltd..- (49 days idle)
+[08-CLOSED-LOST]: Active Faith (49 days idle)
+[08-CLOSED-LOST]: 4Media Group- FedEx (49 days idle)
+[08-CLOSED-LOST]: Test Deal (49 days idle)
+[08-CLOSED-LOST]: Eight Cig-OSM and FC (49 days idle)
+[08-CLOSED-LOST]: Ten Thousand-FirstMile (49 days idle)
+[08-CLOSED-LOST]: Shake Library-Shipping (49 days idle)
+[08-CLOSED-LOST]: Cahoot- (49 days idle)
+[08-CLOSED-LOST]: Brandless- (49 days idle)
+[08-CLOSED-LOST]: Bad Birdie | Xparcel (49 days idle)
+[08-CLOSED-LOST]: Taber Wholesale- First Class (49 days idle)
+[08-CLOSED-LOST]: High impact-Fulfillment (49 days idle)
+[08-CLOSED-LOST]: WOD BOM- (49 days idle)
+[08-CLOSED-LOST]: Collins Learning- (49 days idle)
+[08-CLOSED-LOST]: Argento SC - XParcel 2020 (49 days idle)
+[08-CLOSED-LOST]: Back to the Future- (49 days idle)
+[08-CLOSED-LOST]: testing 1234- (49 days idle)
+[08-CLOSED-LOST]: NaMar Packaging-Fulfillment Center (49 days idle)
+[08-CLOSED-LOST]: SF Company- (49 days idle)
+[08-CLOSED-LOST]: One Click Ventures-USPS (49 days idle)
+[08-CLOSED-LOST]: AutoShip Logistics-First Class (49 days idle)
+[08-CLOSED-LOST]: Roolee Boutique - New Deal (49 days idle)
+[08-CLOSED-LOST]: 3PL Guys-USPS/FedEx (49 days idle)
+[08-CLOSED-LOST]: Zyon Labs- (49 days idle)
+[08-CLOSED-LOST]: A Dip of Darling- xprior (49 days idle)
+[08-CLOSED-LOST]: Ambient Inks - PM - 115k / yr. (49 days idle)
+[08-CLOSED-LOST]: 2020 Ave (49 days idle)
+[08-CLOSED-LOST]: 31 Bits- (49 days idle)
+[08-CLOSED-LOST]: 902 Sports- (49 days idle)
+[08-CLOSED-LOST]: A2 Equipment LLC- UPS (49 days idle)
+[08-CLOSED-LOST]: 2Ship UT- (49 days idle)
+[08-CLOSED-LOST]: Zurri, LLC dba Zurri- Domestic XParcel (49 days idle)
+[08-CLOSED-LOST]: 1-800-Flowers- (49 days idle)
+[08-CLOSED-LOST]: 6DS, Inc- (49 days idle)
+[08-CLOSED-LOST]: Ace Division Inc.- (49 days idle)
+[08-CLOSED-LOST]: Jupiter Gear Inc- (49 days idle)
+[08-CLOSED-LOST]: abc test acct- (49 days idle)
+[08-CLOSED-LOST]: Carolina- (43 days idle)
+[08-CLOSED-LOST]: Redo Tech, Inc.- USPS GA Returns (19 days idle)
+
+================================================================================
+

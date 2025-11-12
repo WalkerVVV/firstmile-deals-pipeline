@@ -198,7 +198,7 @@ python-dotenv>=1.0.0
 **Comparison**:
 ```python
 # BEFORE (9am_sync.py):
-API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'  # ❌ Exposed
+API_KEY = '${HUBSPOT_API_KEY}'  # ❌ Exposed
 STAGE_MAP = {...}  # Duplicate definition
 def days_since(date_str): ...  # Duplicate implementation
 headers = {'Authorization': f'Bearer {API_KEY}', ...}

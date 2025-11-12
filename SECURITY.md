@@ -63,7 +63,7 @@ pip install -r requirements.txt
 
 **OLD (Insecure)**:
 ```python
-API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'  # ❌ NEVER DO THIS
+API_KEY = '${HUBSPOT_API_KEY}'  # ❌ NEVER DO THIS
 ```
 
 **NEW (Secure)**:

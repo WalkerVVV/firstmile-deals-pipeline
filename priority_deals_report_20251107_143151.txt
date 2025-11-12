@@ -1,0 +1,730 @@
+
+================================================================================
+HUBSPOT PRIORITY DEALS REPORT
+Pipeline: My Pipeline (FM) BW Clone
+Generated: 2025-11-07 14:31:51
+================================================================================
+
+SUMMARY
+Total Deals: 100
+Total Pipeline Value: $301,901,556
+
+================================================================================
+
+
+================================================================================
+[02-DISCOVERY-COMPLETE] (6 deals | $11,334,330)
+================================================================================
+
+*** URGENT *** Deal: The Only Bean
+  Amount: $1,179,330
+  Days Idle: 36 days
+  Next Step: None
+  Deal ID: 37492295511
+
+*** URGENT *** Deal: SMH Logistics LLC-
+  Amount: $300,000
+  Days Idle: 36 days
+  Next Step: Share Xparcel Info/Demo, Share Returns info. Setup a demo meeting
+  Deal ID: 36509073721
+
+*** URGENT *** Deal: International Packaging &Distribution  IPD- xparcel DHL Max / Expedited ShipStation
+  Amount: $375,000
+  Days Idle: 28 days
+  Next Step: Keith unresponsive. Email about FAST Group, Enterprise Pricing, Sendle Customer service.
+
+  Deal ID: 36476869500
+
+*** URGENT *** Deal: Static Nails-
+  Amount: $480,000
+  Days Idle: 26 days
+  Next Step: Get in contact after they split from System Beauty 3PL.
+
+  Deal ID: 36457530523
+
+*** URGENT *** Deal: FFE Solutions Group-
+  Amount: $1,800,000
+  Days Idle: 13 days
+  Next Step: Call BT and discuss SLA needs, Sub 1lb rates, get aggressive
+  Deal ID: 36618532916
+
+Deal: BoxiiShip American Fork - UPS
+  Amount: $7,200,000
+  Days Idle: 1 days
+  Next Step: create UPS Rates for Nate
+  Deal ID: 36612796007
+
+
+================================================================================
+[01-DISCOVERY-SCHEDULED] (1 deals | $856,000)
+================================================================================
+
+Deal: Sparkle In Pink - Reconnect
+  Amount: $856,000
+  Days Idle: 7 days
+  Next Step: Visit Sparkle In Pink w/Ron aka Silver Fox Thursday
+  Deal ID: 36467849601
+
+
+================================================================================
+[07-STARTED-SHIPPING] (28 deals | $22,726,733)
+================================================================================
+
+*** URGENT *** Deal: Boxio - FL
+  Amount: $1,500,000
+  Days Idle: 50 days
+  Next Step: 7/18  low volume with bulky packaging, 8-10 per bag. Needing gaylords & box van which would increase pickup costs from $115 to $695 per day
+  Deal ID: 36457684306
+
+*** URGENT *** Deal: FHU Domestic Xparcel 130k monthly volume
+  Amount: $1,500,000
+  Days Idle: 50 days
+  Next Step: 7/18  Increasing volume week over week. Up to 500-600 per day
+  Deal ID: 36477798679
+
+*** URGENT *** Deal: FHU Miami - Xparcel Ground 1000 daily shipments
+  Amount: $1,500,000
+  Days Idle: 50 days
+  Next Step: Confirm W/FHU for Monday pickup Bags or Gaylords
+  Deal ID: 36627764631
+
+*** URGENT *** Deal: ODF Domestic Monthly - New Xparcel Services
+  Amount: $1,400,000
+  Days Idle: 50 days
+  Next Step: ODF added 100 more pieces per day.  Ship Central holding off, setup International Xparcel
+  Deal ID: 36463888800
+
+*** URGENT *** Deal: World Best Medical Supply 2.0 28k per month USPS
+  Amount: $1,400,000
+  Days Idle: 50 days
+  Next Step: Schedule DHL International Training
+  Deal ID: 36477336393
+
+*** URGENT *** Deal: Elite Ops - Xparcel / DHL Int
+  Amount: $1,300,000
+  Days Idle: 50 days
+  Next Step: New Xparcel Rates created for Elite for BUKU volume to FM and 15k pcs/month new customer opportunity
+  Deal ID: 36508143233
+
+*** URGENT *** Deal: Boxio Ship-UPS MI 40k-60k packages per month
+  Amount: $650,000
+  Days Idle: 50 days
+  Next Step: Rates uploaded.  Get with Gavin next week for start date.
+  Deal ID: 36470636896
+
+*** URGENT *** Deal: VB Cosmetics-
+  Amount: $400,000
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36467849381
+
+*** URGENT *** Deal: Skupreme-
+  Amount: $400,000
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36513945857
+
+*** URGENT *** Deal: Tactical Logistics-
+  Amount: $300,000
+  Days Idle: 50 days
+  Next Step: Tactical Logistics - Started Shipping Dec 16th, 2 days before scheduled start date of Dec 18th.
+  Deal ID: 36477489428
+
+*** URGENT *** Deal: Easy Group LLC-
+  Amount: $150,000
+  Days Idle: 50 days
+  Next Step: Training complete.  reviewing dom pricing vs ups mi
+  Deal ID: 36478885270
+
+*** URGENT *** Deal: Overdrive Brands-
+  Amount: $80,000
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36481052331
+
+*** URGENT *** Deal: Klymit-Xparcel
+  Amount: $75,733
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36479506078
+
+*** URGENT *** Deal: Lone Star Mercantile-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36484328349
+
+*** URGENT *** Deal: G-Global-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36484328451
+
+*** URGENT *** Deal: Fulfillment Hub USA-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Start date 2-7-22
+  Deal ID: 36509685558
+
+*** URGENT *** Deal: Easy Group LLC - Irwindale CA 2nd Account-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: confirm setup complete and processing ok
+  Deal ID: 36514100063
+
+*** URGENT *** Deal: Easy Group LLC - FL Office
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: confirm setup and processing ok
+  Deal ID: 36473113732
+
+*** URGENT *** Deal: Dirftaway Coffee - DHL International PLT-DDP 100/month
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Send rates to Suyog
+  Deal ID: 36480277612
+
+*** URGENT *** Deal: Personal Day
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Start Date 10-28-24 Personal Day (BoxiiShip SB Magna New Client)
+  Deal ID: 36613276340
+
+*** URGENT *** Deal: Access Denied LLC - Xparcel Domestic, no International
+  Amount: $400,000
+  Days Idle: 37 days
+  Next Step: Started Shipping!  80 pcs for their first day.  Follow up with Miguel & Mendel tomorrow.  Talk about Walmart orders
+  Deal ID: 36510413489
+
+*** URGENT *** Deal: Aluva
+  Amount: $250,000
+  Days Idle: 37 days
+  Next Step: Shipping
+  Deal ID: 36457840214
+
+*** URGENT *** Deal: Tactical Logistics - DHL International
+  Amount: $450,000
+  Days Idle: 35 days
+  Next Step: waiting on Skupreme
+
+  Deal ID: 36618104335
+
+*** URGENT *** Deal: Juggy / Tinoco
+  Amount: $1,160,000
+  Days Idle: 23 days
+  Next Step: Creating 2024 for them - Coordinating with Juan
+  Deal ID: 36470789710
+
+*** URGENT *** Deal: JM Group of NY 
+  Amount: $511,000
+  Days Idle: 16 days
+  Next Step: Start Daily Pickups. rate upload fixed to Xp Exp Plus for ShipStation
+
+  Deal ID: 37548387916
+
+*** URGENT *** Deal: BoxiiShip System Beauty Magna
+  Amount: $1,000,000
+  Days Idle: 8 days
+  Next Step: None
+  Deal ID: 36506478408
+
+Deal: BoxiiShip American Fork - 3PL Customer
+  Amount: $7,200,000
+  Days Idle: 1 days
+  Next Step: Supplies: Short gaylords/pallets & DHL bags delivered - enough for 1-2days. Driver to bring additional at first pickup
+  Deal ID: 36466918934
+
+Deal: Boxiiship_System Beauty Logistics LLC-
+  Amount: $1,100,000
+  Days Idle: 0 days
+  Next Step: Send Wednesday CVM meeting invite to Reid and BoxiiShip team
+  Deal ID: 18388015715
+
+
+================================================================================
+[08-CLOSED-LOST] (65 deals | $266,984,493)
+================================================================================
+
+*** URGENT *** Deal: Oriental Trading Co., Inc.-
+  Amount: $16,000,000
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36480741929
+
+*** URGENT *** Deal: Super Rider Products Co.,Ltd(SOGOODSELLER FC)
+  Amount: $10,000,000
+  Days Idle: 50 days
+  Next Step: Reconnect with Mr. Sam - Get Andrew's help. Provided 2025 Rates, says they are NOT Good. Redo with Brock - Send to Sales
+  Deal ID: 36473423193
+
+*** URGENT *** Deal: Dart Channel Group - UpStrem.com Int rates
+  Amount: $9,000,000
+  Days Idle: 50 days
+  Next Step: Create domestic rates - send to sales
+  Deal ID: 36484328462
+
+*** URGENT *** Deal: Ship Central-
+  Amount: $2,000,000
+  Days Idle: 50 days
+  Next Step: 7/18 Whole new C-Suite, busy until Aug with personelle changes
+  Deal ID: 36464506187
+
+*** URGENT *** Deal: Redmond Life-
+  Amount: $2,000,000
+  Days Idle: 50 days
+  Next Step: Confirm test labels, Schedule training, Schedule start date.
+  Deal ID: 36457994790
+
+*** URGENT *** Deal: Sage Camera
+  Amount: $1,323,000
+  Days Idle: 50 days
+  Next Step: Sellercloud sign NDA - present tech agreement
+  Deal ID: 36481517398
+
+*** URGENT *** Deal: Headline Shirts, LLC
+  Amount: $1,300,000
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36506326085
+
+*** URGENT *** Deal: Neptune Distribution
+  Amount: $1,290,000
+  Days Idle: 50 days
+  Next Step: Review ship data, find contacts, reach out this week.
+
+  Deal ID: 35604583457
+
+*** URGENT *** Deal: Brand Bolt KY
+  Amount: $1,200,000
+  Days Idle: 50 days
+  Next Step: Text Nick - Email Jono & Team, Nick, Andrew.
+  Deal ID: 35605211155
+
+*** URGENT *** Deal: Collective Labs
+  Amount: $718,000
+  Days Idle: 50 days
+  Next Step: Review rates with Collective Labs / Sarah, Kuldeep, Destiny
+  Deal ID: 36473422772
+
+*** URGENT *** Deal: Glitz and Glitter Boutique - So Chic
+  Amount: $624,000
+  Days Idle: 50 days
+  Next Step: Call Kelly & Sheyre
+  Deal ID: 36481207638
+
+*** URGENT *** Deal: Agile SCS - FM Integration for DHL MAX
+  Amount: $600,000
+  Days Idle: 50 days
+  Next Step: review rates with Drew - IAC opp checking with Zach/team
+  Deal ID: 36470484244
+
+*** URGENT *** Deal: Sene Studio 390k yr
+  Amount: $390,000
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36482137128
+
+*** URGENT *** Deal: Luxury Divas- xparcel
+  Amount: $380,000
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36481361004
+
+*** URGENT *** Deal: Superbalife - Domestic PostageOne - Xparcel
+  Amount: $380,000
+  Days Idle: 50 days
+  Next Step: ShipStation issue resolved and batch updating processing.  Started Shipping 11-6-23 with 677 pieces
+  Deal ID: 36465988135
+
+*** URGENT *** Deal: Restricted Agency-
+  Amount: $367,380
+  Days Idle: 50 days
+  Next Step: Rates for 2023?
+  Deal ID: 36477954479
+
+*** URGENT *** Deal: GB AOLS, Inc. DBA YesAvenue
+  Amount: $302,381
+  Days Idle: 50 days
+  Next Step: DHL waiting for customer to sign consent to screen email
+  Deal ID: 36458148748
+
+*** URGENT *** Deal: UNRL - 263,000.00
+  Amount: $283,004
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36471565331
+
+*** URGENT *** Deal: CNSQ Sales LLC DBA KZGear
+  Amount: $254,119
+  Days Idle: 50 days
+  Next Step: Follow up March 1st to review current volume
+  Deal ID: 36477181298
+
+*** URGENT *** Deal: Ship Sensei Fulfillment - Xparcel 2500 month
+  Amount: $200,000
+  Days Idle: 50 days
+  Next Step: Get Setup Docs signed
+  Deal ID: 36465744537
+
+*** URGENT *** Deal: DHL International - 10k/month poly mailer customer
+  Amount: $200,000
+  Days Idle: 50 days
+  Next Step: Create 2023 DHL Int rates for Ezxter
+  Deal ID: 36622404168
+
+*** URGENT *** Deal: Ventrone Chronicles- INT Shipping then Domestic residential address
+  Amount: $164,609
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36509073496
+
+*** URGENT *** Deal: Ambient Inks - PM - 115k / yr.
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: check in for 2021 rates and services.  Shipping Easy
+  Deal ID: 36476869511
+
+*** URGENT *** Deal: 6DS, Inc-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Email Byron - List of additional info for pricing
+  Deal ID: 36468626436
+
+*** URGENT *** Deal: Ace Division Inc.-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Obtained ship data w costs.  Sales/Freight checking LTL pickup rates.  Pickups too expensive
+  Deal ID: 36518664817
+
+*** URGENT *** Deal: Maurice Max, Inc DBA Lee Angel-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36477181233
+
+*** URGENT *** Deal: Nu Health Foods LLC - NGS
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36480277544
+
+*** URGENT *** Deal: ForDays.com 290-400/yr
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Connect w Austen Gooch ShipStore
+  Deal ID: 36477025591
+
+*** URGENT *** Deal: Narimarie usa-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36481517370
+
+*** URGENT *** Deal: NSC, LLC- Sparkle City Comics
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36480587139
+
+*** URGENT *** Deal: FS Services - Shipsland.com - 2,510,140.
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Review with Yildiz.  Rates sent, no reply yet.
+  Deal ID: 36468312739
+
+*** URGENT *** Deal: myLAB Box-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: None
+  Deal ID: 36473578837
+
+*** URGENT *** Deal: Varsity Line Products-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Get MNDA signed, FM API docs sent to Chris
+  Deal ID: 36481052439
+
+*** URGENT *** Deal: Fulfill Hub-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Call Syd - update data & rates, move forward?
+  Deal ID: 36483373997
+
+*** URGENT *** Deal: FHU California-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Get with Sales on rates / 90 volume is 14k pcs
+  Deal ID: 36465988111
+
+*** URGENT *** Deal: Fulfillment Hub USA LLC - FHU New Jersey-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Create 2025 Rates for Adam and send - Put  in Jira ticket
+  Deal ID: 36469085445
+
+*** URGENT *** Deal: Fulfillment Hub USA LLC - FHU Texas-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Get with Sales on rates / 90 volume is 14k pcs
+  Deal ID: 36473422982
+
+*** URGENT *** Deal: Veyl Ventures Freight - Xparcel - help Kartik understand and request from QuickBox
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Kartik - talk about OSM rates and service performance
+  Deal ID: 36465439118
+
+*** URGENT *** Deal: No Headache | 3D Activewear- DHL Express & explore Xparcel
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: DHL SmartMail & Express
+  Deal ID: 36510413472
+
+*** URGENT *** Deal: DPI Merchandisng Inc.  DBA DPI Promo-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: submit rates w/ tier tool created
+  Deal ID: 36479811870
+
+*** URGENT *** Deal: Pure Bulk Domestic Volume
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Currently shipping USPS <1lb and FedEx Ground Economy over 1lb 5-7days
+  Deal ID: 36457840275
+
+*** URGENT *** Deal: Corporate Disk Company - disk.com
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Email David to set up a call
+  Deal ID: 36509379847
+
+*** URGENT *** Deal: Hackbarth Enterprises, LLC - Premier Printing-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: Follow up again with Janessa.  No phone, only email.
+  Deal ID: 36518664812
+
+*** URGENT *** Deal: Nomatic, LLC.-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: 7/18 Was interested in FTZ, long wait. Stopped replying to emals/calls
+  Deal ID: 36481672492
+
+*** URGENT *** Deal: YUSEN LOGISTICS (AMERICAS) INC.-
+  Amount: $0
+  Days Idle: 50 days
+  Next Step: 7/18  20-40 UPS per week. Need FedEx, haven't provided rates
+  Deal ID: 36470018399
+
+*** URGENT *** Deal: GRIP6
+  Amount: $0
+  Days Idle: 20 days
+  Next Step: Ask Chase, follow up with Grip 6. Notify about FAST Group w/Customer Service to handle their WISMO calls
+  Deal ID: 36633132342
+
+*** URGENT *** Deal: SotoDeals/MIA Domestic & INTL Opportunity
+  Amount: $100,000
+  Days Idle: 9 days
+  Next Step: Contact Marcos for update on his ship platform 
+
+  Deal ID: 36477798753
+
+*** URGENT *** Deal: BoxiiShip - SN Pallet Storage - PA 1000-2000k Short Term
+  Amount: $60,000
+  Days Idle: 8 days
+  Next Step: None
+  Deal ID: 36624986018
+
+Deal: JetPack Shipping-
+  Amount: $180,000,000
+  Days Idle: 7 days
+  Next Step: 7/18 Owner is onbaording some new big customers and wants to wait until they are going
+  Deal ID: 36510848365
+
+Deal: Chebeauty
+  Amount: $840,000
+  Days Idle: 7 days
+  Next Step: 7/18  Irakli lives out of U.S. no replies, will follow up with him.
+  Deal ID: 18407021379
+
+Deal: All Sett Health
+  Amount: $380,000
+  Days Idle: 7 days
+  Next Step: Send Rates to Javier - All Sett Health
+  Deal ID: 36476869779
+
+Deal: OTW Shipping CT
+  Amount: $1,700,000
+  Days Idle: 6 days
+  Next Step: Rates sent to Nick - Call / Email to schedule meeting
+  Deal ID: 36458306211
+
+Deal: ODW Logistics
+  Amount: $25,000,000
+  Days Idle: 3 days
+  Next Step: 6/30 Brett submitting to pricing | Brock to Prioritize
+  Deal ID: 38741787982
+
+Deal: OTW Shipping UT
+  Amount: $1,600,000
+  Days Idle: 3 days
+  Next Step: Follow up Q1 2026
+  Deal ID: 36464042921
+
+Deal: COLDEST
+  Amount: $2,100,000
+  Days Idle: 1 days
+  Next Step: Waiting on Skupreme - Setup meeting with Ely asap
+  Deal ID: 38290330484
+
+Deal: The Fulfillment Lab
+  Amount: $2,000,000
+  Days Idle: 0 days
+  Next Step: Email Skupreme. Redo rates, send to Sales to improve w/ACI better rates.
+
+  Deal ID: 38973900115
+
+Deal: Beverly Hills Silver
+  Amount: $1,008,000
+  Days Idle: 0 days
+  Next Step: Send FAST Group Update & redo rates created before July 13 gri
+
+  Deal ID: 35596950165
+
+Deal: FLORA 247 DBA GiftExpress.com - restarting with FM
+  Amount: $1,000,000
+  Days Idle: 0 days
+  Next Step: 7/18  Ground only - perfume - using USPS and FedEx
+  Deal ID: 36468777892
+
+Deal: eSafety Supplies Inc. dba eSafetySupplies.com-
+  Amount: $480,000
+  Days Idle: 0 days
+  Next Step: redo rates created before 7-13 gri
+
+  Deal ID: 36484020822
+
+Deal: Tactical Logistic Solutions - New Deal
+  Amount: $450,000
+  Days Idle: 0 days
+  Next Step: Re-engage Eli at Skupreme - email and call
+  Deal ID: 40683158541
+
+Deal: The Gears Clock Inc.-
+  Amount: $400,000
+  Days Idle: 0 days
+  Next Step: Waiting on Skupreme - Setup meeting with Ely
+  Deal ID: 36481672605
+
+Deal: Pendulus, Etc. International 2024
+  Amount: $380,000
+  Days Idle: 0 days
+  Next Step: Reached out via email to Shloime
+  Deal ID: 36464821026
+
+Deal: Pendulums Etc - Domestic Xparcel
+  Amount: $250,000
+  Days Idle: 0 days
+  Next Step: create updated after 7-13 gri rates
+
+  Deal ID: 35761863433
+
+Deal: IronLink Logistics NJ - Skupreme
+  Amount: $250,000
+  Days Idle: 0 days
+  Next Step: Waiting on Skupreme - Setup meeting with Ely
+  Deal ID: 39869090581
+
+Deal: Bright Ventures - DHL International
+  Amount: $10,000
+  Days Idle: 0 days
+  Next Step: None
+  Deal ID: 36518664717
+
+
+================================================================================
+*** URGENT: DEALS IDLE >7 DAYS ***
+================================================================================
+
+[02-DISCOVERY-COMPLETE]: The Only Bean (36 days idle)
+[02-DISCOVERY-COMPLETE]: SMH Logistics LLC- (36 days idle)
+[02-DISCOVERY-COMPLETE]: International Packaging &Distribution  IPD- xparcel DHL Max / Expedited ShipStation (28 days idle)
+[02-DISCOVERY-COMPLETE]: Static Nails- (26 days idle)
+[02-DISCOVERY-COMPLETE]: FFE Solutions Group- (13 days idle)
+[07-STARTED-SHIPPING]: Boxio - FL (50 days idle)
+[07-STARTED-SHIPPING]: FHU Domestic Xparcel 130k monthly volume (50 days idle)
+[07-STARTED-SHIPPING]: FHU Miami - Xparcel Ground 1000 daily shipments (50 days idle)
+[07-STARTED-SHIPPING]: ODF Domestic Monthly - New Xparcel Services (50 days idle)
+[07-STARTED-SHIPPING]: World Best Medical Supply 2.0 28k per month USPS (50 days idle)
+[07-STARTED-SHIPPING]: Elite Ops - Xparcel / DHL Int (50 days idle)
+[07-STARTED-SHIPPING]: Boxio Ship-UPS MI 40k-60k packages per month (50 days idle)
+[07-STARTED-SHIPPING]: VB Cosmetics- (50 days idle)
+[07-STARTED-SHIPPING]: Skupreme- (50 days idle)
+[07-STARTED-SHIPPING]: Tactical Logistics- (50 days idle)
+[07-STARTED-SHIPPING]: Easy Group LLC- (50 days idle)
+[07-STARTED-SHIPPING]: Overdrive Brands- (50 days idle)
+[07-STARTED-SHIPPING]: Klymit-Xparcel (50 days idle)
+[07-STARTED-SHIPPING]: Lone Star Mercantile- (50 days idle)
+[07-STARTED-SHIPPING]: G-Global- (50 days idle)
+[07-STARTED-SHIPPING]: Fulfillment Hub USA- (50 days idle)
+[07-STARTED-SHIPPING]: Easy Group LLC - Irwindale CA 2nd Account- (50 days idle)
+[07-STARTED-SHIPPING]: Easy Group LLC - FL Office (50 days idle)
+[07-STARTED-SHIPPING]: Dirftaway Coffee - DHL International PLT-DDP 100/month (50 days idle)
+[07-STARTED-SHIPPING]: Personal Day (50 days idle)
+[07-STARTED-SHIPPING]: Access Denied LLC - Xparcel Domestic, no International (37 days idle)
+[07-STARTED-SHIPPING]: Aluva (37 days idle)
+[07-STARTED-SHIPPING]: Tactical Logistics - DHL International (35 days idle)
+[07-STARTED-SHIPPING]: Juggy / Tinoco (23 days idle)
+[07-STARTED-SHIPPING]: JM Group of NY  (16 days idle)
+[07-STARTED-SHIPPING]: BoxiiShip System Beauty Magna (8 days idle)
+[08-CLOSED-LOST]: Oriental Trading Co., Inc.- (50 days idle)
+[08-CLOSED-LOST]: Super Rider Products Co.,Ltd(SOGOODSELLER FC) (50 days idle)
+[08-CLOSED-LOST]: Dart Channel Group - UpStrem.com Int rates (50 days idle)
+[08-CLOSED-LOST]: Ship Central- (50 days idle)
+[08-CLOSED-LOST]: Redmond Life- (50 days idle)
+[08-CLOSED-LOST]: Sage Camera (50 days idle)
+[08-CLOSED-LOST]: Headline Shirts, LLC (50 days idle)
+[08-CLOSED-LOST]: Neptune Distribution (50 days idle)
+[08-CLOSED-LOST]: Brand Bolt KY (50 days idle)
+[08-CLOSED-LOST]: Collective Labs (50 days idle)
+[08-CLOSED-LOST]: Glitz and Glitter Boutique - So Chic (50 days idle)
+[08-CLOSED-LOST]: Agile SCS - FM Integration for DHL MAX (50 days idle)
+[08-CLOSED-LOST]: Sene Studio 390k yr (50 days idle)
+[08-CLOSED-LOST]: Luxury Divas- xparcel (50 days idle)
+[08-CLOSED-LOST]: Superbalife - Domestic PostageOne - Xparcel (50 days idle)
+[08-CLOSED-LOST]: Restricted Agency- (50 days idle)
+[08-CLOSED-LOST]: GB AOLS, Inc. DBA YesAvenue (50 days idle)
+[08-CLOSED-LOST]: UNRL - 263,000.00 (50 days idle)
+[08-CLOSED-LOST]: CNSQ Sales LLC DBA KZGear (50 days idle)
+[08-CLOSED-LOST]: Ship Sensei Fulfillment - Xparcel 2500 month (50 days idle)
+[08-CLOSED-LOST]: DHL International - 10k/month poly mailer customer (50 days idle)
+[08-CLOSED-LOST]: Ventrone Chronicles- INT Shipping then Domestic residential address (50 days idle)
+[08-CLOSED-LOST]: Ambient Inks - PM - 115k / yr. (50 days idle)
+[08-CLOSED-LOST]: 6DS, Inc- (50 days idle)
+[08-CLOSED-LOST]: Ace Division Inc.- (50 days idle)
+[08-CLOSED-LOST]: Maurice Max, Inc DBA Lee Angel- (50 days idle)
+[08-CLOSED-LOST]: Nu Health Foods LLC - NGS (50 days idle)
+[08-CLOSED-LOST]: ForDays.com 290-400/yr (50 days idle)
+[08-CLOSED-LOST]: Narimarie usa- (50 days idle)
+[08-CLOSED-LOST]: NSC, LLC- Sparkle City Comics (50 days idle)
+[08-CLOSED-LOST]: FS Services - Shipsland.com - 2,510,140. (50 days idle)
+[08-CLOSED-LOST]: myLAB Box- (50 days idle)
+[08-CLOSED-LOST]: Varsity Line Products- (50 days idle)
+[08-CLOSED-LOST]: Fulfill Hub- (50 days idle)
+[08-CLOSED-LOST]: FHU California- (50 days idle)
+[08-CLOSED-LOST]: Fulfillment Hub USA LLC - FHU New Jersey- (50 days idle)
+[08-CLOSED-LOST]: Fulfillment Hub USA LLC - FHU Texas- (50 days idle)
+[08-CLOSED-LOST]: Veyl Ventures Freight - Xparcel - help Kartik understand and request from QuickBox (50 days idle)
+[08-CLOSED-LOST]: No Headache | 3D Activewear- DHL Express & explore Xparcel (50 days idle)
+[08-CLOSED-LOST]: DPI Merchandisng Inc.  DBA DPI Promo- (50 days idle)
+[08-CLOSED-LOST]: Pure Bulk Domestic Volume (50 days idle)
+[08-CLOSED-LOST]: Corporate Disk Company - disk.com (50 days idle)
+[08-CLOSED-LOST]: Hackbarth Enterprises, LLC - Premier Printing- (50 days idle)
+[08-CLOSED-LOST]: Nomatic, LLC.- (50 days idle)
+[08-CLOSED-LOST]: YUSEN LOGISTICS (AMERICAS) INC.- (50 days idle)
+[08-CLOSED-LOST]: GRIP6 (20 days idle)
+[08-CLOSED-LOST]: SotoDeals/MIA Domestic & INTL Opportunity (9 days idle)
+[08-CLOSED-LOST]: BoxiiShip - SN Pallet Storage - PA 1000-2000k Short Term (8 days idle)
+
+================================================================================
+

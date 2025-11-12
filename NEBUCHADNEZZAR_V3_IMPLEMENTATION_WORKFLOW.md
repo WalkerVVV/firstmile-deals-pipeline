@@ -319,13 +319,13 @@ cat > .env.example << 'EOF'
 # Copy this file to .env and fill in your actual values
 
 # HubSpot API Configuration
-HUBSPOT_API_KEY=pat-na1-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+HUBSPOT_API_KEY=${HUBSPOT_API_KEY}
 HUBSPOT_OWNER_ID=699257003
 HUBSPOT_PIPELINE_ID=8bd9336b-4767-4e67-9fe2-35dfcad7c8be
 HUBSPOT_PORTAL_ID=46526832
 
 # GitHub Configuration
-GITHUB_PAT=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+GITHUB_PAT=${GITHUB_TOKEN}
 GITHUB_REPO=BrettWalker/FirstMile_Deals_Pipeline
 
 # Local Paths

@@ -1,0 +1,157 @@
+{
+  "user": {
+    "name": "Brett Walker",
+    "email": "brett.walker@firstmile.com",
+    "hubspot_owner_id": "699257003",
+    "portal_id": "8210927"
+  },
+  "api": {
+    "base_url": "https://api.hubapi.com",
+    "authorization_header": "Authorization: Bearer {HUBSPOT_API_KEY}",
+    "sample_read_endpoint": "/crm/v3/objects/deals/{dealId}",
+    "sample_search_endpoint": "/crm/v3/objects/deals/search",
+    "scopes": [
+      "crm.schemas.deals.read",
+      "crm.objects.deals.read",
+      "crm.objects.deals.write",
+      "crm.objects.contacts.read",
+      "crm.objects.contacts.write",
+      "crm.objects.companies.read",
+      "crm.objects.companies.write",
+      "crm.objects.owners.read",
+      "crm.pipelines.orders.read",
+      "crm.schemas.contacts.read",
+      "crm.schemas.companies.read",
+      "crm.objects.leads.read",
+      "crm.objects.leads.write",
+      "crm.objects.appointments.read",
+      "crm.objects.appointments.write",
+      "marketing-email",
+      "transactional-email",
+      "sales-email-read",
+      "scheduler.meetings.meeting-link.read",
+      "automation.sequences.read",
+      "automation.sequences.enrollments.write",
+      "actions",
+      "timeline",
+      "oauth"
+    ]
+  },
+  "sample_deals": [
+    {
+      "deal_name": "Logystico LLC - Skupreme",
+      "deal_id": "43491605362",
+      "company_name": "Logystico LLC",
+      "deal_stage": "04-PROPOSAL-SENT",
+      "owner_id": "699257003",
+      "amount": 600000,
+      "last_activity_date": "2025-11-02",
+      "next_step": "Send Rates to Skupreme",
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/43491605362",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/43491605362"
+    },
+    {
+      "deal_name": "Wild Cosmetics Ltd - New Deal",
+      "deal_id": "44451570345",
+      "company_name": "Wild Cosmetics Ltd",
+      "deal_stage": "04-PROPOSAL-SENT",
+      "owner_id": "699257003",
+      "amount": 1098000,
+      "last_activity_date": "2025-11-02",
+      "next_step": null,
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/44451570345",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/44451570345"
+    },
+    {
+      "deal_name": "Tetris3PL Fulfillment Center - New Deal",
+      "deal_id": "42984910192",
+      "company_name": "Tetris3PL Fulfillment Center",
+      "deal_stage": "04-PROPOSAL-SENT",
+      "owner_id": "699257003",
+      "amount": 300000,
+      "last_activity_date": "2025-11-02",
+      "next_step": null,
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/42984910192",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/42984910192"
+    },
+    {
+      "deal_name": "Outerspace - 2025",
+      "deal_id": "46256775022",
+      "company_name": "Outerspace",
+      "deal_stage": "04-PROPOSAL-SENT",
+      "owner_id": "699257003",
+      "amount": 2000000,
+      "last_activity_date": "2025-11-02",
+      "next_step": null,
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/46256775022",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/46256775022"
+    },
+    {
+      "deal_name": "Flat Fee Shipping LLC - New Deal",
+      "deal_id": "43827801265",
+      "company_name": "Flat Fee Shipping LLC",
+      "deal_stage": "03-RATE-CREATION",
+      "owner_id": "699257003",
+      "amount": 1095072,
+      "last_activity_date": "2025-11-02",
+      "next_step": null,
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/43827801265",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/43827801265"
+    },
+    {
+      "deal_name": "DYLN Inc. - New Deal",
+      "deal_id": "43542873685",
+      "company_name": "DYLN Inc.",
+      "deal_stage": "03-RATE-CREATION",
+      "owner_id": "699257003",
+      "amount": 3600000,
+      "last_activity_date": "2025-11-02",
+      "next_step": "Follow up Q1 2026",
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/43542873685",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/43542873685"
+    },
+    {
+      "deal_name": "eSafety Supplies Inc. dba eSafetySupplies.com",
+      "deal_id": "36484020822",
+      "company_name": "eSafety Supplies Inc.",
+      "deal_stage": "03-RATE-CREATION",
+      "owner_id": "699257003",
+      "amount": 480000,
+      "last_activity_date": "2025-09-15",
+      "next_step": "Redo rates created before 7-13 gri",
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/36484020822",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/36484020822"
+    },
+    {
+      "deal_name": "Pendulums Etc - Domestic Xparcel",
+      "deal_id": "35761863433",
+      "company_name": "Pendulums Etc",
+      "deal_stage": "03-RATE-CREATION",
+      "owner_id": "699257003",
+      "amount": 250000,
+      "last_activity_date": "2025-10-10",
+      "next_step": "Create updated after 7-13 gri rates",
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/35761863433",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/35761863433"
+    },
+    {
+      "deal_name": "BoxiiShip AF - Make Wellness Volume WIN-BACK 2025",
+      "deal_id": "45692064076",
+      "company_name": "BoxiiShip AF",
+      "deal_stage": "02-DISCOVERY-COMPLETE",
+      "owner_id": "699257003",
+      "amount": 7200000,
+      "last_activity_date": "2025-10-30",
+      "next_step": "Setup meeting with Nate with CVM Nov 15-18th",
+      "deal_url": "https://app.hubspot.com/contacts/8210927/record/0-3/45692064076",
+      "api_get_url": "https://api.hubapi.com/crm/v3/objects/deals/45692064076"
+    }
+  ],
+  "usage_notes": {
+    "description": "Sample deal data structure for HubSpot API automation",
+    "token_location": "Token stored in .env file as HUBSPOT_API_KEY",
+    "loop_pattern": "Iterate through sample_deals array, use deal_id for API calls",
+    "owner_filtering": "Always use owner_id: 699257003 for Brett Walker's deals",
+    "last_updated": "2025-11-06"
+  }
+}

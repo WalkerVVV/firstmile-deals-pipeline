@@ -44,7 +44,7 @@
 
 **Exposed Credential**:
 ```
-API Key: pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764
+API Key: ${HUBSPOT_API_KEY}
 Scope: HubSpot Private App with CRM access (deals.read, deals.write, contacts.read, notes.write)
 Owner: Brett Walker (ID: 699257003)
 ```
@@ -262,7 +262,7 @@ STATE DIVERGENCE - No Recovery Mechanism
 1. **Default Configuration with Secrets**: `hubspot_config.py` has hardcoded fallback credentials
    ```python
    # Line 31: Insecure fallback
-   'API_KEY': os.environ.get('HUBSPOT_API_KEY', 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764')
+   'API_KEY': os.environ.get('HUBSPOT_API_KEY', '${HUBSPOT_API_KEY}')
    ```
 
 2. **Verbose Error Messages**: Error messages expose system internals
@@ -808,7 +808,7 @@ Log Success/Failure
 **Finding 2: Insecure Fallback Pattern** 🔴
 ```python
 # hubspot_config.py:31
-'API_KEY': os.environ.get('HUBSPOT_API_KEY', 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764')
+'API_KEY': os.environ.get('HUBSPOT_API_KEY', '${HUBSPOT_API_KEY}')
 ```
 - Hardcoded fallback defeats environment variable security
 - Scripts work even if .env is missing → silent security degradation
@@ -1582,7 +1582,7 @@ Actions:
    **Example: 9am_sync.py**
    ```python
    # OLD (Line 17):
-   API_KEY = 'pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764'
+   API_KEY = '${HUBSPOT_API_KEY}'
 
    # NEW:
    import os

@@ -305,7 +305,7 @@ Rate Limits: 100 requests per 10 seconds (burst), 150,000/day
 
 **Immediate Security Gaps** (From Phase 2):
 - 38 markdown files may contain exposed API keys
-- API key `pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764` appears in multiple files
+- API key `${HUBSPOT_API_KEY}` appears in multiple files
 - No documented key rotation since system creation
 
 **Recommendations** (IMMEDIATE ACTION REQUIRED):

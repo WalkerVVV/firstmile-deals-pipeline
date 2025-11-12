@@ -13,7 +13,7 @@
 1. Go to: https://github.com/WalkerVVV/firstmile-deals-pipeline/settings/secrets/actions
 2. Click **"New repository secret"**
 3. Name: `HUBSPOT_API_KEY`
-4. Value: `pat-na1-3044b6ba-1d68-4ad0-9bca-de8904bb0764` (your HubSpot API key)
+4. Value: `${HUBSPOT_API_KEY}` (your HubSpot API key)
 5. Click **"Add secret"**
 
 ✅ **Done!** You only need to do this once.

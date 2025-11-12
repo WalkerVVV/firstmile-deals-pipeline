@@ -87,15 +87,56 @@ def check_chrome_mcp_status():
 def get_superhuman_emails():
     """
     Fetch recent emails from Superhuman via Chrome MCP
-    Returns: List of email action items with priority
+    Returns: Dict with categorized email action items
     """
-    # Note: This would use Chrome MCP tools in actual implementation
-    # For now, returns structure to show integration point
-    return {
-        "critical": [],  # Last hour
-        "yesterday": [],  # Yesterday's queue
-        "last_week": []  # Last 7 days
-    }
+    try:
+        # Import MCP tools dynamically (only when Chrome MCP needed)
+        import sys
+        import importlib
+
+        # Check if running in Claude Code environment with MCP access
+        # This will fail gracefully if MCP not available
+        result = {
+            "success": False,
+            "critical": [],
+            "yesterday": [],
+            "last_week": [],
+            "error": None
+        }
+
+        # Try to use Chrome MCP via subprocess call to mcp_email_extractor.py
+        # This is safer than trying to import MCP modules directly
+        extractor_path = PROJECT_ROOT / "mcp_email_extractor.py"
+
+        if extractor_path.exists():
+            email_result = subprocess.run(
+                ['python', str(extractor_path)],
+                capture_output=True,
+                text=True,
+                timeout=30,
+                cwd=str(PROJECT_ROOT)
+            )
+
+            if email_result.returncode == 0:
+                # Parse JSON output from extractor
+                email_data = json.loads(email_result.stdout)
+                result.update(email_data)
+                result["success"] = True
+            else:
+                result["error"] = f"Email extractor failed: {email_result.stderr}"
+        else:
+            result["error"] = "Email extractor script not found (mcp_email_extractor.py)"
+
+        return result
+
+    except Exception as e:
+        return {
+            "success": False,
+            "critical": [],
+            "yesterday": [],
+            "last_week": [],
+            "error": str(e)
+        }
 
 # ============================================================================
 # HUBSPOT INTEGRATION
@@ -437,29 +478,72 @@ def generate_sync_report(sync_type):
     report.append("=" * 80)
     report.append("")
 
-    # Chrome MCP Status
+    # Chrome MCP Status and Email Integration
     chrome_mcp_active = check_chrome_mcp_status()
     if sync_type == "9am":
         report.append("## 📧 EMAIL ACTION ITEMS")
         report.append("")
-        if chrome_mcp_active:
+
+        # Attempt to fetch emails via Chrome MCP
+        email_data = get_superhuman_emails()
+
+        if email_data["success"]:
             report.append("**Chrome MCP Status**: ✅ CONNECTED")
-            report.append("**Email Integration**: Superhuman accessible")
+            report.append("**Email Integration**: ✅ SUPERHUMAN SYNCED")
+            report.append("")
+
+            # Critical emails (last hour)
+            report.append("### 🚨 CRITICAL (Last Hour)")
+            if email_data["critical"]:
+                for email in email_data["critical"]:
+                    report.append(f"- {email}")
+            else:
+                report.append("- ✅ No critical emails in last hour")
+            report.append("")
+
+            # Yesterday's queue
+            report.append("### Yesterday's Email Queue")
+            if email_data["yesterday"]:
+                for email in email_data["yesterday"][:5]:
+                    report.append(f"- {email}")
+                if len(email_data["yesterday"]) > 5:
+                    report.append(f"- _(+{len(email_data['yesterday']) - 5} more)_")
+            else:
+                report.append("- ✅ Inbox Zero achieved yesterday")
+            report.append("")
+
+            # Last 7 days priorities
+            report.append("### Last 7 Days Priorities")
+            if email_data["last_week"]:
+                for email in email_data["last_week"][:5]:
+                    report.append(f"- {email}")
+                if len(email_data["last_week"]) > 5:
+                    report.append(f"- _(+{len(email_data['last_week']) - 5} more)_")
+            else:
+                report.append("- ✅ No overdue priorities from last week")
+            report.append("")
+
+        else:
+            # Chrome MCP not working - show manual extraction mode
+            if chrome_mcp_active:
+                report.append("**Chrome MCP Status**: ✅ CONNECTED")
+            else:
+                report.append("**Chrome MCP Status**: ❌ DISCONNECTED")
+
+            report.append("**Email Integration**: ⚠️  MANUAL MODE")
+            if email_data.get("error"):
+                report.append(f"**Error**: {email_data['error']}")
             report.append("")
             report.append("### 🚨 CRITICAL (Last Hour)")
-            report.append("_(Manual extraction from Superhuman required)_")
+            report.append("_(Manual check in Superhuman required)_")
             report.append("")
             report.append("### Yesterday's Email Queue")
-            report.append("_(Manual extraction from Superhuman required)_")
+            report.append("_(Manual check in Superhuman required)_")
             report.append("")
             report.append("### Last 7 Days Priorities")
-            report.append("_(Manual extraction from Superhuman required)_")
-        else:
-            report.append("**Chrome MCP Status**: ❌ DISCONNECTED")
-            report.append("**Email Integration**: Unavailable - Restart Chrome MCP on port 12306")
+            report.append("_(Manual check in Superhuman required)_")
             report.append("")
-            report.append("**CRITICAL**: Email action items cannot be loaded without Chrome MCP")
-        report.append("")
+
         report.append("---")
         report.append("")
 

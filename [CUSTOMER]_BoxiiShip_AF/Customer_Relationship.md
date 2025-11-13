@@ -94,9 +94,10 @@
 ### Resolution & Post-Mortem
 
 **Technical Fix Implemented (May 1, 2025)**:
-- ACI-WS removed from Xparcel Priority routing for TX, AZ destinations
-- CA ZIP limits tightened to 1-day transit zones only
+- **FAST Group Network Integration**: FirstMile, ACI, and Sindel unified as one network
+- **ZIP Limit Controls**: Strict ZIP limits to ensure delivery performance (90-95% by Day 3 for Priority/Exp Plus, by Day 5 for Expedited)
 - Performance stabilized to pre-April levels
+- **White Glove Service**: Weekly touchbase meetings, weekly transit monitoring, dedicated account oversight
 
 **Critical Gap**:
 - Customer left in July 2025 before seeing May improvements

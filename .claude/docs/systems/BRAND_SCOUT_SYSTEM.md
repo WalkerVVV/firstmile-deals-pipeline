@@ -65,6 +65,51 @@ Autonomous lead research system that generates comprehensive Brand Scout reports
 
 ---
 
+## 🆕 Brand Scout v4.0 - November 2025 Update
+
+### What's New
+
+**Structured Report Format (5 Sections)**:
+1. **HubSpot Lead Record** - Direct field mappings for lead creation (table format)
+2. **Shipping Operations** - Comprehensive carrier and fulfillment data (table format)
+3. **Detailed Findings & Evidence** - Narrative summaries with confidence indicators
+4. **Confidence Levels & Sources** - All data points marked ✅ ⚠️ or ❌ with source URLs
+5. **Research Sources** - Complete source documentation
+
+**6-Step HubSpot Automation**:
+1. Extract and Normalize Data
+2. Create/Upsert Contacts (Primary + Secondary decision makers)
+3. Create/Upsert Company (match by domain)
+4. Associate Contacts to Company
+5. Create Lead/Deal (Sales Pipeline, Qualification stage)
+6. Log Results and Gaps
+
+**Key Improvements**:
+- ✅ HubSpot-ready tables (copy/paste directly into fields)
+- ✅ Confidence level indicators throughout (✅ ⚠️ ❌)
+- ✅ Specific 3PL provider requirements (company name, not just "they use a 3PL")
+- ✅ Customer review pattern analysis for actual performance data
+- ✅ Python automation script included in documentation
+
+### Migration from v3.7 to v4.0
+
+**When to Use v4.0 Template**:
+- All NEW Brand Scout leads (starting Nov 13, 2025)
+- Manual research converted to structured format
+- Competitive intelligence reports
+
+**When to Use v3.7 Template** (Legacy):
+- Existing leads already in pipeline (no need to migrate)
+- Quick reference reports (< 15 minutes)
+- Internal research notes (not for HubSpot entry)
+
+**Backward Compatibility**:
+- v3.7 reports remain valid and usable
+- No need to regenerate existing reports
+- Both templates supported through 2025
+
+---
+
 ## 🧠 Research Protocol
 
 ### Phase 1: Initial Discovery (5-10 min)
@@ -374,10 +419,26 @@ echo "Carbon38|https://carbon38.com" >> research_queue.txt
 
 ## 📚 Reference Files
 
+### Core Templates (v4.0 - Nov 2025)
+- **Brand Scout Report Template**: `.claude/brand_scout/BRAND_SCOUT_TEMPLATE.md` ⭐ **NEW**
+  - 5-section structured format with HubSpot field mappings
+  - Confidence level indicators (✅ ⚠️ ❌)
+  - Specific 3PL provider requirements
+  - Customer review pattern analysis
+
+- **HubSpot Lead Creation Process**: `.claude/brand_scout/HUBSPOT_LEAD_CREATION_PROCESS.md` ⭐ **NEW**
+  - 6-step automation process for Brett Walker's account
+  - API endpoint documentation with examples
+  - Field validation and error handling
+  - Python implementation reference
+
+### Legacy Templates (v3.7)
 - **Main Instructions**: `.claude/brand_scout/BRAND_SCOUT_INSTRUCTIONS.md`
 - **Template**: `.claude/brand_scout/templates/brand_scout_v3.7_template.md`
 - **Research Guide**: `.claude/brand_scout/config/research_guidelines.md`
 - **Chrome Playbook**: `.claude/brand_scout/config/chrome_devtools_playbook.md`
+
+### Integration Guides
 - **HubSpot Integration**: `.claude/HUBSPOT_WORKFLOW_GUIDE.md`
 - **Pipeline Reference**: `.claude/NEBUCHADNEZZAR_REFERENCE.md`
 
@@ -447,7 +508,7 @@ echo "Carbon38|https://carbon38.com" >> research_queue.txt
 
 ---
 
-**Version**: Brand Scout v3.7
-**Last Updated**: 2025-10-08
+**Version**: Brand Scout v4.0 (November 2025 Update)
+**Last Updated**: 2025-11-13
 **Owner**: Brett Walker, FirstMile Revenue Architect
-**Integration**: Nebuchadnezzar v2.0 Pipeline
+**Integration**: Nebuchadnezzar v3.0 Pipeline + HubSpot CRM Automation

@@ -67,28 +67,11 @@ def extract_superhuman_emails_via_mcp():
         result["success"] = True
 
     except ImportError:
-        # No MCP bridge available - return mock data for testing
-        result["error"] = "Running in standalone mode - no MCP bridge available"
-        result["mode"] = "mock"
-
-        # Mock data for testing the sync report format
-        result["critical"] = [
-            "📧 **Upstate Prep** - Implementation kickoff meeting confirmation (urgent)",
-            "💰 **Josh's Frogs** - Pricing question - needs response today"
-        ]
-
-        result["yesterday"] = [
-            "📊 **BoxiiShip** - Q4 volume forecast review requested",
-            "🔍 **Stackd Logistics** - Contract review scheduled for Friday",
-            "📞 **Tinoco Enterprises** - Follow-up call notes from yesterday"
-        ]
-
-        result["last_week"] = [
-            "⚡ **IronLink** - Win-back proposal - awaiting response (5 days old)",
-            "📧 **Logystico** - Skupreme integration timeline question (3 days old)"
-        ]
-
-        result["success"] = True  # Mock data is "successful"
+        # No MCP bridge available - FAIL (no mock data allowed)
+        result["error"] = "Chrome MCP bridge not available - email extraction failed"
+        result["mode"] = "failed"
+        result["success"] = False
+        # NO MOCK DATA - empty arrays remain as initialized
 
     except Exception as e:
         result["error"] = f"Unexpected error: {str(e)}"

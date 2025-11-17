@@ -54,8 +54,23 @@ desktop.ini
 # - Customer data files (.xlsx, .csv, .txt)
 # - Analysis scripts (.py)
 # - Documentation (.md)
-# - Logs and reports
+# - Logs and reports (sync_reports/, _DAILY_LOG.md)
 # - Temporary files
 # - All customer folders
 # ============================================================================
-nul
+#
+# Sync System Files (in project folder):
+# These are runtime/user data - excluded from git commits
+# ============================================================================
+_DAILY_LOG.md
+FOLLOW_UP_REMINDERS.txt
+superhuman_emails.json
+sync_reports/
+
+# ============================================================================
+# CUSTOMER DATA FILES (Confidential)
+# ============================================================================
+**/FirstMile_Xparcel_Performance_*.xlsx
+**/*_FRESH_Report_*.xlsx
+**/*_Full_Report_*.xlsx
+**/*BoxiiShip*.xlsx

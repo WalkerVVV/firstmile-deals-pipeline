@@ -1,0 +1,136 @@
+# ACTION PRIORITY CONFIGURATION
+# Scoring rules for action prioritization engine
+# Adjust these values to tune priority rankings without code changes
+#
+# Last Updated: 2025-11-14
+# Version: 1.0
+
+# ==============================================================================
+# EMAIL SCORING RULES
+# ==============================================================================
+# Higher scores = higher urgency
+# Adjust if emails always/never top priority
+
+email_scores:
+  critical_last_hour: 50      # Emails from last 60 minutes (highest urgency)
+  yesterday: 20               # Emails from yesterday (medium urgency)
+  last_week: 10               # Emails from last 7 days (lower urgency)
+
+# ==============================================================================
+# DEAL SCORING RULES
+# ==============================================================================
+# Higher scores = more important
+# Adjust based on business priorities
+
+deal_scores:
+  high_priority: 40           # HubSpot HIGH priority flag
+  overdue_task: 30            # Has overdue task in HubSpot
+  stuck_21_days: -50          # No movement in 21+ days (DEAD DEAL - negative points)
+  stuck_14_days: -25          # No movement in 14-20 days (STALE - negative points)
+  stuck_7_days: 15            # No movement in 7-13 days (needs follow-up)
+  implementation_stage: 15    # In implementation stage (active work)
+  rate_creation_stage: 15     # In rate creation stage (critical path)
+  proposal_sent_stage: 10     # Proposal sent, awaiting response
+
+# ==============================================================================
+# STAGE WEIGHTS
+# ==============================================================================
+# Higher weight = more attention needed
+# CRITICAL: Stage is MOST important factor (matches prioritization_agent.py)
+# Revenue-generating stages get highest weights
+
+stage_weights:
+  "08d9c411-5e1b-487b-8732-9c2bcbbd0307": 50     # [06-IMPLEMENTATION] (HIGHEST: New customer about to ship)
+  "4e549d01-674b-4b31-8a90-91ec03122715": 42     # [05-SETUP-DOCS-SENT] (Setup phase, nearly closed)
+  "d607df25-2c6d-4a5d-9835-6ed1e4f4020a": 35     # [04-PROPOSAL-SENT] (Proposal out, awaiting decision)
+  "e1c4321e-afb6-4b29-97d4-2b2425488535": 27     # [03-RATE-CREATION] (Creating rates, active sales work)
+  "d2a08d6f-cc04-4423-9215-594fe682e538": 17     # [02-DISCOVERY-COMPLETE] (Discovery done, needs follow-up)
+  "1090865183": 10                                # [01-DISCOVERY-SCHEDULED] (LOWEST: Early stage/leads)
+  "3fd46d94-78b4-452b-8704-62a338a210fb": 5      # [07-STARTED-SHIPPING] (Customer, not sales priority)
+
+# ==============================================================================
+# ACTION DISPLAY SETTINGS
+# ==============================================================================
+
+# Number of top actions to display in sync reports
+# Default: 3 (can increase to 5 for more options)
+top_action_count: 3
+
+# Maximum score for score normalization
+# Actions are scored 0-100, this caps the display range
+max_display_score: 100
+
+# ==============================================================================
+# CONTINUITY VALIDATION SETTINGS
+# ==============================================================================
+
+continuity_validation:
+  # Strict mode: Fail sync if validation fails
+  # Warn-only mode: Print warning but continue sync
+  strict_mode: false
+  warn_only: true
+
+  # Required sections for each sync type
+  # These sections must exist in _DAILY_LOG.md for validation to pass
+  required_sections:
+    9am:
+      - "Yesterday's Completions"
+      - "Yesterday's Learnings"
+    noon:
+      - "TODAY'S TOP 3 PRIORITIES"
+      - "Morning Progress"
+    3pm:
+      - "NOON CHECK-IN"
+      - "Afternoon Progress"
+    eod:
+      - "3PM CHECK-IN"
+      - "End of Day Wrap"
+
+# ==============================================================================
+# NEXT-STEP RECOMMENDATIONS BY STAGE
+# ==============================================================================
+
+next_step_templates:
+  "1090865183": "Prepare discovery call agenda and questions"
+  "d2a08d6f-cc04-4423-9215-594fe682e538": "Review notes and initiate rate creation process"
+  "e1c4321e-afb6-4b29-97d4-2b2425488535": "Complete rate analysis and prepare proposal"
+  "d607df25-2c6d-4a5d-9835-6ed1e4f4020a": "Follow up on proposal and address questions"
+  "4e549d01-674b-4b31-8a90-91ec03122715": "Check document completion status"
+  "08d9c411-5e1b-487b-8732-9c2bcbbd0307": "Monitor implementation progress and resolve blockers"
+  "3fd46d94-78b4-452b-8704-62a338a210fb": "Review initial shipment performance"
+
+# ==============================================================================
+# TIME THRESHOLDS
+# ==============================================================================
+
+time_thresholds:
+  # Days without movement to consider "stuck"
+  stuck_warning_days: 14
+  stuck_critical_days: 21
+
+  # Email age categories (in hours)
+  critical_email_age: 1     # Last hour
+  recent_email_age: 24      # Yesterday
+  older_email_age: 168      # Last week (7 days)
+
+# ==============================================================================
+# TUNING NOTES
+# ==============================================================================
+#
+# If emails always outrank deals:
+#   - Reduce email_scores values
+#   - Increase deal_scores values
+#
+# If stuck deals not showing up:
+#   - Increase stuck_14_days and stuck_21_days scores
+#   - Decrease time_thresholds.stuck_warning_days
+#
+# If wrong stages prioritized:
+#   - Adjust stage_weights for bottleneck stages
+#   - Increase weights for stages that need attention
+#
+# If validation too strict:
+#   - Set strict_mode: false
+#   - Set warn_only: true
+#   - Remove required_sections if too many false positives
+#

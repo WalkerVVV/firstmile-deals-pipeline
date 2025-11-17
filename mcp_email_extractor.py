@@ -1,30 +1,45 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 MCP Email Extractor - Superhuman Integration via Chrome MCP
-Called by unified_sync.py to fetch email priorities
 
-NOTE: This script MUST be run from within Claude Code conversation context
-to have access to Chrome MCP tools. When run standalone, it returns mock data.
+Reads email data from superhuman_emails.json (extracted by Claude Code using Chrome MCP)
+Returns structured JSON for sync reports.
+
+Usage:
+    python mcp_email_extractor.py
+
+Output (JSON):
+    {
+        "success": true/false,
+        "critical": ["email 1", "email 2"],
+        "yesterday": ["email 1", "email 2"],
+        "last_week": ["email 1", "email 2"],
+        "error": null or "error message"
+    }
 """
 
-import json
 import sys
-from datetime import datetime, timedelta
+import json
+import os
+import io
+from pathlib import Path
+from datetime import datetime
+
+# Fix Windows console encoding for emoji support
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+# Path to email data file (created by Claude Code using Chrome MCP)
+EMAIL_DATA_FILE = Path(__file__).parent / "superhuman_emails.json"
 
 
-def extract_superhuman_emails_via_mcp():
+def load_superhuman_emails():
     """
-    Extract emails from Superhuman using Chrome MCP tools
+    Load email data from superhuman_emails.json
 
-    This function is designed to be called FROM Claude Code where
-    MCP tools are available in the conversation context.
-
-    When run as standalone script, returns mock/example data.
+    This file is created/updated by Claude Code using Chrome MCP tools
+    to extract real email data from Superhuman inbox.
     """
-
-    # Check if we're running in Claude Code context with MCP tools
-    # If not, return example structure for testing
 
     result = {
         "success": False,
@@ -32,63 +47,83 @@ def extract_superhuman_emails_via_mcp():
         "yesterday": [],
         "last_week": [],
         "error": None,
-        "mode": "standalone"
+        "mode": "unknown"
     }
 
     try:
-        # Attempt to import Claude Code MCP bridge (if available)
-        # This would be a custom module that bridges subprocess to MCP tools
-        # For now, this will fail gracefully and use mock data
+        # Check if email data file exists
+        if not EMAIL_DATA_FILE.exists():
+            result["error"] = f"Email data file not found: {EMAIL_DATA_FILE}"
+            result["mode"] = "file_missing"
+            return result
 
-        from claude_mcp_bridge import chrome_mcp_client
+        # Load email data
+        with open(EMAIL_DATA_FILE, 'r', encoding='utf-8') as f:
+            email_data = json.load(f)
 
-        # If we get here, we have access to MCP tools
-        result["mode"] = "mcp"
+        # Check if data is stale (smart business hours logic)
+        if "timestamp" in email_data:
+            data_time = datetime.fromisoformat(email_data["timestamp"])
+            now = datetime.now()
+            age_hours = (now - data_time).total_seconds() / 3600
 
-        # Navigate to Superhuman
-        chrome_mcp_client.navigate("https://mail.superhuman.com")
-        chrome_mcp_client.wait(2000)  # Wait for load
+            # Smart staleness: Allow weekend-old data on Monday morning
+            # Monday before noon: Accept Friday data (up to 72 hours)
+            # Otherwise: Accept data from same business day (up to 24 hours)
+            max_age_hours = 24
+            if now.weekday() == 0 and now.hour < 12:  # Monday before noon
+                max_age_hours = 72
 
-        # Get inbox content
-        inbox_html = chrome_mcp_client.get_content(selector=".inbox-container")
+            if age_hours > max_age_hours:
+                result["error"] = f"Email data is stale ({age_hours:.1f} hours old). Run Chrome MCP extraction to update."
+                result["mode"] = "stale"
+                return result
 
-        # Parse emails (simplified - real implementation would be more robust)
-        now = datetime.now()
-        one_hour_ago = now - timedelta(hours=1)
-        yesterday_start = now - timedelta(days=1)
-        week_ago = now - timedelta(days=7)
-
-        # Extract and categorize emails
-        # This is where real parsing logic would go
-
-        result["critical"] = []  # Emails from last hour
-        result["yesterday"] = []  # Emails from yesterday
-        result["last_week"] = []  # Emails from last 7 days
+        # Extract email lists
+        result["critical"] = email_data.get("critical", [])
+        result["yesterday"] = email_data.get("yesterday", [])
+        result["last_week"] = email_data.get("last_week", [])
+        result["mode"] = email_data.get("mode", "live")
         result["success"] = True
 
-    except ImportError:
-        # No MCP bridge available - FAIL (no mock data allowed)
-        result["error"] = "Chrome MCP bridge not available - email extraction failed"
-        result["mode"] = "failed"
-        result["success"] = False
-        # NO MOCK DATA - empty arrays remain as initialized
+        return result
+
+    except json.JSONDecodeError as e:
+        result["error"] = f"Invalid JSON in email data file: {str(e)}"
+        result["mode"] = "json_error"
+        return result
 
     except Exception as e:
-        result["error"] = f"Unexpected error: {str(e)}"
-        result["success"] = False
-
-    return result
+        result["error"] = f"Error loading email data: {str(e)}"
+        result["mode"] = "error"
+        return result
 
 
 def main():
-    """Main entry point when run as script"""
-    result = extract_superhuman_emails_via_mcp()
+    """Main entry point - returns JSON only to stdout"""
 
-    # Output as JSON for unified_sync.py to parse
-    print(json.dumps(result, indent=2))
+    try:
+        result = load_superhuman_emails()
 
-    # Return success/failure exit code
-    sys.exit(0 if result["success"] else 1)
+        # Print ONLY JSON to stdout (this is what unified_sync.py will read)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+
+        # Exit with appropriate code
+        sys.exit(0 if result["success"] else 1)
+
+    except Exception as e:
+        # On catastrophic failure, return error JSON
+        error_result = {
+            "success": False,
+            "critical": [],
+            "yesterday": [],
+            "last_week": [],
+            "error": f"Fatal error in mcp_email_extractor: {str(e)}",
+            "mode": "fatal_error"
+        }
+
+        print(json.dumps(error_result, ensure_ascii=False, indent=2))
+        sys.exit(1)
 
 
 if __name__ == "__main__":

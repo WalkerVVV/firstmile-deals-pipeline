@@ -1,408 +1,454 @@
-# FirstMile Deals Management System
+# CLAUDE.md
 
-Multi-stage sales pipeline management for FirstMile shipping deals with HubSpot CRM integration and automated workflow synchronization.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 📚 Complete Documentation
+## Repository Overview
 
-**All system documentation is centralized in the `.claude` folder:**
+FirstMile Deals Management System - **The Nebuchadnezzar v3.0**: A fully automated 10-stage sales pipeline with HubSpot CRM integration, Chrome MCP email extraction, and N8N automation.
 
-- **[.claude/README.md](./.claude/README.md)** - Complete system overview & quick start
-- **[.claude/DOCUMENTATION_INDEX.md](./.claude/DOCUMENTATION_INDEX.md)** - Master navigation guide
-- **[.claude/STRUCTURE.md](./.claude/STRUCTURE.md)** - Directory organization guide
-- **[.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md](./.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md)** - All IDs, commands, & reference
-- **[.claude/docs/workflows/DAILY_SYNC_OPERATIONS.md](./.claude/docs/workflows/DAILY_SYNC_OPERATIONS.md)** - 9AM, NOON, EOD workflows
-- **[.claude/docs/workflows/HUBSPOT_WORKFLOW_GUIDE.md](./.claude/docs/workflows/HUBSPOT_WORKFLOW_GUIDE.md)** - HubSpot MCP integration
-- **[.claude/docs/templates/DEAL_FOLDER_TEMPLATE.md](./.claude/docs/templates/DEAL_FOLDER_TEMPLATE.md)** - Standard deal structure
+**Primary Technologies**: Python 3.x, HubSpot API, Chrome MCP, N8N webhooks
 
-**START HERE**: [.claude/INDEX.md](./.claude/INDEX.md)
+**Core Principle**: All automation must "do the work they're designed to do" - no mock/placeholder data, honest failure reporting when systems unavailable.
 
 ---
 
-## Project Context
+## Critical Architecture
 
-**The Nebuchadnezzar v3.0** - A fully automated 10-stage pipeline consciousness with N8N automation watching deal folder movements, zero manual data entry, and real-time tracking.
+### Unified Sync System (Single Entry Point)
 
-FirstMile is a **carrier** (not a platform/3PL) offering Xparcel ship methods:
-- **Xparcel Ground**: 3-8 day economy ground service
-- **Xparcel Expedited**: 2-5 day faster ground solution (1-20 lb)
-- **Xparcel Priority**: 1-3 day premium option with money-back guarantee
+**Location**: `unified_sync.py`
 
----
-
-## Core Workflows
-
-### 1. Daily Sync Operations
-
-**Unified Sync System v1.0** - Single script for all sync times:
-```bash
-# Morning priority report (9AM sync)
-python unified_sync.py 9am
-
-# Noon progress check
-python unified_sync.py noon
-
-# Afternoon update (3PM sync)
-python unified_sync.py 3pm
-
-# End of day summary
-python unified_sync.py eod
-
-# Weekly rollup (Sunday EOD)
-python unified_sync.py weekly
-
-# Monthly review (End of month)
-python unified_sync.py monthly
-```
-
-**Important**:
-- All syncs use comprehensive format with email integration, HubSpot live data, and execution plans
-- Automatic continuity chain: Each sync writes to `_DAILY_LOG.md` for next sync's context
-- See `UNIFIED_SYNC_GUIDE.md` for complete usage documentation
-
-### 2. HubSpot Deal Management
-```bash
-# Search deals by stage
-qm hubspot search-deals --pipeline-id 8bd9336b-4767-4e67-9fe2-35dfcad7c8be
-
-# Create new lead
-qm hubspot create-lead --first-name "John" --last-name "Smith" --email "john@company.com" --company "Acme Corp"
-
-# Convert lead to deal
-qm hubspot convert-to-deal --contact-id [ID] --deal-name "Company - Xparcel Ground" --amount 150000
-
-# Update deal stage (triggers automation)
-qm hubspot update-deal --deal-id [ID] --stage "[NEW-STAGE]"
-```
-
-### 3. Brand Scout Lead Generation
-
-**Location**: `.claude/brand_scout/` folder
-
-Automated brand research runs overnight:
-- Company info, contacts, shipping data extraction
-- Auto-creates HubSpot leads with contacts and companies
-- Generates `[00-LEAD]_BrandName` folders with relationship docs
-- Review new leads during 9AM sync in `.claude/brand_scout/output/`
-
-See [.claude/docs/systems/BRAND_SCOUT_SYSTEM.md](./.claude/docs/systems/BRAND_SCOUT_SYSTEM.md) for complete workflow.
-
-### 4. Analysis & Reporting
-
-**PLD (Parcel Level Detail) Analysis**:
-```bash
-# Run comprehensive shipping profile analysis
-python [customer_folder]/pld_analysis.py
-
-# Generate FirstMile performance report (9-tab Excel)
-python [customer_folder]/firstmile_orchestrator.py
-
-# Apply rates and calculate savings
-python [customer_folder]/apply_firstmile_rates.py
-
-# Create pricing matrix
-python [customer_folder]/create_pricing_matrix.py
-
-# Invoice audit analysis
-python [customer_folder]/invoice_audit_builder_v31.py
-```
-
----
-
-## Key Commands
-
-### Claude Code Integration
+All daily operations run through ONE script with time-specific modes:
 
 ```bash
-# Load deal context
-/load @deal_folder
-
-# Analyze shipping data
-/analyze @pld_file
-
-# Generate documentation
-/document
-
-# Commit sync reports
-/git
+python unified_sync.py 9am    # Morning priority report
+python unified_sync.py noon   # Mid-day progress check
+python unified_sync.py 3pm    # Afternoon adjustment
+python unified_sync.py eod    # End of day wrap-up
+python unified_sync.py weekly # Sunday comprehensive sync
+python unified_sync.py monthly # Month-end analysis
 ```
 
-### Slash Commands (Project-Specific)
+**Architecture Pattern**:
+1. Email Integration: Chrome MCP → `superhuman_emails.json` → `mcp_email_extractor.py` subprocess
+2. HubSpot Live Data: Direct API calls via `hubspot_sync_core.py`
+3. Report Generation: Comprehensive markdown format saved to `sync_reports/`
+4. Continuity Chain: Updates `_DAILY_LOG.md` for next sync's context
 
-Located in `.claude/commands/`:
-- `/sync [time]` - Trigger sync workflows
-- `/deal [action]` - Deal management operations
-- `/report [type]` - Generate analysis reports
-- `/scout [company]` - Run brand scout research
+**Key Files**:
+- `sync_reports/` - Timestamped sync outputs (project folder, not Downloads)
+- `_DAILY_LOG.md` - Continuity log (project root)
+- `FOLLOW_UP_REMINDERS.txt` - Action queue (project root)
+- `superhuman_emails.json` - Email cache (refreshed each sync)
 
----
+### Chrome MCP Email Integration
 
-## Important Conventions
+**CRITICAL**: Two-step architecture (subprocess cannot access MCP tools directly):
 
-### Deal Folder Naming
+**Step 1 - Claude Code extracts emails**:
 ```
-Format: [##-STAGE]_Company_Name
-
-Examples:
-[01-DISCOVERY-SCHEDULED]_Acme_Corp
-[04-PROPOSAL-SENT]_Boxiiship
-[07-CLOSED-WON]_Easy_Group_LLC
+Use Chrome MCP tools in conversation:
+- mcp__chrome-mcp-server__chrome_navigate → Open Superhuman
+- mcp__chrome-mcp-server__chrome_get_web_content → Extract inbox
+- Write structured data to superhuman_emails.json
 ```
 
-Moving folders between stages triggers N8N automation workflows.
+**Step 2 - Subprocess reads cached data**:
+```python
+# mcp_email_extractor.py reads from JSON file
+# unified_sync.py calls subprocess with UTF-8 encoding:
+subprocess.run(['python', 'mcp_email_extractor.py'], encoding='utf-8')
+```
 
-### Pipeline Stages
+**Never**:
+- Create mock/placeholder email data
+- Return `success: True` with fake emails
+- Try to access MCP tools from subprocess
+
+**Always**:
+- Use real Chrome MCP extraction in Claude Code conversation
+- Save extracted data to `superhuman_emails.json`
+- Return `success: False` when data unavailable/stale (>2 hours)
+- Include UTF-8 stdout wrapper for emoji support
+
+### HubSpot API Integration
+
+**Centralized Module**: `hubspot_sync_core.py`
+
+**Rate Limiting Architecture**:
+- Burst limit: 100 requests per 10 seconds (token bucket)
+- Daily limit: 150,000 requests per 24 hours
+- Automatic retry with exponential backoff
+- Thread-safe request queue management
+
+**Standard Pattern**:
+```python
+import os
+from dotenv import load_dotenv
+import requests
+
+load_dotenv()
+API_KEY = os.environ.get('HUBSPOT_API_KEY')
+
+headers = {
+    'Authorization': f'Bearer {API_KEY}',
+    'Content-Type': 'application/json'
+}
+
+# Direct API calls for scripts (when hubspot_sync_core unavailable)
+response = requests.post(
+    f"https://api.hubapi.com/crm/v3/objects/deals/search",
+    headers=headers,
+    json=payload
+)
+```
+
+**Critical Field Rules**:
+- Timestamps: Unix milliseconds (not ISO strings)
+- Association type IDs: 214 (Note-Deal), 216 (Task-Deal), 280 (Contact-Company), 341 (Deal-Company)
+- Never hardcode API keys (use `.env` file)
+
+### Deal Folder Automation
+
+**Naming Convention**: `[##-STAGE]_Company_Name`
+
+Moving folders between stages triggers N8N webhook automation:
+
 ```
 [00-LEAD] → [01-DISCOVERY-SCHEDULED] → [02-DISCOVERY-COMPLETE] →
 [03-RATE-CREATION] → [04-PROPOSAL-SENT] → [05-SETUP-DOCS-SENT] →
 [06-IMPLEMENTATION] → [07-CLOSED-WON] → [08-CLOSED-LOST] → [09-WIN-BACK]
 ```
 
-See [.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md](./.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md) for stage IDs and automation rules.
+**Pipeline ID**: `8bd9336b-4767-4e67-9fe2-35dfcad7c8be`
 
-### Script Standards
-
-**All Python scripts must**:
-1. Use `CredentialManager` for API keys (never hardcode)
-2. Import shared functions from `hubspot_sync_core.py`
-3. Generate output in markdown format
-4. Update deal memory database (`DEAL_MEMORY_DATABASE.json`)
-5. Log to standard locations
-
-**Standard Pattern**:
-```python
-from utils.credential_manager import CredentialManager
-from hubspot_sync_core import HubSpotSyncManager
-
-# Load and validate credentials
-CredentialManager.load_and_validate()
-config = CredentialManager.get_hubspot_config()
-
-# Use shared sync manager
-sync_manager = HubSpotSyncManager(**config)
-deals = sync_manager.fetch_active_deals()
-```
-
-### Credential Management
-
-**Never commit**:
-- `.env` files (use `.env.example` as template)
-- API keys or tokens in code
-- `settings.local.json` files
-
-**Always**:
-- Use `python-dotenv` to load environment variables
-- Validate required vars before execution
-- Reference tokens via `${VAR_NAME}` in configs
-
-### Documentation Updates
-
-When adding/modifying workflows:
-1. Update relevant `.claude/` documentation
-2. Add entry to `DOCUMENTATION_INDEX.md`
-3. Update `CHANGELOG.md` with changes
-4. Commit docs with descriptive messages
+**Stage IDs** (see `.claude/docs/reference/VERIFIED_STAGE_IDS.md`):
+- `1090865183`: [01-DISCOVERY-SCHEDULED]
+- `d2a08d6f-cc04-4423-9215-594fe682e538`: [02-DISCOVERY-COMPLETE]
+- `e1c4321e-afb6-4b29-97d4-2b2425488535`: [03-RATE-CREATION]
+- `d607df25-2c6d-4a5d-9835-6ed1e4f4020a`: [04-PROPOSAL-SENT]
+- `4e549d01-674b-4b31-8a90-91ec03122715`: [05-SETUP-DOCS-SENT]
+- `08d9c411-5e1b-487b-8732-9c2bcbbd0307`: [06-IMPLEMENTATION]
+- `3fd46d94-78b4-452b-8704-62a338a210fb`: [07-STARTED-SHIPPING]
 
 ---
 
-## MCP Integration
+## Windows Console Encoding (Critical Fix Pattern)
 
-### Configured Servers
+**Problem**: Windows default encoding (cp1252) fails with emojis in output
 
-**Active**:
-- `github` - PR management, commit automation, issue tracking
-- `brightdata` - Lead research, competitive intelligence, web scraping
-- `Ref` - Documentation search and reference
+**Solution**: Add UTF-8 wrapper to ALL Python scripts that output text:
 
-**Available** (add to `.mcp.json` if needed):
-- `notion` - Knowledge management (currently configured)
-- Custom HubSpot MCP (evaluation in progress)
+```python
+import sys
+import io
 
-### Usage Examples
+# Fix Windows console encoding for emoji support
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+```
+
+**Subprocess Calls**: Use `encoding='utf-8'` parameter:
+
+```python
+result = subprocess.run(
+    ['python', 'script.py'],
+    capture_output=True,
+    encoding='utf-8',  # NOT text=True (uses cp1252)
+    timeout=30
+)
+```
+
+**Applied To**:
+- `mcp_email_extractor.py`
+- `unified_sync.py`
+- `update_boxiiship_nov12_meeting.py`
+- All scripts that output to console
+
+---
+
+## Brand Scout Lead Generation
+
+**Location**: `.claude/brand_scout/`
+
+**Workflow**:
+1. Overnight automated research (external trigger)
+2. Generates reports in `.claude/brand_scout/output/`
+3. Creates `[00-LEAD]_CompanyName` folders with research
+4. 9AM sync detects new leads and prompts outreach
+
+**Template**: `.claude/brand_scout/BRAND_SCOUT_TEMPLATE.md`
+**Process**: `.claude/brand_scout/HUBSPOT_LEAD_CREATION_PROCESS.md`
+
+**HubSpot Integration**:
+```python
+# 6-step automation:
+# 1. Create company
+# 2. Create primary contact (CEO/Founder)
+# 3. Create secondary contact (COO/Operations)
+# 4. Associate contacts with company
+# 5. Create deal
+# 6. Associate deal with company and contacts
+```
+
+---
+
+## Common Commands
+
+### Daily Operations
 
 ```bash
-# GitHub operations
-mcp__github__list_pull_requests
-mcp__github__create_issue
-mcp__github__search_code
+# Morning sync (9AM)
+python unified_sync.py 9am
 
-# BrightData research
-mcp__brightdata__search_engine
-mcp__brightdata__scrape_as_markdown
+# Noon check
+python unified_sync.py noon
 
-# Documentation search
-mcp__Ref__ref_search_documentation
-mcp__Ref__ref_read_url
+# End of day wrap
+python unified_sync.py eod
+
+# Update specific HubSpot deal
+python update_boxiiship_nov12_meeting.py  # Example deal update script
 ```
 
----
+### Customer Analysis
 
-## Quality Standards
+```bash
+# PLD (Parcel Level Detail) analysis
+cd [CUSTOMER]_Folder
+python pld_analysis.py
 
-### Code Quality
+# FirstMile performance report (9-tab Excel)
+python firstmile_orchestrator.py
 
-- **DRY Principle**: Use shared modules, no duplicate code
-- **Error Handling**: Try/except with meaningful messages
-- **Rate Limiting**: All HubSpot calls through rate-limited manager
-- **Testing**: Validate credentials before API calls
-- **Logging**: Consistent logging format with timestamps
+# Rate application and savings calculation
+python apply_firstmile_rates.py
 
-### Reporting Standards
+# Invoice audit analysis
+python invoice_audit_builder_v31.py
+```
 
-**Follow global FirstMile framework** (see `~/.claude/FIRSTMILE.md`):
-- Always lead with SLA compliance metrics (not daily delivery %)
-- Use "National" or "Select" network (never name UPS, FedEx, USPS)
-- Spell "eCommerce" with camel-case 'C'
-- Apply FirstMile blue (#366092) to Excel headers
-- Generate 9-tab structure for performance reports
+### HubSpot Operations
 
-### Sync Report Format
+```bash
+# Search deals by stage
+qm hubspot search-deals --pipeline-id 8bd9336b-4767-4e67-9fe2-35dfcad7c8be
 
-All daily sync reports must include:
-1. **Yesterday's Context**: Activities and learnings from previous day
-2. **Active Deals**: Current pipeline status by stage
-3. **Priority Actions**: Top 3-5 actions for today
-4. **Follow-Up Queue**: Upcoming tasks with due dates
-5. **Brand Scout Results**: New leads from overnight research
+# Create lead with contacts
+python create_[company]_lead.py  # Generated by Brand Scout
 
----
-
-## System File Locations
-
-### Configuration
-- **Project Root**: `/c/Users/BrettWalker/firstmile_deals/`
-- **Python Config**: `config.py`, `hubspot_config.py`, `hubspot_utils.py`
-- **Environment**: `.env` (never commit), `.env.example` (template)
-- **Dependencies**: `requirements.txt`, `requirements-dev.txt`
-
-### Automation & Tracking
-- **Pipeline DB**: `C:\Users\BrettWalker\Downloads\_PIPELINE_TRACKER.csv`
-- **Activity Log**: `C:\Users\BrettWalker\Downloads\_DAILY_LOG.md`
-- **Action Queue**: `C:\Users\BrettWalker\Downloads\FOLLOW_UP_REMINDERS.txt`
-- **Dashboard**: `C:\Users\BrettWalker\Desktop\AUTOMATION_MONITOR_LOCAL.html`
-
-### Deal Folders
-- **Active Deals**: `[##-STAGE]_Company_Name/` directories
-- **Archive**: `_ARCHIVE/` folder
-- **Leads**: `_LEADS/` folder
-- **Templates**: `[##-STAGE]_Template/` folders
+# Update deal stage (triggers N8N automation)
+qm hubspot update-deal --deal-id [ID] --stage "[STAGE-ID]"
+```
 
 ---
 
 ## Critical Business Rules
 
-### Billable Weight Calculation
-ALL carriers follow these rules:
-- Under 1 lb: Round UP to next whole oz, MAX 15.99 oz
-- 16 oz exactly: Bills as 1 lb
-- Over 1 lb: Round UP to next whole pound (32, 48, 64 oz, etc.)
+### FirstMile Service Levels
 
-### SLA Windows
-- Xparcel Priority: 3 days
-- Xparcel Expedited: 5 days
-- Xparcel Ground: 8 days
+FirstMile is a **carrier** (not 3PL) offering Xparcel ship methods:
+- **Xparcel Ground**: 3-8 day economy (SLA: 8 business days)
+- **Xparcel Expedited**: 2-5 day faster ground (SLA: 5 business days)
+- **Xparcel Priority**: 1-3 day premium (SLA: 3 business days)
 
-### Performance Thresholds
+**Network Terminology**:
+- "National Network": Nationwide coverage (100% U.S. ZIPs)
+- "Select Network": High-density metro injection points
+- **Never** name specific carriers (UPS, FedEx, USPS) in reports
+
+### Performance Reporting Standards
+
+**SLA Compliance** (see `~/.claude/FIRSTMILE.md`):
+- Always lead with SLA compliance percentages (NOT daily delivery %)
+- Calculate only on delivered shipments (exclude in-transit)
+- Report three separate percentages (Priority, Expedited, Ground)
+
+**Thresholds**:
 - Perfect Compliance: 100%
 - Exceeds Standard: ≥95%
 - Meets Standard: ≥90%
 - Below Standard: <90%
 
+**Excel Report Structure** (9 tabs):
+1. Executive Summary
+2. SLA Compliance (delivered-only with color scale)
+3. Transit Performance (daily distribution)
+4. Geographic Distribution (top 15 states)
+5. Zone Analysis (1-8, Regional vs Cross-Country)
+6. Operational Metrics
+7. In-Transit Detail (undelivered with SLA window)
+8. Notes & Assumptions
+9. Brand Style Guide (#366092 FirstMile blue)
+
+### Billable Weight Rules
+
+ALL carriers follow these rules:
+- Under 1 lb: Round UP to next whole oz, MAX 15.99 oz
+- 16 oz exactly: Bills as 1 lb
+- Over 1 lb: Round UP to next whole pound
+
 ---
 
-## Common Operations
+## File Structure
 
-### Create New Deal Folder
-```bash
-# Use template based on stage
-cp -r "[01-DISCOVERY-SCHEDULED]_TEMPLATE" "[01-DISCOVERY-SCHEDULED]_NewCompany"
-
-# Customize files
-cd "[01-DISCOVERY-SCHEDULED]_NewCompany"
-# Edit DISCOVERY_NOTES.md, COMPANY_PROFILE.md, etc.
+```
+FirstMile_Deals/
+├── unified_sync.py              # Main sync orchestrator
+├── mcp_email_extractor.py       # Email subprocess (reads JSON cache)
+├── hubspot_sync_core.py         # Centralized HubSpot API module
+├── update_[deal]_meeting.py     # Deal-specific update scripts
+├── _DAILY_LOG.md                # Continuity chain
+├── FOLLOW_UP_REMINDERS.txt      # Action queue
+├── superhuman_emails.json       # Email cache (Chrome MCP extracted)
+├── sync_reports/                # Timestamped sync outputs
+├── .claude/
+│   ├── brand_scout/             # Lead generation system
+│   │   ├── BRAND_SCOUT_TEMPLATE.md
+│   │   ├── HUBSPOT_LEAD_CREATION_PROCESS.md
+│   │   └── output/              # Generated reports
+│   ├── agents/
+│   │   ├── prioritization_agent.py
+│   │   └── sales_execution_agent.py
+│   └── docs/                    # System documentation
+├── [##-STAGE]_Company_Name/     # Deal folders (trigger N8N on move)
+└── _ARCHIVE/                    # Closed deals
 ```
 
-### Run Daily Sync Cycle
-```bash
-# Morning (9 AM CT)
-python unified_sync.py 9am
-# Review output, update priorities
+---
 
-# Noon (12 PM CT)
-python unified_sync.py noon
-# Check progress, adjust actions
+## Known Issues & Solutions
 
-# Afternoon (3 PM CT)
-python unified_sync.py 3pm
-# Final priorities, prepare EOD
+### Sync Files Were in Downloads Folder
 
-# End of Day (before 6 PM CT)
-python unified_sync.py eod
-# Capture learnings, plan tomorrow
+**FIXED (2025-11-14)**: All sync files now in project folder:
+- `sync_reports/` instead of `Downloads/`
+- `_DAILY_LOG.md` in project root
+- `FOLLOW_UP_REMINDERS.txt` in project root
+
+### Mock Email Data
+
+**FIXED (2025-11-14)**: Removed all placeholder/mock email data
+- System honestly reports when email integration unavailable
+- Uses real Chrome MCP extraction → JSON cache → subprocess pattern
+- Never returns `success: True` with fake data
+
+### Windows Emoji Encoding
+
+**FIXED (2025-11-14)**: UTF-8 wrapper added to all scripts
+- `sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')`
+- Subprocess calls use `encoding='utf-8'` parameter
+
+### HubSpot API Timestamp Format
+
+**FIXED (2025-11-14)**: Use Unix milliseconds (not ISO strings)
+```python
+timestamp_ms = int(datetime.now().timestamp() * 1000)
+properties["hs_timestamp"] = str(timestamp_ms)
 ```
 
-### Move Deal Through Pipeline
-```bash
-# Move folder to trigger automation
-mv "[03-RATE-CREATION]_Company" "[04-PROPOSAL-SENT]_Company"
+---
 
-# Update HubSpot (if not auto-synced)
-python pipeline_sync_verification.py
+## Development Guidelines
+
+### Script Standards
+
+**All Python scripts must**:
+1. Load credentials from `.env` file (never hardcode)
+2. Use direct API calls when `hubspot_sync_core` unavailable
+3. Include Windows UTF-8 encoding fix
+4. Generate markdown output
+5. Return honest status (no mock data)
+
+**Standard Imports**:
+```python
+import os
+import sys
+import io
+from dotenv import load_dotenv
+import requests
+
+# Fix Windows encoding
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+# Load credentials
+load_dotenv()
+API_KEY = os.environ.get('HUBSPOT_API_KEY')
+```
+
+### Never Commit
+
+- `.env` files (use `.env.example` template)
+- API keys or tokens in code
+- `settings.local.json`
+- Mock/placeholder data
+- Files in `_ARCHIVE/` or old backup scripts
+
+### Documentation
+
+When modifying workflows, update:
+1. This CLAUDE.md file
+2. Relevant `.claude/docs/` files
+3. `CHANGELOG.md` with changes
+4. Commit with descriptive message
+
+---
+
+## MCP Integration
+
+**Active Servers**:
+- `github` - PR management, commit automation
+- `brightdata` - Lead research, web scraping
+- `chrome-mcp-server` - Browser automation for email extraction
+- `Ref` - Documentation search
+
+**Chrome MCP Usage** (in Claude Code conversation only):
+```
+mcp__chrome-mcp-server__chrome_navigate
+mcp__chrome-mcp-server__chrome_get_web_content
+mcp__chrome-mcp-server__chrome_screenshot
 ```
 
 ---
 
 ## Troubleshooting
 
-### Sync Script Fails
-1. Check `.env` file has all required variables
-2. Validate HubSpot API key is current
-3. Review `logs/` directory for error messages
-4. Run with `--debug` flag for verbose output
+### Email Integration Fails
+
+**Symptoms**: Sync shows "⚠️ MANUAL MODE" instead of "✅ SUPERHUMAN SYNCED"
+
+**Check**:
+1. Is `superhuman_emails.json` present and recent (<2 hours)?
+2. Run Chrome MCP extraction manually in Claude Code conversation
+3. Verify UTF-8 encoding in both scripts
 
 ### HubSpot API Errors
-1. Check rate limiting (100 calls per 10 seconds)
-2. Verify API key permissions (Private App)
-3. Confirm stage IDs match pipeline
-4. Review `hubspot_sync_core.py` error logs
 
-### Missing Deal Data
-1. Check folder naming matches convention
-2. Verify `DEAL_MEMORY_DATABASE.json` is updated
-3. Run `pipeline_sync_verification.py`
-4. Review N8N automation logs
+**Rate Limiting**: Check burst (100/10s) and daily (150K/24h) limits
+**Auth Errors**: Verify `.env` has current `HUBSPOT_API_KEY`
+**Field Errors**: Check timestamp format (Unix ms), association type IDs
 
-### Git Issues
-1. Ensure `.gitignore` excludes `.env` and `settings.local.json`
-2. Commit `.claude/` documentation files
-3. Use descriptive commit messages
-4. Push after major sync completions
+### Sync Reports in Wrong Location
+
+**Check**: `unified_sync.py` should use `SYNC_REPORTS_DIR = PROJECT_ROOT / "sync_reports"`
+**Not**: `DOWNLOADS = Path.home() / "Downloads"`
 
 ---
 
 ## See Also
 
-### Essential Documentation
-- [.claude/docs/workflows/DAILY_SYNC_OPERATIONS.md](./.claude/docs/workflows/DAILY_SYNC_OPERATIONS.md) - Complete sync workflow
-- [.claude/docs/workflows/HUBSPOT_WORKFLOW_GUIDE.md](./.claude/docs/workflows/HUBSPOT_WORKFLOW_GUIDE.md) - HubSpot integration
-- [.claude/docs/templates/DEAL_FOLDER_TEMPLATE.md](./.claude/docs/templates/DEAL_FOLDER_TEMPLATE.md) - Deal folder structure
-- [.claude/docs/systems/BRAND_SCOUT_SYSTEM.md](./.claude/docs/systems/BRAND_SCOUT_SYSTEM.md) - Automated lead generation
+**Complete Documentation**: `.claude/` folder
+- [.claude/README.md](./.claude/README.md) - System overview
+- [.claude/DOCUMENTATION_INDEX.md](./.claude/DOCUMENTATION_INDEX.md) - Navigation guide
+- [.claude/docs/workflows/DAILY_SYNC_OPERATIONS.md](./.claude/docs/workflows/DAILY_SYNC_OPERATIONS.md) - Detailed sync workflow
+- [.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md](./.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md) - All IDs and automation
 
-### Reference Materials
-- [.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md](./.claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md) - IDs and automation
-- [.claude/docs/reference/VERIFIED_STAGE_IDS.md](./.claude/docs/reference/VERIFIED_STAGE_IDS.md) - Stage mapping
-- [.claude/docs/templates/EXCEL_PROCESS_TEMPLATES.md](./.claude/docs/templates/EXCEL_PROCESS_TEMPLATES.md) - Analysis templates
-
-### Global Framework
-- `~/.claude/FIRSTMILE.md` - FirstMile brand standards and analysis framework
-- `~/.claude/PRINCIPLES.md` - Development principles and standards
-- `~/.claude/ORCHESTRATOR.md` - SuperClaude framework orchestration
+**Global Framework**: `~/.claude/FIRSTMILE.md` - Brand standards and reporting framework
 
 ---
 
 ## Version
 
 **System**: The Nebuchadnezzar v3.0
-**Last Updated**: 2025-11-06
-**Claude Code**: 2.0.34
+**Last Updated**: 2025-11-14
+**Claude Code**: 2.0+
 **Python**: 3.x
-**Node**: For MCP servers

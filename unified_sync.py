@@ -22,6 +22,17 @@ import requests
 from dotenv import load_dotenv
 import subprocess
 
+# Import new utility modules for Action-First Sync System
+try:
+    from utils.action_prioritizer import ActionPrioritizer
+    from utils.continuity_manager import ContinuityManager
+    from utils.git_committer import GitCommitter
+    ACTION_FIRST_AVAILABLE = True
+except ImportError:
+    # Fallback if utils not available
+    ACTION_FIRST_AVAILABLE = False
+    print("⚠️ Warning: Action-First components not available, using legacy mode")
+
 # Fix Windows console encoding
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 load_dotenv()
@@ -34,11 +45,11 @@ if not API_KEY:
 
 OWNER_ID = "699257003"  # Brett Walker
 PIPELINE_ID = "8bd9336b-4767-4e67-9fe2-35dfcad7c8be"
-DOWNLOADS = Path.home() / "Downloads"
-DAILY_LOG = DOWNLOADS / "_DAILY_LOG.md"
-FOLLOW_UP = DOWNLOADS / "FOLLOW_UP_REMINDERS.txt"
-BRAND_SCOUT_DIR = Path("C:/Users/BrettWalker/FirstMile_Deals/.claude/brand_scout/output")
 PROJECT_ROOT = Path("C:/Users/BrettWalker/FirstMile_Deals")
+SYNC_REPORTS_DIR = PROJECT_ROOT / "sync_reports"
+DAILY_LOG = PROJECT_ROOT / "_DAILY_LOG.md"
+FOLLOW_UP = PROJECT_ROOT / "FOLLOW_UP_REMINDERS.txt"
+BRAND_SCOUT_DIR = PROJECT_ROOT / ".claude/brand_scout/output"
 
 # All active stages (excluding CLOSED-LOST)
 ACTIVE_STAGES = {
@@ -49,6 +60,17 @@ ACTIVE_STAGES = {
     "4e549d01-674b-4b31-8a90-91ec03122715": "[05-SETUP-DOCS-SENT]",
     "08d9c411-5e1b-487b-8732-9c2bcbbd0307": "[06-IMPLEMENTATION]",
     "3fd46d94-78b4-452b-8704-62a338a210fb": "[07-STARTED-SHIPPING]",
+}
+
+# SALES PRIORITY STAGES (stages 1-6 only, excludes STARTED-SHIPPING)
+# Used by ActionPrioritizer to focus on active sales opportunities
+SALES_PRIORITY_STAGES = {
+    "1090865183": "[01-DISCOVERY-SCHEDULED]",
+    "d2a08d6f-cc04-4423-9215-594fe682e538": "[02-DISCOVERY-COMPLETE]",
+    "e1c4321e-afb6-4b29-97d4-2b2425488535": "[03-RATE-CREATION]",
+    "d607df25-2c6d-4a5d-9835-6ed1e4f4020a": "[04-PROPOSAL-SENT]",
+    "4e549d01-674b-4b31-8a90-91ec03122715": "[05-SETUP-DOCS-SENT]",
+    "08d9c411-5e1b-487b-8732-9c2bcbbd0307": "[06-IMPLEMENTATION]"
 }
 
 PRIORITY_STAGES = {
@@ -112,7 +134,7 @@ def get_superhuman_emails():
             email_result = subprocess.run(
                 ['python', str(extractor_path)],
                 capture_output=True,
-                text=True,
+                encoding='utf-8',  # Explicit UTF-8 encoding for emoji support
                 timeout=30,
                 cwd=str(PROJECT_ROOT)
             )
@@ -171,6 +193,92 @@ def run_prioritization_agent():
             return {"success": False, "error": result.stderr}
     except Exception as e:
         return {"success": False, "error": str(e)}
+
+def run_action_prioritizer(sync_type):
+    """
+    Run new ActionPrioritizer for intelligent top 3 actions.
+    Falls back to run_prioritization_agent() if Action-First not available.
+    """
+    if not ACTION_FIRST_AVAILABLE:
+        # Fallback to legacy prioritization agent
+        return run_prioritization_agent()
+
+    try:
+        # Initialize ActionPrioritizer
+        prioritizer = ActionPrioritizer()
+
+        # Fetch HubSpot deals
+        deals_data = fetch_hubspot_deals_raw()  # Get full deal objects
+
+        # Get email data
+        email_data = get_superhuman_emails()
+        emails = {
+            "critical": email_data.get("critical", []),
+            "yesterday": email_data.get("yesterday", []),
+            "last_week": email_data.get("last_week", [])
+        }
+
+        # Generate top 3 actions
+        actions = prioritizer.prioritize_actions(deals_data, emails, sync_type)
+
+        # Format for report
+        formatted_actions = []
+        for i, action in enumerate(actions, 1):
+            formatted_actions.append(
+                f"{i}. [{action.score:.0f}pts] {action.title}\n"
+                f"   Type: {action.type} | Priority: {action.priority} | Due: {action.due_by}\n"
+                f"   Next: {action.next_step}"
+            )
+
+        return {
+            "success": True,
+            "actions": formatted_actions,
+            "action_objects": actions  # For continuity manager
+        }
+
+    except Exception as e:
+        print(f"⚠️ ActionPrioritizer failed: {e}")
+        # Fallback to legacy agent
+        return run_prioritization_agent()
+
+def fetch_hubspot_deals_raw():
+    """Fetch raw HubSpot deal objects (for ActionPrioritizer)
+
+    CRITICAL: Only fetches stages 1-6 (SALES_PRIORITY_STAGES)
+    Excludes stage 7 (STARTED-SHIPPING) to focus on active sales opportunities
+    """
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "filterGroups": [{
+            "filters": [
+                {"propertyName": "hubspot_owner_id", "operator": "EQ", "value": OWNER_ID},
+                {"propertyName": "pipeline", "operator": "EQ", "value": PIPELINE_ID},
+                {"propertyName": "dealstage", "operator": "IN", "values": list(SALES_PRIORITY_STAGES.keys())}
+            ]
+        }],
+        "properties": ["dealname", "dealstage", "amount", "hs_lastmodifieddate", "hs_priority"],
+        "limit": 100
+    }
+
+    try:
+        response = requests.post(
+            "https://api.hubapi.com/crm/v3/objects/deals/search",
+            headers=headers,
+            json=payload,
+            timeout=10
+        )
+
+        if response.status_code == 200:
+            return response.json().get("results", [])
+        else:
+            return []
+    except Exception as e:
+        print(f"⚠️ Error fetching deals: {e}")
+        return []
 
 def fetch_hubspot_deals():
     """Fetch active deals from HubSpot API"""
@@ -547,23 +655,41 @@ def generate_sync_report(sync_type):
         report.append("---")
         report.append("")
 
-    # HubSpot Priority Deals
-    report.append("## 💼 HUBSPOT PRIORITY DEALS (LIVE DATA)")
+    # HubSpot Priority Actions (using Action-First if available)
+    report.append("## 🎯 TOP 3 PRIORITY ACTIONS")
     report.append("")
     report.append(f"**Last Updated**: {now.strftime('%A, %B %d, %Y at %I:%M %p CT')}")
     report.append("")
 
-    priority_result = run_prioritization_agent()
-    if priority_result["success"]:
-        report.append("### TOP 5 PRIORITIES")
-        report.append("")
-        for deal in priority_result["deals"]:
-            report.append(deal)
-        report.append("")
+    if ACTION_FIRST_AVAILABLE:
+        # Use new Action-First prioritization
+        action_result = run_action_prioritizer(sync_type)
+        if action_result["success"] and "actions" in action_result:
+            for action_text in action_result["actions"]:
+                report.append(action_text)
+                report.append("")
+        else:
+            # Fallback to legacy agent
+            priority_result = run_prioritization_agent()
+            if priority_result["success"]:
+                report.append("### TOP 5 PRIORITIES (Legacy Mode)")
+                report.append("")
+                for deal in priority_result["deals"]:
+                    report.append(deal)
+                report.append("")
     else:
-        report.append("⚠️ Prioritization agent failed to run")
-        report.append(f"Error: {priority_result.get('error', 'Unknown')}")
-        report.append("")
+        # Legacy mode (no Action-First available)
+        priority_result = run_prioritization_agent()
+        if priority_result["success"]:
+            report.append("### TOP 5 PRIORITIES")
+            report.append("")
+            for deal in priority_result["deals"]:
+                report.append(deal)
+            report.append("")
+        else:
+            report.append("⚠️ Prioritization agent failed to run")
+            report.append(f"Error: {priority_result.get('error', 'Unknown')}")
+            report.append("")
 
     # Pipeline Metrics
     hubspot_data = fetch_hubspot_deals()
@@ -730,10 +856,11 @@ def main():
     # Fetch HubSpot data for continuity updates
     hubspot_data = fetch_hubspot_deals()
 
-    # Save to timestamped file
+    # Save to timestamped file in project sync_reports folder
+    SYNC_REPORTS_DIR.mkdir(exist_ok=True)  # Create folder if it doesn't exist
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     filename = f"{sync_type.upper()}_SYNC_{timestamp}.md"
-    output_path = DOWNLOADS / filename
+    output_path = SYNC_REPORTS_DIR / filename
 
     output_path.write_text(report, encoding='utf-8')
 
@@ -772,6 +899,42 @@ def main():
         else:
             print(f"   ⚠️  Follow-up reminders update failed")
 
+    # 4. Git auto-commit (EOD sync only)
+    git_committed = False
+    if sync_type == "eod" and ACTION_FIRST_AVAILABLE:
+        try:
+            print(f"\n📦 Creating git commit...")
+
+            # Initialize GitCommitter
+            committer = GitCommitter()
+
+            # Get today's sync reports
+            today_reports = []
+            for report_file in SYNC_REPORTS_DIR.glob("*.md"):
+                file_date = datetime.fromtimestamp(report_file.stat().st_mtime)
+                if file_date.date() == datetime.now().date():
+                    today_reports.append(report_file.name)
+
+            # Create commit summary (simplified for now)
+            from utils.git_committer import CommitSummary
+            summary = CommitSummary(
+                date=datetime.now().strftime('%Y-%m-%d'),
+                sync_count=len(today_reports),
+                actions_completed=0,  # Would come from continuity manager
+                deals_updated=0,       # Would come from action prioritizer
+                emails_processed=0,    # Would come from email data
+                files_modified=[],
+                key_activities=[]
+            )
+
+            # Create commit
+            git_committed = committer.create_commit(summary)
+            if git_committed:
+                print(f"   ✅ Git commit created successfully")
+
+        except Exception as e:
+            print(f"   ⚠️  Git commit failed: {e}")
+
     print("\n" + "=" * 80)
     print("CONTINUITY CHAIN STATUS")
     print("=" * 80)
@@ -779,6 +942,8 @@ def main():
     print(f"{'✅' if log_updated else '❌'} Daily log: _DAILY_LOG.md (tomorrow's context)")
     if sync_type in ["eod", "weekly"]:
         print(f"{'✅' if reminders_updated else '❌'} Follow-up reminders: FOLLOW_UP_REMINDERS.txt")
+    if sync_type == "eod" and ACTION_FIRST_AVAILABLE:
+        print(f"{'✅' if git_committed else '❌'} Git commit: Daily sync committed")
     print("=" * 80)
     print(f"\n💡 Next sync will read from _DAILY_LOG.md updated on {datetime.now().strftime('%Y-%m-%d at %I:%M %p')}")
     print(f"   This ensures continuity: TODAY's sync → TOMORROW's context ✅")

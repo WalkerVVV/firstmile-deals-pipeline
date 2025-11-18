@@ -568,8 +568,13 @@ def create_eod_summary(hubspot_data):
 # SYNC REPORT GENERATION
 # ============================================================================
 
-def generate_sync_report(sync_type):
-    """Generate comprehensive sync report"""
+def generate_sync_report(sync_type, override_date=None):
+    """Generate comprehensive sync report
+
+    Args:
+        sync_type: Type of sync (9am, noon, 3pm, eod, weekly, monthly)
+        override_date: Optional datetime to use instead of current time (for historical syncs)
+    """
 
     if sync_type not in SYNC_TYPES:
         print(f"❌ ERROR: Invalid sync type '{sync_type}'")
@@ -577,7 +582,7 @@ def generate_sync_report(sync_type):
         sys.exit(1)
 
     sync_config = SYNC_TYPES[sync_type]
-    now = datetime.now()
+    now = override_date if override_date else datetime.now()
 
     # Header
     report = []
@@ -840,25 +845,36 @@ def generate_sync_report(sync_type):
 def main():
     if len(sys.argv) < 2:
         print("❌ ERROR: Sync type required")
-        print("\nUsage: python unified_sync.py [sync_type]")
+        print("\nUsage: python unified_sync.py [sync_type] [--date YYYY-MM-DD]")
         print(f"\nValid sync types: {', '.join(SYNC_TYPES.keys())}")
         print("\nExamples:")
         print("  python unified_sync.py 9am")
-        print("  python unified_sync.py noon")
-        print("  python unified_sync.py eod")
+        print("  python unified_sync.py eod --date 2025-11-17")
+        print("  python unified_sync.py weekly")
         sys.exit(1)
 
     sync_type = sys.argv[1].lower()
 
-    # Generate report
-    report = generate_sync_report(sync_type)
+    # Check for --date parameter
+    override_date = None
+    if len(sys.argv) >= 4 and sys.argv[2] == '--date':
+        try:
+            override_date = datetime.strptime(sys.argv[3], '%Y-%m-%d')
+            print(f"📅 Running {sync_type.upper()} sync for: {override_date.strftime('%A, %B %d, %Y')}")
+        except ValueError:
+            print("❌ ERROR: Invalid date format. Use YYYY-MM-DD")
+            sys.exit(1)
+
+    # Generate report (pass override_date)
+    report = generate_sync_report(sync_type, override_date=override_date)
 
     # Fetch HubSpot data for continuity updates
     hubspot_data = fetch_hubspot_deals()
 
     # Save to timestamped file in project sync_reports folder
     SYNC_REPORTS_DIR.mkdir(exist_ok=True)  # Create folder if it doesn't exist
-    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    current_time = override_date if override_date else datetime.now()
+    timestamp = current_time.strftime('%Y%m%d_%H%M%S')
     filename = f"{sync_type.upper()}_SYNC_{timestamp}.md"
     output_path = SYNC_REPORTS_DIR / filename
 

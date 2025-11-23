@@ -332,6 +332,334 @@ def group_deals_by_stage(deals):
     return by_stage
 
 # ============================================================================
+# HUBSPOT TASK MANAGEMENT
+# ============================================================================
+
+def fetch_hubspot_tasks():
+    """Fetch open tasks for Brett Walker's deals"""
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    # Fetch tasks assigned to owner
+    payload = {
+        "filterGroups": [{
+            "filters": [
+                {"propertyName": "hubspot_owner_id", "operator": "EQ", "value": OWNER_ID},
+                {"propertyName": "hs_task_status", "operator": "NEQ", "value": "COMPLETED"}
+            ]
+        }],
+        "properties": ["hs_task_subject", "hs_task_body", "hs_task_status",
+                       "hs_task_priority", "hs_timestamp", "hs_task_type"],
+        "limit": 100
+    }
+
+    try:
+        response = requests.post(
+            "https://api.hubapi.com/crm/v3/objects/tasks/search",
+            headers=headers,
+            json=payload,
+            timeout=10
+        )
+
+        if response.status_code == 200:
+            tasks = response.json().get("results", [])
+            return {
+                "success": True,
+                "total": len(tasks),
+                "tasks": tasks,
+                "overdue": sum(1 for t in tasks if is_task_overdue(t)),
+                "due_today": sum(1 for t in tasks if is_task_due_today(t))
+            }
+        else:
+            return {"success": False, "error": f"API returned {response.status_code}"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+def is_task_overdue(task):
+    """Check if task is overdue"""
+    try:
+        due_ts = int(task["properties"].get("hs_timestamp", 0))
+        if due_ts:
+            due_date = datetime.fromtimestamp(due_ts / 1000)
+            return due_date < datetime.now()
+    except:
+        pass
+    return False
+
+def is_task_due_today(task):
+    """Check if task is due today"""
+    try:
+        due_ts = int(task["properties"].get("hs_timestamp", 0))
+        if due_ts:
+            due_date = datetime.fromtimestamp(due_ts / 1000)
+            return due_date.date() == datetime.now().date()
+    except:
+        pass
+    return False
+
+def create_hubspot_task(deal_id, subject, body, due_date=None, priority="MEDIUM"):
+    """Create a task associated with a deal"""
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    # Default due date is tomorrow at 9 AM
+    if not due_date:
+        tomorrow = datetime.now() + timedelta(days=1)
+        due_date = tomorrow.replace(hour=9, minute=0, second=0, microsecond=0)
+
+    due_timestamp = int(due_date.timestamp() * 1000)
+
+    task_data = {
+        "properties": {
+            "hs_task_subject": subject,
+            "hs_task_body": body,
+            "hs_task_status": "NOT_STARTED",
+            "hs_task_priority": priority,
+            "hs_timestamp": str(due_timestamp),
+            "hubspot_owner_id": OWNER_ID,
+            "hs_task_type": "TODO"
+        },
+        "associations": [{
+            "to": {"id": deal_id},
+            "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": 216}]
+        }]
+    }
+
+    try:
+        response = requests.post(
+            "https://api.hubapi.com/crm/v3/objects/tasks",
+            headers=headers,
+            json=task_data,
+            timeout=10
+        )
+
+        if response.status_code == 201:
+            return {"success": True, "task_id": response.json().get("id")}
+        else:
+            return {"success": False, "error": f"API returned {response.status_code}: {response.text}"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+# ============================================================================
+# HUBSPOT NOTES MANAGEMENT
+# ============================================================================
+
+def create_hubspot_note(deal_id, note_body):
+    """Create a note associated with a deal"""
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    timestamp_ms = int(datetime.now().timestamp() * 1000)
+
+    note_data = {
+        "properties": {
+            "hs_note_body": note_body,
+            "hs_timestamp": str(timestamp_ms),
+            "hubspot_owner_id": OWNER_ID
+        },
+        "associations": [{
+            "to": {"id": deal_id},
+            "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": 214}]
+        }]
+    }
+
+    try:
+        response = requests.post(
+            "https://api.hubapi.com/crm/v3/objects/notes",
+            headers=headers,
+            json=note_data,
+            timeout=10
+        )
+
+        if response.status_code == 201:
+            return {"success": True, "note_id": response.json().get("id")}
+        else:
+            return {"success": False, "error": f"API returned {response.status_code}: {response.text}"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+def log_sync_note(deal_id, sync_type, action_taken):
+    """Log a sync activity note to a deal"""
+    now = datetime.now()
+    note_body = f"""📋 **{sync_type.upper()} SYNC - {now.strftime('%B %d, %Y %I:%M %p')}**
+
+{action_taken}
+
+---
+*Auto-logged by Nebuchadnezzar v3.0*"""
+
+    return create_hubspot_note(deal_id, note_body)
+
+# ============================================================================
+# HUBSPOT NEXT STEPS MANAGEMENT
+# ============================================================================
+
+def update_deal_next_step(deal_id, next_step_text, next_step_date=None):
+    """Update the next step fields on a deal"""
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    properties = {
+        "hs_next_step": next_step_text
+    }
+
+    # Set next step date if provided
+    if next_step_date:
+        if isinstance(next_step_date, datetime):
+            properties["notes_next_activity_date"] = next_step_date.strftime("%Y-%m-%d")
+        else:
+            properties["notes_next_activity_date"] = next_step_date
+
+    try:
+        response = requests.patch(
+            f"https://api.hubapi.com/crm/v3/objects/deals/{deal_id}",
+            headers=headers,
+            json={"properties": properties},
+            timeout=10
+        )
+
+        if response.status_code == 200:
+            return {"success": True}
+        else:
+            return {"success": False, "error": f"API returned {response.status_code}: {response.text}"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+# ============================================================================
+# DEAL RECORD COMPLETENESS AUDIT
+# ============================================================================
+
+# Required fields for complete deal records
+REQUIRED_DEAL_FIELDS = [
+    "dealname",
+    "dealstage",
+    "amount",
+    "closedate",
+    "hs_next_step",
+    "notes_next_activity_date",
+    "description"
+]
+
+def fetch_deals_for_audit():
+    """Fetch deals with all fields needed for completeness audit"""
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    # Fetch ALL active deals (stages 1-7) for audit
+    payload = {
+        "filterGroups": [{
+            "filters": [
+                {"propertyName": "hubspot_owner_id", "operator": "EQ", "value": OWNER_ID},
+                {"propertyName": "pipeline", "operator": "EQ", "value": PIPELINE_ID},
+                {"propertyName": "dealstage", "operator": "IN", "values": list(ACTIVE_STAGES.keys())}
+            ]
+        }],
+        "properties": REQUIRED_DEAL_FIELDS + ["hs_lastmodifieddate"],
+        "limit": 100
+    }
+
+    try:
+        response = requests.post(
+            "https://api.hubapi.com/crm/v3/objects/deals/search",
+            headers=headers,
+            json=payload,
+            timeout=10
+        )
+
+        if response.status_code == 200:
+            return response.json().get("results", [])
+        else:
+            return []
+    except Exception as e:
+        print(f"⚠️ Error fetching deals for audit: {e}")
+        return []
+
+def audit_deal_completeness():
+    """Audit all deals for missing required fields"""
+    deals = fetch_deals_for_audit()
+
+    audit_results = {
+        "total_deals": len(deals),
+        "complete": 0,
+        "incomplete": 0,
+        "missing_fields": {},
+        "deals_needing_attention": []
+    }
+
+    for deal in deals:
+        props = deal.get("properties", {})
+        deal_name = props.get("dealname", "Unknown")
+        deal_id = deal.get("id")
+        stage_id = props.get("dealstage", "")
+        stage_name = ACTIVE_STAGES.get(stage_id, "UNKNOWN")
+
+        missing = []
+        for field in REQUIRED_DEAL_FIELDS:
+            value = props.get(field)
+            if not value or value == "0" or value == "":
+                missing.append(field)
+                if field not in audit_results["missing_fields"]:
+                    audit_results["missing_fields"][field] = 0
+                audit_results["missing_fields"][field] += 1
+
+        if missing:
+            audit_results["incomplete"] += 1
+            audit_results["deals_needing_attention"].append({
+                "id": deal_id,
+                "name": deal_name,
+                "stage": stage_name,
+                "missing": missing
+            })
+        else:
+            audit_results["complete"] += 1
+
+    # Sort by number of missing fields (worst first)
+    audit_results["deals_needing_attention"].sort(key=lambda x: len(x["missing"]), reverse=True)
+
+    return audit_results
+
+def generate_audit_report():
+    """Generate a formatted audit report"""
+    audit = audit_deal_completeness()
+
+    report = []
+    report.append("## 📋 DEAL RECORD COMPLETENESS AUDIT")
+    report.append("")
+
+    complete_pct = (audit["complete"] / audit["total_deals"] * 100) if audit["total_deals"] > 0 else 0
+
+    report.append(f"**Total Deals**: {audit['total_deals']}")
+    report.append(f"**Complete Records**: {audit['complete']} ({complete_pct:.0f}%)")
+    report.append(f"**Needs Attention**: {audit['incomplete']}")
+    report.append("")
+
+    if audit["missing_fields"]:
+        report.append("### Most Common Missing Fields:")
+        for field, count in sorted(audit["missing_fields"].items(), key=lambda x: x[1], reverse=True):
+            report.append(f"- **{field}**: {count} deals")
+        report.append("")
+
+    if audit["deals_needing_attention"]:
+        report.append("### Deals Needing Attention (Top 10):")
+        for deal in audit["deals_needing_attention"][:10]:
+            missing_list = ", ".join(deal["missing"])
+            report.append(f"- **{deal['name']}** {deal['stage']}")
+            report.append(f"  Missing: {missing_list}")
+        report.append("")
+
+    return "\n".join(report)
+
+# ============================================================================
 # CONTEXT EXTRACTION
 # ============================================================================
 
@@ -707,6 +1035,33 @@ def generate_sync_report(sync_type, override_date=None):
         report.append("**Stage Distribution**:")
         for stage, data in sorted(hubspot_data['by_stage'].items()):
             report.append(f"- {stage}: {data['count']} deals (${data['value']:,.0f})")
+        report.append("")
+
+    # Task Status Section
+    task_data = fetch_hubspot_tasks()
+    if task_data.get("success"):
+        report.append("### 📋 HubSpot Tasks")
+        report.append("")
+        report.append(f"**Open Tasks**: {task_data['total']}")
+        if task_data['overdue'] > 0:
+            report.append(f"**🚨 Overdue**: {task_data['overdue']}")
+        if task_data['due_today'] > 0:
+            report.append(f"**⚠️ Due Today**: {task_data['due_today']}")
+        report.append("")
+
+        # Show overdue tasks
+        if task_data['overdue'] > 0:
+            report.append("**Overdue Tasks:**")
+            for task in task_data['tasks']:
+                if is_task_overdue(task):
+                    subject = task['properties'].get('hs_task_subject', 'No subject')
+                    report.append(f"- {subject}")
+            report.append("")
+
+    # Deal Completeness Audit (weekly and monthly syncs)
+    if sync_type in ["weekly", "monthly", "eod"]:
+        audit_content = generate_audit_report()
+        report.append(audit_content)
         report.append("")
 
     report.append("---")

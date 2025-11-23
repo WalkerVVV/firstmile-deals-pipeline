@@ -104,9 +104,15 @@ response = requests.post(
 ```
 
 **Critical Field Rules**:
-- Timestamps: Unix milliseconds (not ISO strings)
+- Timestamps: Unix milliseconds as STRING (e.g., `"1738281600000"` for Jan 31, 2025)
 - Association type IDs: 214 (Note-Deal), 216 (Task-Deal), 280 (Contact-Company), 341 (Deal-Company)
 - Never hardcode API keys (use `.env` file)
+- **Read-only fields**: `notes_next_activity_date` cannot be set directly - create tasks instead
+- **Required filters**: Always include Owner ID (`699257003`) and Pipeline ID to avoid pulling 3,000+ deals
+- **Division protection**: Always check denominators before percentage calculations
+- **Custom fields**: Query API for field names, don't guess (e.g., `monthly_volume__c` not `volume_monthly_parcels`)
+
+**Reference**: See `.claude/docs/reference/HUBSPOT_DEAL_HYGIENE_GUIDE.md` for complete API patterns
 
 ### Deal Folder Automation
 

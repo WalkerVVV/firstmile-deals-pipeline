@@ -51,7 +51,7 @@ jobs:
             "PRE_MATRIX_SYSTEM_STATE.json"
             ".claude/README.md"
             ".claude/DOCUMENTATION_INDEX.md"
-            ".claude/NEBUCHADNEZZAR_REFERENCE.md"
+            ".claude/docs/reference/NEBUCHADNEZZAR_REFERENCE.md"
           )
 
           for file in "${CRITICAL_FILES[@]}"; do
